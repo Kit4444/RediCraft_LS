@@ -1,0 +1,33 @@
+name: RediCore
+author: Maurice_Bailey
+main: at.mlps.rc.main.Main
+description: This is the Core-Plugin of RediCraft.
+website: www.redicraft.eu
+prefix: REDICRAFTCOREPLUGIN
+version: 200414.9ALPHA
+api-version: 1.13
+
+commands:
+    build:
+    login:
+    logout:
+    togglegroup:
+        aliases: tg
+    userlist:
+    maintenance:
+    afk:
+    setspawn:
+    setid:
+    setpf:
+        aliases: setprefix
+    money:
+    setmoney:
+    removemoney:
+    addmoney:
+    topmoney:
+    setbankmoney:
+    bankdeposit:
+    bankwithdraw:
+    pay:
+    spawnvillager:
+    
