@@ -26,7 +26,6 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
 		}else {
 			Player p = (Player)sender;
-			String uuid = p.getUniqueId().toString().replace("-", "");
 			if(cmd.getName().equalsIgnoreCase("setid")) {
 				if(args.length == 0) {
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + "§7/setid <Player> <ID>");
@@ -53,7 +52,7 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 									try {
 										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userid = ? WHERE uuid = ?");
 										ps.setInt(1, id);
-										ps.setString(2, uuid);
+										ps.setString(2, p2.getUniqueId().toString().replace("-", ""));
 										ps.executeUpdate();
 										ps.closeOnCompletion();
 										p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setid.updatesuccessfull").replace("%displayer", p2.getDisplayName()).replace("%id", String.valueOf(id)));
@@ -78,7 +77,7 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 										try {
 											PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userid = ? WHERE uuid = ?");
 											ps.setInt(1, id);
-											ps.setString(2, uuid);
+											ps.setString(2, p2.getUniqueId().toString().replace("-", ""));
 											ps.executeUpdate();
 											ps.closeOnCompletion();
 											p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setid.updatesuccessfull").replace("%displayer", p2.getDisplayName()).replace("%id", String.valueOf(id)));
@@ -116,18 +115,20 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 							if(prefix.length() <= 16) {
 								if(prefix.equalsIgnoreCase("reset")) {
 									try {
-										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userprefix = ? WHERE uuid = ?");
+										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userprefix = ?, userprefix_ncc = ? WHERE uuid = ?");
 										ps.setString(1, "RESET");
-										ps.setString(2, uuid2);
+										ps.setString(2, "RESET");
+										ps.setString(3, uuid2);
 										ps.executeUpdate();
 										ps.closeOnCompletion();
 										p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setpf.playerreset").replace("%displayer", p2.getDisplayName()));
 									}catch (SQLException e) { }
 								}else {
 									try {
-										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userprefix = ? WHERE uuid = ?");
+										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userprefix = ?, userprefix_ncc = ? WHERE uuid = ?");
 										ps.setString(1, prefix);
-										ps.setString(2, uuid2);
+										ps.setString(2, prefix.replace("§a", "").replace("§b", "").replace("§c", "").replace("§d", "").replace("§e", "").replace("§f", "").replace("§1", "").replace("§2", "").replace("§3", "").replace("§4", "").replace("§5", "").replace("§6", "").replace("§7", "").replace("§8", "").replace("§9", "").replace("§0", ""));
+										ps.setString(3, uuid2);
 										ps.executeUpdate();
 										ps.closeOnCompletion();
 										p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setpf.newprefix").replace("%displayer", p2.getDisplayName()).replace("%prefix", prefix).replace("|", "\n"));
