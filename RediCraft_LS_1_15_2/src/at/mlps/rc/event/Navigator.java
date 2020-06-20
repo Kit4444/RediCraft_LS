@@ -34,7 +34,7 @@ public class Navigator implements Listener{
 	public static String title = "§aServer§cNavigator";
 	static String dailyrew = "§aDaily Rewards";
 	static String spawn = "§6Spawn";
-	static String skyblock = "§fSky§2Block";
+	static String skyblock = "§a§fSky§2Block";
 	static String creative = "§eCreative";
 	static String survival = "§cSurvival";
 	static String towny = "§6Towny";
