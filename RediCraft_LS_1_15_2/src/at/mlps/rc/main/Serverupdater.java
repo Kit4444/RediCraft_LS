@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import at.mlps.rc.api.GetBukkitInfo;
 import at.mlps.rc.mysql.lb.MySQL;
 import net.md_5.bungee.api.ChatColor;
-import net.minecraft.server.v1_15_R1.MinecraftServer;
+import net.minecraft.server.v1_16_R1.MinecraftServer;
 
 public class Serverupdater {
 	
@@ -42,7 +42,7 @@ public class Serverupdater {
 				ps.setInt(5, (int) timestamp);
 				ps.setString(6, stime);
 				ps.setInt(7, (int) ramtotal);
-				ps.setString(8, "1.15.2");
+				ps.setString(8, "1.16.1");
 				ps.setString(9, tps);
 				ps.setString(10, GetBukkitInfo.getServerName());
 				ps.executeUpdate();

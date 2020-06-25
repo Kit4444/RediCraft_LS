@@ -49,7 +49,7 @@ public class LogSystem implements CommandExecutor{
 				}
 			}else if(cmd.getName().equalsIgnoreCase("tg") || cmd.getName().equalsIgnoreCase("togglegroup")) {
 				PermissionUser po = PermissionsEx.getUser(p);
-				if(po.inGroup("Patron") || po.inGroup("Beta") || po.inGroup("Mod") || po.inGroup("Support") || po.inGroup("Builder") || po.inGroup("NitroBooster") || po.inGroup("Friend")) {
+				if(po.inGroup("Patron") || po.inGroup("Beta") || po.inGroup("Mod") || po.inGroup("Support") || po.inGroup("Builder") || po.inGroup("NitroBooster") || po.inGroup("Friend") || po.inGroup("RetiredLegend") || po.inGroup("RTM")) {
 					if(retStatus(uuid)) {
 						updateStatus(uuid, false);
 						LanguageHandler.sendMSGReady(p, "cmd.tg.invisible");
