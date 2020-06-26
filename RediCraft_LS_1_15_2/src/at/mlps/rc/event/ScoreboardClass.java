@@ -37,7 +37,7 @@ public class ScoreboardClass implements Listener{
 	@SuppressWarnings("deprecation")
 	public void setScoreboard(Player p) throws SQLException {
 		Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
-		Objective o = sb.registerNewObjective("aaa", "bbb");
+		Objective o = sb.registerNewObjective("aaa", "dummy");
 		PermissionUser po = PermissionsEx.getUser(p);
 		int puser = GetPlayersLocal.getPlayers("BungeeCord", "currPlayers");
 		int pusermax = GetPlayersLocal.getPlayers("BungeeCord", "maxPlayers");
