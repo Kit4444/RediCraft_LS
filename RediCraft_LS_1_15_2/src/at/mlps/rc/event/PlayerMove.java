@@ -65,6 +65,13 @@ public class PlayerMove implements Listener{
 		if(cfg.getBoolean("Effects." + uuid + ".Snow") == true) {
 			p.getWorld().spawnParticle(Particle.SNOWBALL, p.getLocation(), 1);
 		}
+		if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame") == true) {
+			p.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, p.getLocation(), 1);
+		}
+		if(cfg.getBoolean("Effects." + uuid + ".Ash") == true) {
+			p.getWorld().spawnParticle(Particle.WHITE_ASH, p.getLocation().add(0, 1, 0), 1);
+			p.getWorld().spawnParticle(Particle.ASH, p.getLocation().add(0, 1, 0), 1);
+		}
 	}
 	
 	private static boolean isAFK(Player p) {

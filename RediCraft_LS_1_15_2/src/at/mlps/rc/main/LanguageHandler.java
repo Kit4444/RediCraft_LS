@@ -108,6 +108,10 @@ public class LanguageHandler {
 		cfg.addDefault("Language.EN.event.extras.effects.Redstone.removed", "&7Effect removed: &6Multicolor-Dust");
 		cfg.addDefault("Language.EN.event.extras.effects.Snow.selected", "&7Effect selected: &fSnowball");
 		cfg.addDefault("Language.EN.event.extras.effects.Snow.removed", "&7Effect removed: &fSnowball");
+		cfg.addDefault("Language.EN.event.extras.effects.Soulfire.selected", "&7Effect selected: &bSoulfireflames");
+		cfg.addDefault("Language.EN.event.extras.effects.Soulfire.removed", "&7Effect removed: &bSoulfireflames");
+		cfg.addDefault("Language.EN.event.extras.effects.Ash.selected", "&7Effect selected: &7Ash");
+		cfg.addDefault("Language.EN.event.extras.effects.Ash.removed", "&7Effect removed: &7Ash");
 		cfg.addDefault("Language.EN.event.navigator.sendPlayer.success", "&7You has been sent to server &a%server");
 		cfg.addDefault("Language.EN.event.navigator.sendPlayer.locked", "&a%server &7is currently locked.");
 		cfg.addDefault("Language.EN.event.navigator.sendPlayer.monitorinfo", "&eInfo: This server is currently monitored. Issues or instability may come up!");
@@ -238,6 +242,10 @@ public class LanguageHandler {
 		cfg.addDefault("Language.DE.event.extras.effects.Redstone.removed", "&7Effekt entfernt: &6Multicolor-Staub");
 		cfg.addDefault("Language.DE.event.extras.effects.Snow.selected", "&7Effekt ausgewählt: &fSnowball");
 		cfg.addDefault("Language.DE.event.extras.effects.Snow.removed", "&7Effekt entfernt: &fSnowball");
+		cfg.addDefault("Language.DE.event.extras.effects.Soulfire.selected", "&7Effekt ausgewählt: &bSoulfireflames");
+		cfg.addDefault("Language.DE.event.extras.effects.Soulfire.removed", "&7Effekt entfernt: &bSoulfireflames");
+		cfg.addDefault("Language.DE.event.extras.effects.Ash.selected", "&7Effekt ausgewählt: &7Ash");
+		cfg.addDefault("Language.DE.event.extras.effects.Ash.removed", "&7Effekt entfernt: &7Ash");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.success", "&7Du wurdest zum Server &a%server &7gesendet.");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.locked", "&a%server &7ist zur zeit gesperrt.");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.monitorinfo", "&eInfo: Dieser Server wird derzeit beobachtet. Probleme oder instabilitäten könnten auftreten.");
