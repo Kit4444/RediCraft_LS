@@ -14,6 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
@@ -73,6 +74,13 @@ public class BuildClass implements CommandExecutor, Listener{
 		if(e.getAction() == Action.PHYSICAL) {
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.wheatdestroy.cantdothat");
+		}
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		if(build.contains(e.getPlayer().getName())) {
+			build.remove(e.getPlayer().getName());
 		}
 	}
 }
