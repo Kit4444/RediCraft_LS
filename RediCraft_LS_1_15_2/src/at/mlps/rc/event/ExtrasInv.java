@@ -276,23 +276,32 @@ public class ExtrasInv implements Listener{
 			e.setCancelled(true);
 			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§2Default")) {
 				e.setCancelled(true);
-				p.setWalkSpeed((float) 0.2);
+				//p.setWalkSpeed((float) 0.2);
+				p.removePotionEffect(PotionEffectType.SPEED);
 				LanguageHandler.sendMSGReady(p, "event.extras.speedboost.default");
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aSpeed 1")) {
 				e.setCancelled(true);
-				p.setWalkSpeed((float) 0.4);
+				//p.setWalkSpeed((float) 0.4);
+				p.removePotionEffect(PotionEffectType.SPEED);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 4));
 				LanguageHandler.sendMSGReady(p, "event.extras.speedboost.step1");
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§eSpeed 2")) {
 				e.setCancelled(true);
-				p.setWalkSpeed((float) 0.6);
+				//p.setWalkSpeed((float) 0.6);
+				p.removePotionEffect(PotionEffectType.SPEED);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 6));
 				LanguageHandler.sendMSGReady(p, "event.extras.speedboost.step2");
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cSpeed 3")) {
 				e.setCancelled(true);
-				p.setWalkSpeed((float) 0.8);
+				//p.setWalkSpeed((float) 0.8);
+				p.removePotionEffect(PotionEffectType.SPEED);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 8));
 				LanguageHandler.sendMSGReady(p, "event.extras.speedboost.step3");
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§4Speed 4")) {
 				e.setCancelled(true);
-				p.setWalkSpeed((float) 1.0);
+				//p.setWalkSpeed((float) 1.0);
+				p.removePotionEffect(PotionEffectType.SPEED);
+				p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 10));
 				LanguageHandler.sendMSGReady(p, "event.extras.speedboost.step4");
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cgo back")) {
 				e.setCancelled(true);
