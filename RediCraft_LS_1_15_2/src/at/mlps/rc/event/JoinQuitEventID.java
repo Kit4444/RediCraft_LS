@@ -30,6 +30,7 @@ public class JoinQuitEventID implements Listener{
 	
 	static File spawn = new File("plugins/RCLS/spawn.yml");
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) throws SQLException {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
@@ -37,7 +38,16 @@ public class JoinQuitEventID implements Listener{
 		e.setJoinMessage(null);
 		p.setGameMode(GameMode.SURVIVAL);
 		Main.setPlayerBar(p);
-		p.teleport(retLoc(cfg, "general"));
+		if(p.hasPlayedBefore()) {
+			p.teleport(retLoc(cfg, "general"));
+		}else {
+			Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.instance, new Runnable() {
+				@Override
+				public void run() {
+					p.teleport(retLoc(cfg, "general"));
+				}
+			}, 10);
+		}
 		p.setFoodLevel(20);
 		p.setHealth(20.0);
 		String uuid = p.getUniqueId().toString().replace("-", "");
