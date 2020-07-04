@@ -503,7 +503,7 @@ public class ScoreboardClass implements Listener{
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 		String msg = e.getMessage().replace("%", "%%");
-		if(p.hasPermission("mlps.colorChat")) {
+		if(p.hasPermission("mlps.colorchat")) {
 			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + ChatColor.translateAlternateColorCodes('&', msg));
 		}else {
 			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + msg);

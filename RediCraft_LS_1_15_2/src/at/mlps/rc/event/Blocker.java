@@ -1,5 +1,6 @@
 package at.mlps.rc.event;
 
+import org.bukkit.entity.Fish;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,6 +31,8 @@ public class Blocker implements Listener{
 			}else if(e.getCause() == DamageCause.DROWNING) {
 				e.setCancelled(true);
 			}
+		}else if(e.getEntity() instanceof Fish){
+			e.setCancelled(true);
 		}
 	}
 	
