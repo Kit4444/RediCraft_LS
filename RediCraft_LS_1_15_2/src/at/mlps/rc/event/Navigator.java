@@ -222,6 +222,8 @@ public class Navigator implements Listener{
 					}
 					
 				}
+			}else if(e.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+				e.setCancelled(true);
 			}
 		}
 	}
