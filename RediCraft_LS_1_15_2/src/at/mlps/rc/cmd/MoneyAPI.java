@@ -38,61 +38,73 @@ public class MoneyAPI implements CommandExecutor{
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/money [Player]");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("setmoney")) {
-				if(args.length == 0) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
-				}else if(args.length >= 1 && args.length <= 2) {
-					Player p2 = Bukkit.getPlayerExact(args[0]);
-					if(p2 == null) {
-						LanguageHandler.sendMSGReady(p, "cmd.setmoney.playernotonline");
-					}else {
-						String uuid2 = p2.getUniqueId().toString();
-						int money = Integer.parseInt(args[1]);
-						if(money < 0) {
-							LanguageHandler.sendMSGReady(p, "cmd.setmoney.belowzero");
-						}else {
-							setMoney(uuid2, money);
-							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
-							//LanguageHandler.sendMSGReady(p, "cmd.setmoney.successfull");
-						}
-					}
+				if(p.hasPermission("mlps.setmoney")) {
+					LanguageHandler.noPerm(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
+					if(args.length == 0) {
+						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
+					}else if(args.length >= 1 && args.length <= 2) {
+						Player p2 = Bukkit.getPlayerExact(args[0]);
+						if(p2 == null) {
+							LanguageHandler.sendMSGReady(p, "cmd.setmoney.playernotonline");
+						}else {
+							String uuid2 = p2.getUniqueId().toString();
+							int money = Integer.parseInt(args[1]);
+							if(money < 0) {
+								LanguageHandler.sendMSGReady(p, "cmd.setmoney.belowzero");
+							}else {
+								setMoney(uuid2, money);
+								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
+								//LanguageHandler.sendMSGReady(p, "cmd.setmoney.successfull");
+							}
+						}
+					}else {
+						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
+					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("addmoney")) {
-				if(args.length >= 1 && args.length <= 2) {
-					Player p2 = Bukkit.getPlayerExact(args[0]);
-					if(p2 == null) {
-						LanguageHandler.sendMSGReady(p, "cmd.addmoney.playernotonline");
-					}else {
-						String uuid2 = p2.getUniqueId().toString();
-						int money = Integer.parseInt(args[1]);
-						int oldmoney = getMoney(uuid2);
-						setMoney(uuid2, (money + oldmoney));
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.addmoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
-						//LanguageHandler.sendMSGReady(p, "cmd.addmoney.successfull");
-					}
+				if(p.hasPermission("mlps.addmoney")) {
+					LanguageHandler.noPerm(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/addmoney <Player> <Money>");
+					if(args.length >= 1 && args.length <= 2) {
+						Player p2 = Bukkit.getPlayerExact(args[0]);
+						if(p2 == null) {
+							LanguageHandler.sendMSGReady(p, "cmd.addmoney.playernotonline");
+						}else {
+							String uuid2 = p2.getUniqueId().toString();
+							int money = Integer.parseInt(args[1]);
+							int oldmoney = getMoney(uuid2);
+							setMoney(uuid2, (money + oldmoney));
+							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.addmoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
+							//LanguageHandler.sendMSGReady(p, "cmd.addmoney.successfull");
+						}
+					}else {
+						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/addmoney <Player> <Money>");
+					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("removemoney")) {
-				if(args.length >= 1 && args.length <= 2) {
-					Player p2 = Bukkit.getPlayerExact(args[0]);
-					if(p2 == null) {
-						LanguageHandler.sendMSGReady(p, "cmd.removemoney.playernotonline");
-					}else {
-						String uuid2 = p2.getUniqueId().toString();
-						int money = Integer.parseInt(args[1]);
-						int oldmoney = getMoney(uuid2);
-						if(money <= oldmoney) {
-							setMoney(uuid2, (oldmoney - money));
-							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.removemoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
-							//LanguageHandler.sendMSGReady(p, "cmd.removemoney.successfull");
-						}else {
-							LanguageHandler.sendMSGReady(p, "cmd.removemoney.belowzero");
-						}
-					}
+				if(p.hasPermission("mlps.removemoney")) {
+					LanguageHandler.noPerm(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/removemoney <Player> <Money>");
+					if(args.length >= 1 && args.length <= 2) {
+						Player p2 = Bukkit.getPlayerExact(args[0]);
+						if(p2 == null) {
+							LanguageHandler.sendMSGReady(p, "cmd.removemoney.playernotonline");
+						}else {
+							String uuid2 = p2.getUniqueId().toString();
+							int money = Integer.parseInt(args[1]);
+							int oldmoney = getMoney(uuid2);
+							if(money <= oldmoney) {
+								setMoney(uuid2, (oldmoney - money));
+								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.removemoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
+								//LanguageHandler.sendMSGReady(p, "cmd.removemoney.successfull");
+							}else {
+								LanguageHandler.sendMSGReady(p, "cmd.removemoney.belowzero");
+							}
+						}
+					}else {
+						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/removemoney <Player> <Money>");
+					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("pay")) {
 				if(args.length >= 1 && args.length <= 2) {
