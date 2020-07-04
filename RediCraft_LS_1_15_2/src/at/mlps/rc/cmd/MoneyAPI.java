@@ -38,7 +38,7 @@ public class MoneyAPI implements CommandExecutor{
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/money [Player]");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("setmoney")) {
-				if(p.hasPermission("mlps.setmoney")) {
+				if(!p.hasPermission("mlps.setmoney")) {
 					LanguageHandler.noPerm(p);
 				}else {
 					if(args.length == 0) {
@@ -63,7 +63,7 @@ public class MoneyAPI implements CommandExecutor{
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("addmoney")) {
-				if(p.hasPermission("mlps.addmoney")) {
+				if(!p.hasPermission("mlps.addmoney")) {
 					LanguageHandler.noPerm(p);
 				}else {
 					if(args.length >= 1 && args.length <= 2) {
@@ -83,7 +83,7 @@ public class MoneyAPI implements CommandExecutor{
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("removemoney")) {
-				if(p.hasPermission("mlps.removemoney")) {
+				if(!p.hasPermission("mlps.removemoney")) {
 					LanguageHandler.noPerm(p);
 				}else {
 					if(args.length >= 1 && args.length <= 2) {
