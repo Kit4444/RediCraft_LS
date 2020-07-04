@@ -66,6 +66,7 @@ public class LanguageHandler {
 		cfg.addDefault("Language.EN.cmd.bankdeposit.successfull", "&7You have deposed &a%money &7Coins to your bank.");
 		cfg.addDefault("Language.EN.cmd.bankwithdraw.moreaspossible", "&7You can't deposit more as you have.");
 		cfg.addDefault("Language.EN.cmd.bankwithdraw.successfull", "&7You have withdrawn &a%money &7Coins from your bank.");
+		cfg.addDefault("Language.EN.cmd.help", "&7This command has been deactivated. Check out this forum thread: <URI>");
 		cfg.addDefault("Language.EN.event.afk.leave", "&7You are not longer AFK.");
 		cfg.addDefault("Language.EN.event.build.cantdothat", "&cYou can't do that.");
 		cfg.addDefault("Language.EN.event.wheatdestroy.cantdothat", "&cYou can't do that.");
@@ -200,6 +201,7 @@ public class LanguageHandler {
 		cfg.addDefault("Language.DE.cmd.bankdeposit.successfull", "&7Du hast &a%money &7Coins auf deine Bank überwiesen.");
 		cfg.addDefault("Language.DE.cmd.bankwithdraw.moreaspossible", "&7Du kannst nicht mehr von deiner Bank abheben als du hast.");
 		cfg.addDefault("Language.DE.cmd.bankwithdraw.successfull", "&7Du hast &a%money &7Coins von deiner Bank abgehoben.");
+		cfg.addDefault("Language.DE.cmd.help", "&7Dieser Befehl wurde deaktiviert. Checke diesen Forumthread: <URI>");
 		cfg.addDefault("Language.DE.event.afk.leave", "&7Du bist nicht mehr AFK.");
 		cfg.addDefault("Language.DE.event.build.cantdothat", "&cDu kannst das nicht.");
 		cfg.addDefault("Language.DE.event.wheatdestroy.cantdothat", "&cYou can't do that.");

@@ -7,6 +7,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
@@ -74,5 +75,26 @@ public class Blocker implements Listener{
             e.setCancelled(true);
             p.sendMessage(nodrop);
         }
+    }
+    
+    @EventHandler
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent e) {
+    	Player p = e.getPlayer();
+    	String message = e.getMessage();
+    	if(message.equalsIgnoreCase("/pl") || message.equalsIgnoreCase("/plugins") || message.equalsIgnoreCase("/bukkit:pl") || message.equalsIgnoreCase("/bukkit:plugins")) {
+    		if(p.hasPermission("*")) {
+    			e.setCancelled(false);
+    		}else {
+    			e.setCancelled(true);
+    			LanguageHandler.noPerm(p);
+    		}
+    	}else if(message.equalsIgnoreCase("/help") || message.equalsIgnoreCase("/?") || message.equalsIgnoreCase("/bukkit:?") || message.equalsIgnoreCase("/bukkit:help") || message.equalsIgnoreCase("/minecraft:help")) {
+    		if(p.hasPermission("*")) {
+    			e.setCancelled(false);
+    		}else {
+    			e.setCancelled(true);
+    			LanguageHandler.sendMSGReady(p, "cmd.help");
+    		}
+    	}
     }
 }
