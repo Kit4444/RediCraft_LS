@@ -30,7 +30,6 @@ public class JoinQuitEventID implements Listener{
 	
 	static File spawn = new File("plugins/RCLS/spawn.yml");
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) throws SQLException {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
@@ -38,16 +37,6 @@ public class JoinQuitEventID implements Listener{
 		e.setJoinMessage(null);
 		p.setGameMode(GameMode.SURVIVAL);
 		Main.setPlayerBar(p);
-		if(p.hasPlayedBefore()) {
-			p.teleport(retLoc(cfg, "general"));
-		}else {
-			Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.instance, new Runnable() {
-				@Override
-				public void run() {
-					p.teleport(retLoc(cfg, "general"));
-				}
-			}, 10);
-		}
 		p.setFoodLevel(20);
 		p.setHealth(20.0);
 		String uuid = p.getUniqueId().toString().replace("-", "");
@@ -140,6 +129,25 @@ public class JoinQuitEventID implements Listener{
         		ps.close();
         	}
         }catch (SQLException ex) { ex.printStackTrace(); }
+        if(p.hasPlayedBefore()) {
+			p.teleport(retLoc(cfg, "general"));
+		}else {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+				@Override
+				public void run() {
+					p.teleport(retLoc(cfg, "general"));
+				}
+			}, 10);
+		}
+        if(p.hasPermission("mlps.isSA")) {
+        	String isVer = Main.instance.getDescription().getVersion();
+            String shouldVer = retVersion();
+            if(!isVer.equalsIgnoreCase(shouldVer)) {
+            	p.sendMessage(Main.prefix() + "§cInfo, the Version you use is different to the DB.");
+            	p.sendMessage("§aServerversion§7: " + isVer);
+            	p.sendMessage("§cDB-Version§7: " + shouldVer);
+            }
+        }
 	}
 	
 	@EventHandler
@@ -218,5 +226,19 @@ public class JoinQuitEventID implements Listener{
 	private Location retLoc(YamlConfiguration cfg, String type) {
 		Location loc = new Location(Bukkit.getWorld(cfg.getString("Spawn." + type + ".WORLD")), cfg.getDouble("Spawn." + type + ".X"), cfg.getDouble("Spawn." + type + ".Y"), cfg.getDouble("Spawn." + type + ".Z"), (float)cfg.getDouble("Spawn." + type + ".YAW"), (float)cfg.getDouble("Spawn." + type + ".PITCH"));
 		return loc;
+	}
+	
+	private String retVersion() {
+		String s = "";
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT version FROM redicore_versions WHERE type = ?");
+			ps.setString(1, "game");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			s = rs.getString("version");
+			rs.close();
+			ps.closeOnCompletion();
+		}catch (SQLException ex) { ex.printStackTrace(); }
+		return s;
 	}
 }
