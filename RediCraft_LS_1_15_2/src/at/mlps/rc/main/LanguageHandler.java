@@ -251,7 +251,7 @@ public class LanguageHandler {
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.success", "&7Du wurdest zum Server &a%server &7gesendet.");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.locked", "&a%server &7ist zur zeit gesperrt.");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.monitorinfo", "&eInfo: Dieser Server wird derzeit beobachtet. Probleme oder instabilitäten könnten auftreten.");
-		cfg.addDefault("Language.DE.event.navigator.sendPlayer.offline", "&a%server &7ist zur zeit offline.");
+		cfg.addDefault("Language.DE.event.navigator.sendPlayer.offline", "&a%server &cist zur zeit offline.");
 		cfg.addDefault("Language.DE.event.navigator.sendPlayer.failed", "&cEin fehler ist aufgetreten als du gesendet werden solltest.");
 		cfg.addDefault("Language.DE.event.navigator.local.dailyreward", "&7Du wurdest zu den &aDaily Rewards &7teleportiert");
 		cfg.addDefault("Language.DE.event.navigator.local.spawn", "&7Du wurdest zum Lobbyspawn zurückteleportiert.");
