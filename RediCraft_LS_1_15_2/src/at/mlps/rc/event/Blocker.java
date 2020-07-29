@@ -98,6 +98,13 @@ public class Blocker implements Listener{
     			e.setCancelled(true);
     			LanguageHandler.sendMSGReady(p, "cmd.help");
     		}
+    	}else if(message.equalsIgnoreCase("/icanhasbukkit") || message.equalsIgnoreCase("/bukkit:about") || message.equalsIgnoreCase("/about") || message.equalsIgnoreCase("/bukkit:ver") || message.equalsIgnoreCase("/bukkit:version")) {
+    		if(p.hasPermission("*")) {
+    			e.setCancelled(false);
+    		}else {
+    			e.setCancelled(true);
+    			LanguageHandler.noPerm(p);
+    		}
     	}
     }
 }
