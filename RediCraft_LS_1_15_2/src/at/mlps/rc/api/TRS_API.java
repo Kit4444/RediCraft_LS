@@ -22,7 +22,7 @@ public class TRS_API {
 			minutes -= 60;
 			hours++;
 		}
-		return hours + ":" + minutes + ":" + seconds;
+		return hours + " hours, " + minutes + " mins and " + seconds + " secs";
 	}
 	
 	public static long getTime(Player p, String path) {
