@@ -31,14 +31,29 @@ public class JoinQuitEventID implements Listener{
 	static File spawn = new File("plugins/RCLS/spawn.yml");
 	
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) throws SQLException {
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
+	public void onSpawnJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		e.setJoinMessage(null);
 		p.setGameMode(GameMode.SURVIVAL);
 		Main.setPlayerBar(p);
 		p.setFoodLevel(20);
 		p.setHealth(20.0);
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
+		if(p.hasPlayedBefore()) {
+			p.teleport(retLoc(cfg, "general"));
+		}else {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+				@Override
+				public void run() {
+					p.teleport(retLoc(cfg, "general"));
+				}
+			}, 10);
+		}
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) throws SQLException {
+		Player p = e.getPlayer();
 		String uuid = p.getUniqueId().toString().replace("-", "");
 		int id = random(1, 99999);
 		SimpleDateFormat time = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
@@ -80,7 +95,7 @@ public class JoinQuitEventID implements Listener{
         		PermissionUser pu = PermissionsEx.getUser(p);
         		PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userrank = ?, online = ?, server = ?, lastjoints = ?, lastjoinstring = ?, lastloginip = ?, isstaff = ? WHERE uuid = ?");
         		if(pu.inGroup("PMan")) {
-            		ps.setString(1, "Projectmanager");
+            		ps.setString(1, "PMan");
             	}else if(pu.inGroup("CMan")) {
             		ps.setString(1, "Community Manager");
             	}else if(pu.inGroup("AMan")) {
@@ -129,16 +144,6 @@ public class JoinQuitEventID implements Listener{
         		ps.close();
         	}
         }catch (SQLException ex) { ex.printStackTrace(); }
-        if(p.hasPlayedBefore()) {
-			p.teleport(retLoc(cfg, "general"));
-		}else {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
-				@Override
-				public void run() {
-					p.teleport(retLoc(cfg, "general"));
-				}
-			}, 10);
-		}
         if(p.hasPermission("mlps.isSA")) {
         	String isVer = Main.instance.getDescription().getVersion();
             String shouldVer = retVersion();
@@ -162,7 +167,7 @@ public class JoinQuitEventID implements Listener{
         try {
         	PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userrank = ?, lastjoints = ?, lastjoinstring = ?, lastloginip = ?, online = ? WHERE uuid = ?");
         	if(pu.inGroup("PMan")) {
-        		ps.setString(1, "Projectmanager");
+        		ps.setString(1, "PMan");
         	}else if(pu.inGroup("CMan")) {
         		ps.setString(1, "Community Manager");
         	}else if(pu.inGroup("AMan")) {
