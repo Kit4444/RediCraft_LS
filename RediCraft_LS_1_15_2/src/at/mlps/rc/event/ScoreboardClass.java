@@ -72,7 +72,7 @@ public class ScoreboardClass implements Listener{
 			if (po.inGroup("Developer")) {
 			    o.getScore("  §dDeveloper").setScore(3);
 			}else if (po.inGroup("PMan")) {
-			    o.getScore("  §6Projectmanager").setScore(3);
+			    o.getScore("  §6Project Manager").setScore(3);
 			}else if (po.inGroup("CMan")) {
 			    o.getScore("  §2Community Manager").setScore(3);
 			}else if (po.inGroup("AMan")) {
