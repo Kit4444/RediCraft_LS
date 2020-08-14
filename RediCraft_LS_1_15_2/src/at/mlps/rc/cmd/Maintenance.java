@@ -52,10 +52,16 @@ public class Maintenance implements CommandExecutor, Listener{
 							}
 							String msg = sb.toString();
 							String uuid = MojangAPI.getUUIDfromName(name);
-							setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), true);
-							p.sendMessage("§7========[§aAdduser§7]========");
-							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-							p.sendMessage("§7Reason: §a" + msg);
+							if(uuid.equalsIgnoreCase("errored")) {
+								p.sendMessage("§7========[§aAdduser§7]========");
+								p.sendMessage("§7User: §a" + name);
+								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+							}else {
+								setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), true);
+								p.sendMessage("§7========[§aAdduser§7]========");
+								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
+								p.sendMessage("§7Reason: §a" + msg);
+							}
 						}else if(args[0].equalsIgnoreCase("remove")) {
 							String name = args[1].toLowerCase();
 							StringBuilder sb = new StringBuilder();
@@ -65,10 +71,16 @@ public class Maintenance implements CommandExecutor, Listener{
 							}
 							String msg = sb.toString();
 							String uuid = MojangAPI.getUUIDfromName(name);
-							setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), false);
-							p.sendMessage("§7========[§cRemoveuser§7]========");
-							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-							p.sendMessage("§7Reason: §a" + msg);
+							if(uuid.equalsIgnoreCase("errored")) {
+								p.sendMessage("§7========[§cRemoveuser§7]========");
+								p.sendMessage("§7User: §a" + name);
+								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+							}else {
+								setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), false);
+								p.sendMessage("§7========[§cRemoveuser§7]========");
+								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
+								p.sendMessage("§7Reason: §a" + msg);
+							}
 						}else if(args[0].equalsIgnoreCase("check")) {
 							String name = args[1].toLowerCase();
 							String uuid = "";
@@ -86,7 +98,7 @@ public class Maintenance implements CommandExecutor, Listener{
 								admin = rs.getString("admin");
 								datifo = rs.getString("timest");
 								boo = rs.getBoolean("allowed");
-							}catch (SQLException e) {}
+							}catch (SQLException e) { }
 							p.sendMessage("§7========[§2Checkuser§7]========");
 							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
 							p.sendMessage("§7Reason: §a" + msg);
@@ -106,17 +118,28 @@ public class Maintenance implements CommandExecutor, Listener{
 							}
 							String msg = sb.toString();
 							String uuid = MojangAPI.getUUIDfromName(name);
-							changeStatus(uuid, name, p.getName(), msg);
-							p.sendMessage("§7========[§eChangereason§7]========");
-							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-							p.sendMessage("§7Reason: §a" + msg);
+							if(uuid.equalsIgnoreCase("errored")) {
+								p.sendMessage("§7========[§eChangereason§7]========");
+								p.sendMessage("§7User: §a" + name);
+								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+							}else {
+								changeStatus(uuid, name, p.getName(), msg);
+								p.sendMessage("§7========[§eChangereason§7]========");
+								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
+								p.sendMessage("§7Reason: §a" + msg);
+							}
 						}else if(args[0].equalsIgnoreCase("listall")) {
 							try {
 								PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_whitelist");
 								ResultSet rs = ps.executeQuery();
 								p.sendMessage("§7========[§9Listall§7]========");
 								while(rs.next()) {
-									p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §c" + rs.getBoolean("allowed"));
+									boolean allow = rs.getBoolean("allowed");
+									if(allow == true) {
+										p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §a" + allow);
+									}else {
+										p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §c" + allow);
+									}
 								}
 							}catch (SQLException e) {
 								p.sendMessage("§cError while performing this command.");
