@@ -65,6 +65,7 @@ public class Manager {
 		pl.registerEvents(new LanguageInv(), Main.instance);
 		pl.registerEvents(new PlayerMove(), Main.instance);
 		pl.registerEvents(new TRS_Inventory(), Main.instance);
+		pl.registerEvents(new Serverupdater(), Main.instance);
 		
 		File config = new File("plugins/RCLS/config.yml");
 		File file = new File("plugins/RCLS");

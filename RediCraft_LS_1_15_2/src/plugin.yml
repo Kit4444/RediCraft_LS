@@ -4,7 +4,7 @@ main: at.mlps.rc.main.Main
 description: This is the Core-Plugin of RediCraft.
 website: www.redicraft.eu
 prefix: REDICRAFTCOREPLUGIN
-version: 200625.2.3b
+version: 20200814_0002-0026s
 api-version: 1.13
 
 commands:

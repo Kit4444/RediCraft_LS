@@ -1,20 +1,28 @@
 package at.mlps.rc.main;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import at.mlps.rc.api.GetBukkitInfo;
 import at.mlps.rc.mysql.lb.MySQL;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_16_R2.MinecraftServer;
 
-public class Serverupdater {
+public class Serverupdater implements Listener{
 	
 	@SuppressWarnings({ "resource", "deprecation" })
 	public static void updateServer() {
@@ -153,5 +161,69 @@ public class Serverupdater {
 	
 	private static String format(double tps) {
 		return String.valueOf((tps > 18.0 ? ChatColor.GREEN : (tps > 16.0 ? ChatColor.YELLOW : ChatColor.RED)).toString()) + (tps > 20.0 ? "*" : "") + Math.min((double)Math.round(tps * 100.0) / 100.0, 20.0);
+	}
+	
+	public static int getPlayTime(Player p) {
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT playtime FROM redicore_userstats WHERE uuid = ?");
+			ps.setString(1, p.getUniqueId().toString().replace("-", ""));
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt("playtime");
+		}catch (SQLException e) {
+			return 0;
+		}
+	}
+	
+	public void setPlayTime(Player p, long playtime) {
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET playtime = ? WHERE uuid = ?");
+			ps.setLong(1, playtime);
+			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
+			ps.executeUpdate();
+		}catch (SQLException e) {
+		}
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		File file = new File("plugins/RCLS/ptimecache.yml");
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+		Player p = e.getPlayer();
+		String uuid = p.getUniqueId().toString().replace("-", "");
+		long systime = (System.currentTimeMillis() / 1000);
+		cfg.set(uuid, systime);
+		try {
+			cfg.save(file);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		String uuid = p.getUniqueId().toString().replace("-", "");
+		File file = new File("plugins/RCLS/ptimecache.yml");
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+		long oldts = cfg.getLong(uuid);
+		long newts = (System.currentTimeMillis() / 1000);
+		long diffts = (newts - oldts);
+		long newptime = (diffts + getPlayTime(p));
+		setPlayTime(p, newptime);
 	}
 }
