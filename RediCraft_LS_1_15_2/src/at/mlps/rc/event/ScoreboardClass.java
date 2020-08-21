@@ -76,7 +76,7 @@ public class ScoreboardClass implements Listener{
 			}else if (po.inGroup("CMan")) {
 			    o.getScore("  §2Community Manager").setScore(3);
 			}else if (po.inGroup("AMan")) {
-			    o.getScore("  §4Administrations Manager").setScore(3);
+			    o.getScore("  §4Game Moderation Manager").setScore(3);
 			}else if (po.inGroup("Admin")) {
 			    o.getScore("  §cAdministrator").setScore(3);
 			}else if (po.inGroup("Support")) {
@@ -276,7 +276,7 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}
-			}else if(pp.inGroup("support")) {
+			}else if(pp.inGroup("Support")) {
 				if(rs.getBoolean("loggedin")) {
 					if(isAFK(all)) {
 						tafk.addPlayer(all);
@@ -296,7 +296,7 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}
-			}else if(pp.inGroup("builder")) {
+			}else if(pp.inGroup("Builder")) {
 				if(rs.getBoolean("loggedin")) {
 					if(isAFK(all)) {
 						tafk.addPlayer(all);
@@ -316,7 +316,7 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}
-			}else if(pp.inGroup("RetiredLegend")) {
+			}else if(pp.inGroup("RLTM")) {
 				if(rs.getBoolean("loggedin")) {
 					if(isAFK(all)) {
 						afk.addPlayer(all);

@@ -10,6 +10,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import at.mlps.rc.api.MojangAPI;
 import at.mlps.rc.main.LanguageHandler;
@@ -145,13 +147,17 @@ public class MoneyAPI implements CommandExecutor{
 					if(p2 == null) {
 						LanguageHandler.sendMSGReady(p, "cmd.setbankmoney.playernotonline");
 					}else {
-						String uuid2 = p2.getUniqueId().toString();
-						int money = Integer.parseInt(args[1]);
-						if(money <= 0) {
-							LanguageHandler.sendMSGReady(p, "cmd.setbankmoney.belowzero");
+						if(p.hasPermission("mlps.setbankmoney")) {
+							String uuid2 = p2.getUniqueId().toString();
+							int money = Integer.parseInt(args[1]);
+							if(money <= 0) {
+								LanguageHandler.sendMSGReady(p, "cmd.setbankmoney.belowzero");
+							}else {
+								setBankMoney(uuid2, money);
+								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setbankmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
+							}
 						}else {
-							setBankMoney(uuid2, money);
-							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setbankmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
+							LanguageHandler.noPerm(p);
 						}
 					}
 				}else {
@@ -190,6 +196,18 @@ public class MoneyAPI implements CommandExecutor{
 			}
 		}
 		return false;
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) throws SQLException {
+		Player p = e.getPlayer();
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("uuid_ut", p.getUniqueId().toString());
+		if(!Main.mysql.isInDatabase("redicore_money", hm)) {
+			hm.put("bankmoney", 500);
+			hm.put("money", 1000);
+			Main.mysql.insertInto("redicore_money", hm);
+		}
 	}
 	
 	public static int getBankMoney(String uuid) {
