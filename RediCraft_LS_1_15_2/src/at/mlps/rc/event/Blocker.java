@@ -60,6 +60,8 @@ public class Blocker implements Listener{
         }else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageInv.mainTitle)) {
         	e.setCancelled(true);
             p.sendMessage(nomove);
+        }else {
+        	e.setCancelled(true);
         }
     }
 	

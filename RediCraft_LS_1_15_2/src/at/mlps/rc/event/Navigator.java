@@ -34,7 +34,7 @@ public class Navigator implements Listener{
 	public static String title = "§aServer§cNavigator";
 	static String dailyrew = "§aDaily Rewards";
 	static String spawn = "§6Spawn";
-	static String skyblock = "§a§fSky§2Block";
+	static String skyblock = "§7Sky§2Block";
 	static String creative = "§eCreative";
 	static String survival = "§cSurvival";
 	static String towny = "§6Towny";
@@ -142,7 +142,7 @@ public class Navigator implements Listener{
 					}
 					
 				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(skyblock)) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(skyblock)) {
 				e.setCancelled(true);
 				boolean lock = getData("SkyBlock", "locked");
 				if(lock) {
@@ -178,7 +178,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "farmserver", farmserver);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Creative"));
+						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Farmserver"));
 					}
 					
 				}
