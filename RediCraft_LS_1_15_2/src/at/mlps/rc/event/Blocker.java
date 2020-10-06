@@ -32,6 +32,8 @@ public class Blocker implements Listener{
 				e.setCancelled(true);
 			}else if(e.getCause() == DamageCause.FIRE) {
 				e.setCancelled(true);
+			}else if(e.getCause() == DamageCause.WITHER) {
+				e.setCancelled(true);
 			}
 		}else if(e.getEntity() instanceof Fish){
 			e.setCancelled(true);
