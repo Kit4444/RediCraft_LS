@@ -198,44 +198,25 @@ public class MoneyAPI implements CommandExecutor{
 		return false;
 	}
 	
-	@EventHandler
-	public void onJoin(PlayerJoinEvent e) throws SQLException {
-		Player p = e.getPlayer();
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("uuid_ut", p.getUniqueId().toString());
-		if(!Main.mysql.isInDatabase("redicore_money", hm)) {
-			hm.put("bankmoney", 500);
-			hm.put("money", 1000);
-			Main.mysql.insertInto("redicore_money", hm);
-		}
-	}
-	
 	public static int getBankMoney(String uuid) {
 		int i = 0;
 		try {
-			HashMap<String, Object> hm = new HashMap<>();
-			hm.put("uuid_ut", uuid);
-			if(Main.mysql.isInDatabase("redicore_money", hm)) {
-				PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_money WHERE uuid_ut = ?");
-				ps.setString(1, uuid);
-				ResultSet rs = ps.executeQuery();
-				rs.next();
-				i = rs.getInt("bankmoney");
-				rs.close();
-				ps.closeOnCompletion();
-			}else {
-				i = 0;
-			}
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userstats WHERE uuid_ut = ?");
+			ps.setString(1, uuid);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			i = rs.getInt("bankmoney");
+			rs.close();
+			ps.closeOnCompletion();
 		}catch (SQLException e) {
 		}
 		return i;
 	}
 	
 	public static int getMoney(String uuid) {
-		//return AccountData.getAccountBalance(uuid, "default");
 		int i = 0;
 		try {
-			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_money WHERE uuid_ut = ?");
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userstats WHERE uuid_ut = ?");
 			ps.setString(1, uuid);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -251,7 +232,7 @@ public class MoneyAPI implements CommandExecutor{
 	
 	public static void setBankMoney(String uuid, int money) {
 		try {
-			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_money SET bankmoney = ? WHERE uuid_ut = ?");
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET bankmoney = ? WHERE uuid_ut = ?");
 			ps.setInt(1, money);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
@@ -261,9 +242,8 @@ public class MoneyAPI implements CommandExecutor{
 	}
 	
 	public static void setMoney(String uuid, int money) {
-		//AccountData.setAccountBalance(uuid, "default", money);
 		try {
-			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_money SET money = ? WHERE uuid_ut = ?");
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET money = ? WHERE uuid_ut = ?");
 			ps.setInt(1, money);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
@@ -277,7 +257,7 @@ public class MoneyAPI implements CommandExecutor{
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("uuid_ut", uuid);
 		try {
-			if(Main.mysql.isInDatabase("redicore_money", hm)) {
+			if(Main.mysql.isInDatabase("redicore_userstats", hm)) {
 				boo = true;
 			}else {
 				boo = false;
@@ -294,24 +274,6 @@ public class MoneyAPI implements CommandExecutor{
 			boo = true;
 		}else {
 			boo = false;
-		}
-		return boo;
-	}
-	
-	public static boolean createAccount(String uuid_ut, String uuid_t) {
-		boolean boo = false;
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("uuid_ut", uuid_ut);
-		try {
-			if(!Main.mysql.isInDatabase("redicore_money", hm)) {
-				hm.put("money", 1000);
-				hm.put("bankmoney", 500);
-				Main.mysql.insertInto("redicore_money", hm);
-				boo = true;
-			}
-		} catch (SQLException e) {
-			boo = false;
-			e.printStackTrace();
 		}
 		return boo;
 	}
