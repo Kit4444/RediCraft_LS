@@ -95,40 +95,40 @@ public class JoinQuitEventID implements Listener{
         		PermissionUser pu = PermissionsEx.getUser(p);
         		PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userrank = ?, online = ?, server = ?, lastjoints = ?, lastjoinstring = ?, lastloginip = ?, isstaff = ? WHERE uuid = ?");
         		if(pu.inGroup("PMan")) {
-            		ps.setString(1, "PMan");
-            	}else if(pu.inGroup("CMan")) {
-            		ps.setString(1, "Community Manager");
-            	}else if(pu.inGroup("AMan")) {
-            		ps.setString(1, "Administrations Manager");
-            	}else if(pu.inGroup("Developer")) {
-            		ps.setString(1, "Developer");
-            	}else if(pu.inGroup("Admin")) {
-            		ps.setString(1, "Admin");
-            	}else if(pu.inGroup("Mod")) {
-            		ps.setString(1, "Moderator");
-            	}else if(pu.inGroup("Support")) {
-            		ps.setString(1, "Support");
-            	}else if(pu.inGroup("Translator")) {
-            		ps.setString(1, "Translator");
-            	}else if(pu.inGroup("Builder")) {
-            		ps.setString(1, "Builder");
-            	}else if(pu.inGroup("RLTM")) {
-            		ps.setString(1, "Retired Legend Team Member");
-            	}else if(pu.inGroup("RTM")) {
-            		ps.setString(1, "Retired Team Member");
-            	}else if(pu.inGroup("Partner")) {
-            		ps.setString(1, "Partner");
-            	}else if(pu.inGroup("Beta")) {
-            		ps.setString(1, "Beta-Tester");
-            	}else if(pu.inGroup("Patron")) {
-            		ps.setString(1, "Patron");
-            	}else if(pu.inGroup("NitroBooster")) {
-            		ps.setString(1, "Nitrobooster");
-            	}else if(pu.inGroup("Friend")) {
-            		ps.setString(1, "Friend");
-            	}else {
-            		ps.setString(1, "Player");
-            	}
+	        		ps.setString(1, "Projectmanager");
+	        	}else if(pu.inGroup("CMan")) {
+	        		ps.setString(1, "Community Manager");
+	        	}else if(pu.inGroup("AMan")) {
+	        		ps.setString(1, "Game Moderation Manager");
+	        	}else if(pu.inGroup("Developer")) {
+	        		ps.setString(1, "Developer");
+	        	}else if(pu.inGroup("Admin")) {
+	        		ps.setString(1, "Game Moderator");
+	        	}else if(pu.inGroup("Mod")) {
+	        		ps.setString(1, "Moderator");
+	        	}else if(pu.inGroup("Support")) {
+	        		ps.setString(1, "Support");
+	        	}else if(pu.inGroup("Translator")) {
+	        		ps.setString(1, "Content");
+	        	}else if(pu.inGroup("Builder")) {
+	        		ps.setString(1, "Builder");
+	        	}else if(pu.inGroup("RLTM")) {
+	        		ps.setString(1, "Retired Legend Team Member");
+	        	}else if(pu.inGroup("RTM")) {
+	        		ps.setString(1, "Retired Team Member");
+	        	}else if(pu.inGroup("Partner")) {
+	        		ps.setString(1, "Partner");
+	        	}else if(pu.inGroup("Beta")) {
+	        		ps.setString(1, "Beta-Tester");
+	        	}else if(pu.inGroup("Patron")) {
+	        		ps.setString(1, "Patron");
+	        	}else if(pu.inGroup("NitroBooster")) {
+	        		ps.setString(1, "Nitrobooster");
+	        	}else if(pu.inGroup("Friend")) {
+	        		ps.setString(1, "Friend");
+	        	}else {
+	        		ps.setString(1, "Player");
+	        	}
         		ps.setBoolean(2, true);
         		ps.setString(3, GetBukkitInfo.getServerName());
         		ps.setLong(4, ts.getTime());
@@ -167,21 +167,21 @@ public class JoinQuitEventID implements Listener{
         try {
         	PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userrank = ?, lastjoints = ?, lastjoinstring = ?, lastloginip = ?, online = ? WHERE uuid = ?");
         	if(pu.inGroup("PMan")) {
-        		ps.setString(1, "PMan");
+        		ps.setString(1, "Projectmanager");
         	}else if(pu.inGroup("CMan")) {
         		ps.setString(1, "Community Manager");
         	}else if(pu.inGroup("AMan")) {
-        		ps.setString(1, "Administrations Manager");
+        		ps.setString(1, "Game Moderation Manager");
         	}else if(pu.inGroup("Developer")) {
         		ps.setString(1, "Developer");
         	}else if(pu.inGroup("Admin")) {
-        		ps.setString(1, "Admin");
+        		ps.setString(1, "Game Moderator");
         	}else if(pu.inGroup("Mod")) {
         		ps.setString(1, "Moderator");
         	}else if(pu.inGroup("Support")) {
         		ps.setString(1, "Support");
         	}else if(pu.inGroup("Translator")) {
-        		ps.setString(1, "Translator");
+        		ps.setString(1, "Content");
         	}else if(pu.inGroup("Builder")) {
         		ps.setString(1, "Builder");
         	}else if(pu.inGroup("RLTM")) {
