@@ -16,6 +16,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import at.mlps.rc.event.ScoreboardClass;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 
@@ -35,11 +36,17 @@ public class BuildClass implements CommandExecutor, Listener{
 					LanguageHandler.sendMSGReady(p, "cmd.build.deactivated");
 					Main.setPlayerBar(p);
 					p.setGameMode(GameMode.SURVIVAL);
+					if(ScoreboardClass.buildtime.containsKey(p.getName())) {
+						ScoreboardClass.buildtime.remove(p.getName());
+					}
 				}else {
 					build.add(p.getName());
 					LanguageHandler.sendMSGReady(p, "cmd.build.activated");
 					p.getInventory().clear();
 					p.setGameMode(GameMode.CREATIVE);
+					long time = (System.currentTimeMillis() / 1000);
+					ScoreboardClass.buildtime.put(p.getName(), time);
+					
 				}
 			}
 		}

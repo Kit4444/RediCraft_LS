@@ -34,6 +34,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class ScoreboardClass implements Listener{
 	
+	public static HashMap<String, Long> buildtime = new HashMap<>();
+	
 	@SuppressWarnings("deprecation")
 	public void setScoreboard(Player p) throws SQLException {
 		Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
@@ -61,6 +63,9 @@ public class ScoreboardClass implements Listener{
 		if(BuildClass.build.contains(p.getName())) {
 			ItemStack is = p.getItemInHand();
 			String itemid = is.getType().toString();
+			o.getScore("§7Buildtime:").setScore(4);
+			o.getScore("§a" + getBuildTime(p.getName())).setScore(3);
+			o.getScore("§0").setScore(2);
 			o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.block")).setScore(1);
 			o.getScore("  §a" + itemid).setScore(0);
 		}else {
@@ -524,6 +529,46 @@ public class ScoreboardClass implements Listener{
 			prefix = "§0ERR";
 		}
 		return prefix.replace("&", "§");
+	}
+	
+	String getBuildTime(String player) {
+		if(buildtime.containsKey(player)) {
+			long btime = buildtime.get(player);
+			long current = System.currentTimeMillis() / 1000;
+			long tst = (current - btime);
+			long seconds = tst;
+			long minutes = 0;
+			long hours = 0;
+			while(seconds > 60) {
+				seconds -= 60;
+				minutes++;
+			}
+			while(minutes > 60) {
+				minutes -= 60;
+				hours++;
+			}
+			String hr = "";
+			String min = "";
+			String sec = "";
+			if(hours < 10) {
+				hr = "0" + hours;
+			}else {
+				hr = "" + hours;
+			}
+			if(minutes < 10) {
+				min = "0" + minutes;
+			}else {
+				min = "" + minutes;
+			}
+			if(seconds < 10) {
+				sec = "0" + seconds;
+			}else {
+				sec = "" + seconds;
+			}
+			return hr + ":" + min + ":" + sec;
+		}else {
+			return "Errored";
+		}
 	}
 	
 	public void SBSched(int delay, int sbsched) {
