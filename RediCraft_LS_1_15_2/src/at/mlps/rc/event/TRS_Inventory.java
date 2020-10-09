@@ -73,7 +73,7 @@ public class TRS_Inventory implements Listener{
 					int money = 2500;
 					TRS_API.setReward(p, "default.default");
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward").replace("|", "\n").replace("%money", "2500"));
-					MoneyAPI.addMoney(p.getUniqueId().toString(), money);
+					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.default")));
@@ -84,7 +84,7 @@ public class TRS_Inventory implements Listener{
 					int money = 5000;
 					TRS_API.setReward(p, "premium.default");
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward §ePremium").replace("|", "\n").replace("%money", "5000"));
-					MoneyAPI.addMoney(p.getUniqueId().toString(), money);
+					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.default")));
@@ -95,7 +95,7 @@ public class TRS_Inventory implements Listener{
 					int money = random(0, 2500);
 					TRS_API.setReward(p, "default.random");
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward").replace("|", "\n").replace("%money", String.valueOf(money)));
-					MoneyAPI.addMoney(p.getUniqueId().toString(), money);
+					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.random")));
@@ -106,7 +106,7 @@ public class TRS_Inventory implements Listener{
 					int money = random(2500, 5000);
 					TRS_API.setReward(p, "premium.random");
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward §ePremium").replace("|", "\n").replace("%money", String.valueOf(money)));
-					MoneyAPI.addMoney(p.getUniqueId().toString(), money);
+					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.random")));

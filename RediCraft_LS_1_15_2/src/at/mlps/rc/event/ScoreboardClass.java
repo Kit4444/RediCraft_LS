@@ -70,8 +70,8 @@ public class ScoreboardClass implements Listener{
 			o.getScore("  §a" + itemid).setScore(0);
 		}else {
 			o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.money")).setScore(8);
-			o.getScore("  §a" + MoneyAPI.getBankMoney(p.getUniqueId().toString()) + " §7Bank").setScore(7);
-			o.getScore("  §a" + MoneyAPI.getMoney(p.getUniqueId().toString()) + " §7Cash").setScore(6);
+			o.getScore("  §a" + MoneyAPI.getBankMoney(p.getUniqueId()) + " §7Bank").setScore(7);
+			o.getScore("  §a" + MoneyAPI.getMoney(p.getUniqueId()) + " §7Cash").setScore(6);
 			o.getScore("§f").setScore(5);
 			o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.rank")).setScore(4);
 			if (po.inGroup("Developer")) {
