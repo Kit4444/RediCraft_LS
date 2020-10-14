@@ -241,7 +241,7 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}
-			}else if(pp.inGroup("Moderator")) {
+			}else if(pp.inGroup("Mod")) {
 				if(rs.getBoolean("loggedin")) {
 					if(isAFK(all)) {
 						tafk.addPlayer(all);
@@ -419,7 +419,7 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}
-			}else if(pp.inGroup("freund")) {
+			}else if(pp.inGroup("Friend")) {
 				if(rs.getBoolean("loggedin")) {
 					if(isAFK(all)) {
 						afk.addPlayer(all);
@@ -575,7 +575,6 @@ public class ScoreboardClass implements Listener{
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				Serverupdater.updateServer();
 				SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
 				String stime = time.format(new Date());
 				for(Player all : Bukkit.getOnlinePlayers()) {
