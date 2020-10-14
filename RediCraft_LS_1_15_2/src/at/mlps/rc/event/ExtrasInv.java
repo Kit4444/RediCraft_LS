@@ -178,69 +178,69 @@ public class ExtrasInv implements Listener{
 			@Override
 			public void run() {
 				if(cfg.getBoolean("Effects." + uuid + ".Hearts")) {
-					inv.setItem(11, ItemsAPI.enchItem(Material.RED_DYE, 1, "§cHearts", Enchantment.DURABILITY));
+					inv.setItem(11, ItemsAPI.enchItem(Material.RED_DYE, 1, "§7» §cHearts", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(11, ItemsAPI.defItem(Material.RED_DYE, 1, "§cHearts"));
+					inv.setItem(11, ItemsAPI.defItem(Material.RED_DYE, 1, "§7» §cHearts"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Clouds")) {
-					inv.setItem(12, ItemsAPI.enchItem(Material.BONE_MEAL, 1, "§a§fClouds", Enchantment.DURABILITY));
+					inv.setItem(12, ItemsAPI.enchItem(Material.BONE_MEAL, 1, "§7» §fClouds", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(12, ItemsAPI.defItem(Material.BONE_MEAL, 1, "§a§fClouds"));
+					inv.setItem(12, ItemsAPI.defItem(Material.BONE_MEAL, 1, "§7» §fClouds"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Music")) {
-					inv.setItem(13, ItemsAPI.enchItem(Material.NOTE_BLOCK, 1, "§6Musicnotes", Enchantment.DURABILITY));
+					inv.setItem(13, ItemsAPI.enchItem(Material.NOTE_BLOCK, 1, "§7» §6Musicnotes", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(13, ItemsAPI.defItem(Material.NOTE_BLOCK, 1, "§6Musicnotes"));
+					inv.setItem(13, ItemsAPI.defItem(Material.NOTE_BLOCK, 1, "§7» §6Musicnotes"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Slime")) {
-					inv.setItem(14, ItemsAPI.enchItem(Material.SLIME_BALL, 1, "§aSlime", Enchantment.DURABILITY));
+					inv.setItem(14, ItemsAPI.enchItem(Material.SLIME_BALL, 1, "§7» §aSlime", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(14, ItemsAPI.defItem(Material.SLIME_BALL, 1, "§aSlime"));
+					inv.setItem(14, ItemsAPI.defItem(Material.SLIME_BALL, 1, "§7» §aSlime"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Water")) {
-					inv.setItem(15, ItemsAPI.enchItem(Material.WATER_BUCKET, 1, "§1Waterdrops", Enchantment.DURABILITY));
+					inv.setItem(15, ItemsAPI.enchItem(Material.WATER_BUCKET, 1, "§7» §1Waterdrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(15, ItemsAPI.defItem(Material.WATER_BUCKET, 1, "§1Waterdrops"));
+					inv.setItem(15, ItemsAPI.defItem(Material.WATER_BUCKET, 1, "§7» §1Waterdrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Ender")) {
-					inv.setItem(20, ItemsAPI.enchItem(Material.ENDER_EYE, 1, "§9Enderteleport", Enchantment.DURABILITY));
+					inv.setItem(20, ItemsAPI.enchItem(Material.ENDER_EYE, 1, "§7» §9Enderteleport", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(20, ItemsAPI.defItem(Material.ENDER_EYE, 1, "§9Enderteleport"));
+					inv.setItem(20, ItemsAPI.defItem(Material.ENDER_EYE, 1, "§7» §9Enderteleport"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Emerald")) {
-					inv.setItem(24, ItemsAPI.enchItem(Material.EMERALD, 1, "§aEmerald", Enchantment.DURABILITY));
+					inv.setItem(24, ItemsAPI.enchItem(Material.EMERALD, 1, "§7» §aEmerald", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(24, ItemsAPI.defItem(Material.EMERALD, 1, "§aEmerald"));
+					inv.setItem(24, ItemsAPI.defItem(Material.EMERALD, 1, "§7» §aEmerald"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Lava")) {
-					inv.setItem(10, ItemsAPI.enchItem(Material.LAVA_BUCKET, 1, "§cLavadrops", Enchantment.DURABILITY));
+					inv.setItem(10, ItemsAPI.enchItem(Material.LAVA_BUCKET, 1, "§7» §cLavadrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(10, ItemsAPI.defItem(Material.LAVA_BUCKET, 1, "§cLavadrops"));
+					inv.setItem(10, ItemsAPI.defItem(Material.LAVA_BUCKET, 1, "§7» §cLavadrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Honey")) {
-					inv.setItem(16, ItemsAPI.enchItem(Material.HONEY_BOTTLE, 1, "§6Honeydrops", Enchantment.DURABILITY));
+					inv.setItem(16, ItemsAPI.enchItem(Material.HONEY_BOTTLE, 1, "§7» §6Honeydrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(16, ItemsAPI.defItem(Material.HONEY_BOTTLE, 1, "§6Honeydrops"));
+					inv.setItem(16, ItemsAPI.defItem(Material.HONEY_BOTTLE, 1, "§7» §6Honeydrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Redstone")) {
-					inv.setItem(19, ItemsAPI.enchItem(Material.REDSTONE, 1, "§cC§2o§6l§co§ar§9s", Enchantment.DURABILITY));
+					inv.setItem(19, ItemsAPI.enchItem(Material.REDSTONE, 1, "§7» §cC§2o§6l§co§ar§9s", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(19, ItemsAPI.defItem(Material.REDSTONE, 1, "§cC§2o§6l§co§ar§9s"));
+					inv.setItem(19, ItemsAPI.defItem(Material.REDSTONE, 1, "§7» §cC§2o§6l§co§ar§9s"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Snow")) {
-					inv.setItem(25, ItemsAPI.enchItem(Material.SNOWBALL, 1, "§a§fSnowball", Enchantment.DURABILITY));
+					inv.setItem(25, ItemsAPI.enchItem(Material.SNOWBALL, 1, "§7» §fSnowball", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(25, ItemsAPI.defItem(Material.SNOWBALL, 1, "§a§fSnowball"));
+					inv.setItem(25, ItemsAPI.defItem(Material.SNOWBALL, 1, "§7» §fSnowball"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame")) {
-					inv.setItem(21, ItemsAPI.enchItem(Material.SOUL_TORCH, 1, "§bSoulfireflames", Enchantment.DURABILITY));
+					inv.setItem(21, ItemsAPI.enchItem(Material.SOUL_TORCH, 1, "§7» §bSoulfireflames", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(21, ItemsAPI.defItem(Material.SOUL_TORCH, 1, "§bSoulfireflames"));
+					inv.setItem(21, ItemsAPI.defItem(Material.SOUL_TORCH, 1, "§7» §bSoulfireflames"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Ash")) {
-					inv.setItem(23, ItemsAPI.enchItem(Material.BASALT, 1, "§7Ash", Enchantment.DURABILITY));
+					inv.setItem(23, ItemsAPI.enchItem(Material.BASALT, 1, "§7» §7Ash", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(23, ItemsAPI.defItem(Material.BASALT, 1, "§7Ash"));
+					inv.setItem(23, ItemsAPI.defItem(Material.BASALT, 1, "§7» §7Ash"));
 				}
 				inv.setItem(22, ItemsAPI.defItem(Material.BARRIER, 1, "§cclose..."));
 			}
@@ -353,7 +353,7 @@ public class ExtrasInv implements Listener{
 			e.setCancelled(true);
 			if(e.getCurrentItem().getType() == Material.PURPLE_STAINED_GLASS_PANE) {
 				e.setCancelled(true);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cHearts")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cHearts")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Hearts")) {
 					cfg.set("Effects." + uuid + ".Hearts", false);
@@ -365,7 +365,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§a§fClouds")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§7» §fClouds")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Clouds")) {
 					cfg.set("Effects." + uuid + ".Clouds", false);
@@ -377,7 +377,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Musicnotes")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Musicnotes")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Music")) {
 					cfg.set("Effects." + uuid + ".Music", false);
@@ -389,7 +389,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aSlime")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §aSlime")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Slime")) {
 					cfg.set("Effects." + uuid + ".Slime", false);
@@ -401,7 +401,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§1Waterdrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §1Waterdrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Water")) {
 					cfg.set("Effects." + uuid + ".Water", false);
@@ -413,7 +413,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§9Enderteleport")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §9Enderteleport")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Ender")) {
 					cfg.set("Effects." + uuid + ".Ender", false);
@@ -426,10 +426,10 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cclose...")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cclose...")) {
 				e.setCancelled(true);
 				e.getWhoClicked().closeInventory();
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aEmerald")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §aEmerald")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Emerald")) {
 					cfg.set("Effects." + uuid + ".Emerald", false);
@@ -441,7 +441,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cLavadrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cLavadrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Lava")) {
 					cfg.set("Effects." + uuid + ".Lava", false);
@@ -453,7 +453,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Honeydrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Honeydrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Honey")) {
 					cfg.set("Effects." + uuid + ".Honey", false);
@@ -465,7 +465,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cC§2o§6l§co§ar§9s")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cC§2o§6l§co§ar§9s")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Redstone")) {
 					cfg.set("Effects." + uuid + ".Redstone", false);
@@ -477,7 +477,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a§fSnowball")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §fSnowball")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Snow")) {
 					cfg.set("Effects." + uuid + ".Snow", false);
@@ -489,7 +489,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bSoulfireflames")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §bSoulfireflames")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame")) {
 					cfg.set("Effects." + uuid + ".SoulFireflame", false);
@@ -501,7 +501,7 @@ public class ExtrasInv implements Listener{
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Ash")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §7Ash")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Ash")) {
 					cfg.set("Effects." + uuid + ".Ash", false);
