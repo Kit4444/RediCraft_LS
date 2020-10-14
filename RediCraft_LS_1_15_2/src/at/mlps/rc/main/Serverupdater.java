@@ -1,7 +1,11 @@
 package at.mlps.rc.main;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +21,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import at.mlps.rc.api.GetBukkitInfo;
 import at.mlps.rc.mysql.lb.MySQL;
@@ -24,6 +32,37 @@ import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_16_R2.MinecraftServer;
 
 public class Serverupdater implements Listener{
+	
+	static int rfm = 0;
+	
+	public static void runUpdaters(int delay, int period) {
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				updateServer();
+				rfm++;
+				if(rfm == 3) {
+					rfm = 0;
+					String pl = returnRadio1("https://api.laut.fm/station/redifm", "current_playlist", "name");
+					String art = returnRadio1("https://api.laut.fm/station/redifm/current_song", "artist", "name");
+					String tra = returnRadio("https://api.laut.fm/station/redifm/current_song", "title");
+					String alb = returnRadio("https://api.laut.fm/station/redifm/current_song", "album");
+					try {
+						PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redifm_current SET track = ?, artist = ?, album = ?, playlist = ? WHERE id = ?");
+						ps.setString(1, tra);
+						ps.setString(2, art);
+						ps.setString(3, alb);
+						ps.setString(4, pl);
+						ps.setInt(5, 1);
+						ps.executeUpdate();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}.runTaskTimerAsynchronously(Main.instance, delay, period);
+	}
 	
 	@SuppressWarnings({ "resource", "deprecation" })
 	public static void updateServer() {
@@ -239,5 +278,68 @@ public class Serverupdater implements Listener{
 			number = r.nextInt(max);
 		}
 		return number;
+	}
+	
+	private static String returnRadio(String uri, String node) {
+		String s = "";
+		StringBuilder content = new StringBuilder();
+		try {
+			URL url = new URL(uri);
+			URLConnection urlc = url.openConnection();
+			BufferedReader bR = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+			String line;
+			while ((line = bR.readLine()) != null) {
+				content.append(line + "\n");
+			}
+			bR.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		String lortu = content.toString();
+		JSONParser parser = new JSONParser();
+		try {
+			JSONObject jo = (JSONObject)parser.parse(lortu);
+			if(jo.get(node) == null) {
+				s = "-1";
+			}else {
+				s = (String) jo.get(node);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	private static String returnRadio1(String uri, String node, String subnode) {
+		String s = "";
+		StringBuilder content = new StringBuilder();
+		try {
+			URL url = new URL(uri);
+			URLConnection urlc = url.openConnection();
+			BufferedReader bR = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+			String line;
+			while ((line = bR.readLine()) != null) {
+				content.append(line + "\n");
+			}
+			bR.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		String lortu = content.toString();
+		JSONParser parser = new JSONParser();
+		try {
+			JSONObject jo = (JSONObject)parser.parse(lortu);
+			if(jo.get(node) == null) {
+				s = "-1";
+			}else {
+				JSONObject sub = (JSONObject) jo.get(node);
+				s = (String) sub.get(subnode);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
 	}
 }
