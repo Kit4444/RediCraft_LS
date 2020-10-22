@@ -47,13 +47,15 @@ public class Serverupdater implements Listener{
 					String art = returnRadio1("https://api.laut.fm/station/redifm/current_song", "artist", "name");
 					String tra = returnRadio("https://api.laut.fm/station/redifm/current_song", "title");
 					String alb = returnRadio("https://api.laut.fm/station/redifm/current_song", "album");
+					String listeners = returnRadioListeners();
 					try {
-						PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redifm_current SET track = ?, artist = ?, album = ?, playlist = ? WHERE id = ?");
+						PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redifm_current SET track = ?, artist = ?, album = ?, playlist = ?, current_listener = ?  WHERE id = ?");
 						ps.setString(1, tra);
 						ps.setString(2, art);
 						ps.setString(3, alb);
 						ps.setString(4, pl);
-						ps.setInt(5, 1);
+						ps.setString(5, listeners);
+						ps.setInt(6, 1);
 						ps.executeUpdate();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -300,7 +302,7 @@ public class Serverupdater implements Listener{
 		try {
 			JSONObject jo = (JSONObject)parser.parse(lortu);
 			if(jo.get(node) == null) {
-				s = "-1";
+				s = "None";
 			}else {
 				s = (String) jo.get(node);
 			}
@@ -331,13 +333,27 @@ public class Serverupdater implements Listener{
 		try {
 			JSONObject jo = (JSONObject)parser.parse(lortu);
 			if(jo.get(node) == null) {
-				s = "-1";
+				s = "None";
 			}else {
 				JSONObject sub = (JSONObject) jo.get(node);
 				s = (String) sub.get(subnode);
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	private static String returnRadioListeners() {
+		String s = "";
+		try {
+			URL url = new URL("https://api.laut.fm/station/redifm/listeners");
+			URLConnection urlc = url.openConnection();
+			BufferedReader bR = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+			s = bR.readLine();
+			bR.close();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return s;
