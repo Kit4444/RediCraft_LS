@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Effect;
-import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -23,18 +21,12 @@ import at.mlps.rc.mysql.lb.MySQL;
 public class PlayerMove implements Listener{
 	
 	static File file = new File("plugins/RCLS/effectslist.yml");
-	static File spawn = new File("plugins/RCLS/spawn.yml");
 
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
 		String uuid = p.getUniqueId().toString().replace("-", "");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-		YamlConfiguration cfg1 = YamlConfiguration.loadConfiguration(spawn);
-		Location loc = p.getLocation();
-		if(loc.getY() <= 50.0) {
-			p.teleport(retLoc(cfg1, "general"));
-		}
 		if(isAFK(p)) {
 			updateAFK(p, false);
 			LanguageHandler.sendMSGReady(p, "event.afk.leave");
@@ -101,11 +93,6 @@ public class PlayerMove implements Listener{
 			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
 			ps.executeUpdate();
 		}catch (SQLException e) { e.printStackTrace(); }
-	}
-	
-	private Location retLoc(YamlConfiguration cfg, String type) {
-		Location loc = new Location(Bukkit.getWorld(cfg.getString("Spawn." + type + ".WORLD")), cfg.getDouble("Spawn." + type + ".X"), cfg.getDouble("Spawn." + type + ".Y"), cfg.getDouble("Spawn." + type + ".Z"), (float)cfg.getDouble("Spawn." + type + ".YAW"), (float)cfg.getDouble("Spawn." + type + ".PITCH"));
-		return loc;
 	}
 	
 	int getRGB(){

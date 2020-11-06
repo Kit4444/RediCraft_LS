@@ -36,6 +36,8 @@ public class LanguageHandler {
 		cfg.addDefault("Language.EN.cmd.afk.leave", "&7You are not longer AFK.");
 		cfg.addDefault("Language.EN.cmd.setspawn.mainspawn", "&7You have set the Lobby-Spawn.");
 		cfg.addDefault("Language.EN.cmd.setspawn.dailyreward", "&7You have set the Daily-Reward Spawn.");
+		cfg.addDefault("Language.EN.cmd.setspawn.lowlimit", "&7You have set the lower height limit");
+		cfg.addDefault("Language.EN.cmd.setspawn.uplimit", "&7You have set the upper height limit");
 		cfg.addDefault("Language.EN.cmd.setid.idalreadyexists", "&7This ID is already in use.");
 		cfg.addDefault("Language.EN.cmd.setid.updatesuccessfull", "%displayer &7has now ID &a%id");
 		cfg.addDefault("Language.EN.cmd.setid.limitexceeded", "&7The ID should be between &a%minid &7and &a%maxid &7and needs to be &lunique&7.");
@@ -171,6 +173,8 @@ public class LanguageHandler {
 		cfg.addDefault("Language.DE.cmd.afk.leave", "&7Du bist nicht mehr AFK.");
 		cfg.addDefault("Language.DE.cmd.setspawn.mainspawn", "&7Du hast den Lobbyspawn gesetzt.");
 		cfg.addDefault("Language.DE.cmd.setspawn.dailyreward", "&7Du hast den Spawn für die Tägliche Belohnung gesetzt.");
+		cfg.addDefault("Language.DE.cmd.setspawn.lowlimit", "&7Du hast das untere höhenlimit gesetzt.");
+		cfg.addDefault("Language.DE.cmd.setspawn.uplimit", "§7Du hast das obere höhenlimit gesetzt.");
 		cfg.addDefault("Language.DE.cmd.setid.idalreadyexists", "&7Diese ID existiert bereits.");
 		cfg.addDefault("Language.DE.cmd.setid.updatesuccessfull", "%displayer &7hat nun ID &a%id &7.");
 		cfg.addDefault("Language.DE.cmd.setid.limitexceeded", "&7Die ID sollte zwischen &a%minid &7und &a%maxid &7und &leinmalig &7sein.");

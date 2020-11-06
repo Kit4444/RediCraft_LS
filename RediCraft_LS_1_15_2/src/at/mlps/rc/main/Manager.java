@@ -11,11 +11,11 @@ import org.bukkit.plugin.PluginManager;
 import at.mlps.rc.cmd.AFK_CMD;
 import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.cmd.CMD_SetID_SetPf;
+import at.mlps.rc.cmd.LobbyCMD;
 import at.mlps.rc.cmd.LogSystem;
 import at.mlps.rc.cmd.Maintenance;
 import at.mlps.rc.cmd.MoneyAPI;
 import at.mlps.rc.cmd.Pinfo;
-import at.mlps.rc.cmd.SpawnCMD;
 import at.mlps.rc.cmd.TRS_Villager;
 import at.mlps.rc.event.Blocker;
 import at.mlps.rc.event.ExtrasInv;
@@ -38,7 +38,6 @@ public class Manager {
 		Main.instance.getCommand("maintenance").setExecutor(new Maintenance());
 		Main.instance.getCommand("userlist").setExecutor(new Maintenance());
 		Main.instance.getCommand("afk").setExecutor(new AFK_CMD());
-		Main.instance.getCommand("setspawn").setExecutor(new SpawnCMD());
 		Main.instance.getCommand("setid").setExecutor(new CMD_SetID_SetPf());
 		Main.instance.getCommand("setpf").setExecutor(new CMD_SetID_SetPf());
 		Main.instance.getCommand("money").setExecutor(new MoneyAPI());
@@ -52,6 +51,7 @@ public class Manager {
 		Main.instance.getCommand("pay").setExecutor(new MoneyAPI());
 		Main.instance.getCommand("spawnvillager").setExecutor(new TRS_Villager());
 		Main.instance.getCommand("pinfo").setExecutor(new Pinfo());
+		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCMD());
 		
 		PluginManager pl = Bukkit.getPluginManager();
 		pl.registerEvents(new ScoreboardClass(), Main.instance);
@@ -66,6 +66,7 @@ public class Manager {
 		pl.registerEvents(new PlayerMove(), Main.instance);
 		pl.registerEvents(new TRS_Inventory(), Main.instance);
 		pl.registerEvents(new Serverupdater(), Main.instance);
+		pl.registerEvents(new LobbyCMD(), Main.instance);
 		
 		File config = new File("plugins/RCLS/config.yml");
 		File file = new File("plugins/RCLS");
