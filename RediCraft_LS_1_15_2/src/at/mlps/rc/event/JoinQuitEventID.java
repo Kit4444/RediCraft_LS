@@ -59,13 +59,6 @@ public class JoinQuitEventID implements Listener{
 		SimpleDateFormat time = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
         String stime = time.format(new Date());
         Timestamp ts = new Timestamp(System.currentTimeMillis());
-        HashMap<String, Object> hm = new HashMap<>();
-		hm.put("uuid_ut", p.getUniqueId().toString());
-		if(!Main.mysql.isInDatabase("redicore_money", hm)) {
-			hm.put("bankmoney", 500);
-			hm.put("money", 1000);
-			Main.mysql.insertInto("redicore_money", hm);
-		}
         HashMap<String, Object> player = new HashMap<>();
         player.put("uuid", uuid);
         try {
