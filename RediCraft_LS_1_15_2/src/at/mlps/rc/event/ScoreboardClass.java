@@ -76,6 +76,8 @@ public class ScoreboardClass implements Listener{
 			o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.rank")).setScore(4);
 			if (po.inGroup("Developer")) {
 			    o.getScore("  §dDeveloper").setScore(3);
+			}else if(po.inGroup("HumanR")) {
+				o.getScore("  §5Human Resources").setScore(3);
 			}else if (po.inGroup("PMan")) {
 			    o.getScore("  §6Project Manager").setScore(3);
 			}else if (po.inGroup("CMan")) {
@@ -116,6 +118,7 @@ public class ScoreboardClass implements Listener{
 		p.setScoreboard(sb);
 		
 		Team pm = getTeam(sb, "00000", retPrefix("pm", "prefix_tab"), ChatColor.GRAY); //gold
+		Team hr = getTeam(sb, "00005", retPrefix("hr", "Prefix_tab"), ChatColor.GRAY);
 		Team cman = getTeam(sb, "00010", retPrefix("cman", "prefix_tab"), ChatColor.GRAY); //dark-green
 		Team aman = getTeam(sb, "00020", retPrefix("aman", "prefix_tab"), ChatColor.GRAY); //dark-red
 		Team dev = getTeam(sb, "00030", retPrefix("dev", "prefix_tab"), ChatColor.GRAY); //light-purple
@@ -150,6 +153,26 @@ public class ScoreboardClass implements Listener{
 						pm.addPlayer(all);
 						all.setDisplayName(retPrefix("pm", "prefix_chat") + all.getName());
 						all.setPlayerListName(retPrefix("pm", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
+				}else {
+					if(isAFK(all)) {
+						afk.addPlayer(all);
+						all.setPlayerListName("§9AFK §7| " + all.getName() + "7| ID: §a" + igid(all) + " " + igpre(all));
+					}else {
+						spieler.addPlayer(all);
+						all.setDisplayName(retPrefix("spieler", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("spieler", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
+				}
+			}else if(pp.inGroup("HumanR")) {
+				if(rs.getBoolean("loggedin")) {
+					if(isAFK(all)) {
+						tafk.addPlayer(all);
+						all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+					}else {
+						hr.addPlayer(all);
+						all.setDisplayName(retPrefix("hr", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("hr", "prefix_chat") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}else {
 					if(isAFK(all)) {
