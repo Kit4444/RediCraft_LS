@@ -17,6 +17,7 @@ import at.mlps.rc.cmd.Maintenance;
 import at.mlps.rc.cmd.MoneyAPI;
 import at.mlps.rc.cmd.Pinfo;
 import at.mlps.rc.cmd.TRS_Villager;
+import at.mlps.rc.event.Advents_Handler;
 import at.mlps.rc.event.Blocker;
 import at.mlps.rc.event.ExtrasInv;
 import at.mlps.rc.event.ItemHandling;
@@ -67,6 +68,7 @@ public class Manager {
 		pl.registerEvents(new TRS_Inventory(), Main.instance);
 		pl.registerEvents(new Serverupdater(), Main.instance);
 		pl.registerEvents(new LobbyCMD(), Main.instance);
+		pl.registerEvents(new Advents_Handler(), Main.instance);
 		
 		File config = new File("plugins/RCLS/config.yml");
 		File file = new File("plugins/RCLS");

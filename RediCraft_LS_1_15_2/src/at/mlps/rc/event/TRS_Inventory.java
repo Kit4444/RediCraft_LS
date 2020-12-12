@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -118,22 +120,28 @@ public class TRS_Inventory implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEntityEvent e) {
 		Player p = e.getPlayer();
-		Villager v = (Villager) e.getRightClicked();
-		if(v.getCustomName().equalsIgnoreCase("§aDaily §cRewards")) {
-			e.setCancelled(true);
-			trsinv(p);
+		Entity ent = e.getRightClicked();
+		if(ent.getType() == EntityType.VILLAGER) {
+			Villager v = (Villager) ent;
+			if(v.getCustomName().equalsIgnoreCase("§aDaily §cRewards")) {
+				e.setCancelled(true);
+				trsinv(p);
+			}
 		}
 	}
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		Player p = (Player) e.getDamager();
-		Villager v = (Villager) e.getEntity();
-		if(v.getCustomName().equals("§aDaily §cRewards")) {
-			e.setCancelled(true);
-			LanguageHandler.sendMSGReady(p, "event.shopvillager.hurt");
-		}else {
-			
+		Entity dmg = e.getDamager();
+		Entity tar = e.getEntity();
+		if(tar.getType() == EntityType.VILLAGER) {
+			if(dmg.getType() == EntityType.PLAYER) {
+				Player p = (Player) dmg;
+				e.setCancelled(true);
+				LanguageHandler.sendMSGReady(p, "event.shopvillager.hurt");
+			}else {
+				e.setCancelled(true);
+			}
 		}
 	}
 	
