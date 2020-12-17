@@ -36,6 +36,74 @@ public class Maintenance implements CommandExecutor, Listener{
 			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
 		}else {
 			Player p = (Player)sender;
+			if(cmd.getName().equalsIgnoreCase("whitelist")) {
+				if(args.length == 0) {
+					p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+				}else if(args.length == 2) {
+					if(p.hasPermission("mlps.whitelist")) {
+						String uuid = MojangAPI.getUUIDfromName(args[1]);
+						if(args[0].equalsIgnoreCase("add")) {
+							if(uuid.equalsIgnoreCase("errored")) {
+								p.sendMessage("§7========[§aAdduser§7]========");
+								p.sendMessage("§7User: §a" + args[1]);
+								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+							}else {
+								HashMap<String, Object> hm = new HashMap<>();
+								hm.put("uuid", uuid);
+								try {
+									if(Main.mysql.isInDatabase("redicore_userwhitelist", hm)) {
+										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userwhitelist SET admin = ?, enabled = ? WHERE uuid = ?");
+										ps.setString(1, p.getUniqueId().toString());
+										ps.setBoolean(2, true);
+										ps.setString(3, uuid);
+										ps.executeUpdate();
+										p.sendMessage("§7========[§bWhitelist§7]========");
+										p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
+										p.sendMessage("§7Player is now allowed to join.");
+									}else {
+										hm.put("admin", p.getUniqueId().toString());
+										hm.put("enabled", true);
+										Main.mysql.insertInto("redicore_userwhitelist", hm);
+										p.sendMessage("§7========[§bWhitelist§7]========");
+										p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
+										p.sendMessage("§7Player has been added and is now able to join.");
+									}
+								} catch (SQLException e) {
+									e.printStackTrace();
+								}
+							}
+						}else if(args[0].equalsIgnoreCase("remove")) {
+							HashMap<String, Object> hm = new HashMap<>();
+							hm.put("uuid", uuid);
+							try {
+								if(Main.mysql.isInDatabase("redicore_userwhitelist", hm)) {
+									PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userwhitelist SET admin = ?, enabled = ? WHERE uuid = ?");
+									ps.setString(1, p.getUniqueId().toString());
+									ps.setBoolean(2, false);
+									ps.setString(3, uuid);
+									ps.executeUpdate();
+									p.sendMessage("§7========[§bWhitelist§7]========");
+									p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
+									p.sendMessage("§7Player is now disallowed to join.");
+								}else {
+									hm.put("admin", p.getUniqueId().toString());
+									hm.put("enabled", false);
+									Main.mysql.insertInto("redicore_userwhitelist", hm);
+									p.sendMessage("§7========[§bWhitelist§7]========");
+									p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
+									p.sendMessage("§7Player has been added but is §cnot §7able to join.");
+								}
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+						}else {
+							p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+						}
+					}
+				}else {
+					p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+				}
+			}
 			if(cmd.getName().equalsIgnoreCase("userlist")) {
 				if(args.length == 0) {
 					p.sendMessage(Main.prefix() + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
@@ -214,10 +282,58 @@ public class Maintenance implements CommandExecutor, Listener{
 	public void onLogin(PlayerLoginEvent e) {
 		Player p = e.getPlayer();
 		String uuid = p.getUniqueId().toString().replace("-", "");
+		try {
+			HashMap<String, Object> hm = new HashMap<>();
+			hm.put("uuid", p.getUniqueId().toString().replace("-", ""));
+			if(Main.mysql.isInDatabase("redicore_userwhitelist", hm)) {
+				PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userwhitelist WHERE uuid = ?");
+				ps.setString(1, p.getUniqueId().toString().replace("-", ""));
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				if(rs.getBoolean("enabled")) {
+					e.allow();
+				}else {
+					if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
+						e.allow();
+						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+							@Override
+							public void run() {
+								e.getPlayer().sendMessage(Main.prefix() + "§7Bypassed the maintenance-mode!");
+								p.sendMessage("§7Reason: §a" + returnReason(uuid));
+							}
+						}, 10);
+					}else {
+						e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+					}
+				}
+			}else {
+				if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
+					e.allow();
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+						@Override
+						public void run() {
+							e.getPlayer().sendMessage(Main.prefix() + "§7Bypassed the maintenance-mode!");
+							p.sendMessage("§7Reason: §a" + returnReason(uuid));
+						}
+					}, 10);
+				}else {
+					e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+				}
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	/*@EventHandler(priority=EventPriority.HIGHEST)
+	public void onLogin(PlayerLoginEvent e) {
+		Player p = e.getPlayer();
+		String uuid = p.getUniqueId().toString().replace("-", "");
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(whitelist);
 		boolean boo = cfg.getBoolean("Whitelist.Maintenance.Boolean");
-		String msg = cfg.getString("Whitelist.Maintenance.Message");
-		String uname = cfg.getString("Whitelist.Maintenance.activatedFrom");
+		//String msg = cfg.getString("Whitelist.Maintenance.Message");
+		//String uname = cfg.getString("Whitelist.Maintenance.activatedFrom");
 		if(boo == true) {
 			if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
 				e.allow();
@@ -229,12 +345,32 @@ public class Maintenance implements CommandExecutor, Listener{
 					}
 				}, 10);
 			}else {
-				e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§2Hey " + e.getPlayer().getName() + ", thank you for joining the network,\n§2but currently we need time for server maintenance.\n§aAdmin: §r" + uname + "\n§aReason: §6" + msg + "\n \n§7If you believe this is a mistake,\n§7please report it to Maurice_Bailey.\n \n§aOur Public Beta Weekends are always between\n§6Friday 12:00 UTC to Sunday 22:00 UTC.\n§aJoin, select the right server and have fun!");
+				try {
+					HashMap<String, Object> hm = new HashMap<>();
+					hm.put("uuid", p.getUniqueId().toString().replace("-", ""));
+					if(Main.mysql.isInDatabase("redicore_userwhitelist", hm)) {
+						PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userwhitelist WHERE uuid = ?");
+						ps.setString(1, p.getUniqueId().toString().replace("-", ""));
+						ResultSet rs = ps.executeQuery();
+						rs.next();
+						if(rs.getBoolean("enabled")) {
+							e.allow();
+						}else {
+							e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+						}
+					}else {
+						e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§2Hey " + e.getPlayer().getName() + ", thank you for joining the network,\n§2but currently we need time for server maintenance.\n§aAdmin: §r" + uname + "\n§aReason: §6" + msg + "\n \n§7If you believe this is a mistake,\n§7please report it to Maurice_Bailey.\n \n§aOur Public Beta Weekends are always between\n§6Friday 12:00 UTC to Sunday 22:00 UTC.\n§aJoin, select the right server and have fun!");
 			}
 		}else {
 			e.allow();
 		}
-	}
+	}*/
 	
 	private void setStatus(String name, String uuid, String admin, String timest, String reason, long timets, boolean allowed) {
 		try {

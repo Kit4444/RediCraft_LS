@@ -14,6 +14,7 @@ commands:
     togglegroup:
         aliases: tg
     userlist:
+    whitelist:
     maintenance:
     afk:
     setspawn:
@@ -32,3 +33,4 @@ commands:
     spawnvillager:
     pinfo:
     lobbyconf:
+    

@@ -38,6 +38,7 @@ public class Manager {
 		Main.instance.getCommand("togglegroup").setExecutor(new LogSystem());
 		Main.instance.getCommand("maintenance").setExecutor(new Maintenance());
 		Main.instance.getCommand("userlist").setExecutor(new Maintenance());
+		Main.instance.getCommand("whitelist").setExecutor(new Maintenance());
 		Main.instance.getCommand("afk").setExecutor(new AFK_CMD());
 		Main.instance.getCommand("setid").setExecutor(new CMD_SetID_SetPf());
 		Main.instance.getCommand("setpf").setExecutor(new CMD_SetID_SetPf());
