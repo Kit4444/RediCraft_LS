@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 
@@ -82,10 +83,10 @@ public class LobbyCMD implements CommandExecutor, Listener {
 						e.printStackTrace();
 					}
 				}else {
-					p.sendMessage(Main.prefix() + "Usage: /lobbyconf <setspawn|setdrew|heightlow|heightup>");
+					p.sendMessage(Prefix.prefix("main") + "Usage: /lobbyconf <setspawn|setdrew|heightlow|heightup>");
 				}
 			}else {
-				p.sendMessage(Main.prefix() + "Usage: /lobbyconf <setspawn|setdrew|heightlow|heightup>");
+				p.sendMessage(Prefix.prefix("main") + "Usage: /lobbyconf <setspawn|setdrew|heightlow|heightup>");
 			}
 		}
 		return false;

@@ -28,11 +28,11 @@ public class Main extends JavaPlugin{
 		updateOnline(true);
 	}
 	
-	public static String prefix() {
+	/*public static String prefix() {
 		return Prefix.prefix("main");
-	}
+	}*/
 	public static String mysqlprefix = "§eMySQL §7- ";
-	public static String consolesend = prefix() + "§7Please use this ingame.";
+	public static String consolesend = Prefix.prefix("main") + "§7Please use this ingame.";
 	public static Main instance;
 	public static MySQL mysql;
 	

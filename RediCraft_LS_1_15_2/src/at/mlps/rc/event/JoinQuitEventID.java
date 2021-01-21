@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import at.mlps.rc.api.GetBukkitInfo;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
 import ru.tehkode.permissions.PermissionUser;
@@ -141,7 +142,7 @@ public class JoinQuitEventID implements Listener{
         	String isVer = Main.instance.getDescription().getVersion();
             String shouldVer = retVersion();
             if(!isVer.equalsIgnoreCase(shouldVer)) {
-            	p.sendMessage(Main.prefix() + "§cInfo, the Version you use is different to the DB.");
+            	p.sendMessage(Prefix.prefix("main") + "§cInfo, the Version you use is different to the DB.");
             	p.sendMessage("§aServerversion§7: " + isVer);
             	p.sendMessage("§cDB-Version§7: " + shouldVer);
             }

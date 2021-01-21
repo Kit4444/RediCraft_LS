@@ -10,6 +10,7 @@ import org.bukkit.entity.Snowman;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
 
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 
@@ -47,7 +48,7 @@ public class TRS_Villager implements CommandExecutor{
 					}
 				}
 			}else {
-				p.sendMessage(Main.prefix() + "Usage: /setvillager <dailyrewards|advents>");
+				p.sendMessage(Prefix.prefix("main") + "Usage: /setvillager <dailyrewards|advents>");
 			}
 		}
 		return true;

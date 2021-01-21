@@ -15,6 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import at.mlps.rc.api.ItemsAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
 
@@ -60,35 +61,35 @@ public class LanguageInv implements Listener{
 			}if(retLang(p).equalsIgnoreCase("en-uk")) {
 				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
 					e.setCancelled(true);
-					p.sendMessage(Main.prefix() + "§7You have english already selected.");
+					p.sendMessage(Prefix.prefix("main") + "§7You have english already selected.");
 					langInv(p);
 				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
 					e.setCancelled(true);
 					updateLang(p, "de-de");
-					p.sendMessage(Main.prefix() + "§7Du hast nun die deutsche Sprache ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
 					langInv(p);
 				}
 			}else if(retLang(p).equalsIgnoreCase("de-de")) {
 				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglisch")) {
 					e.setCancelled(true);
 					updateLang(p, "en-uk");
-					p.sendMessage(Main.prefix() + "§7You have now selected the english language.");
+					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
 					langInv(p);
 				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Deutsch")) {
 					e.setCancelled(true);
-					p.sendMessage(Main.prefix() + "§7Du hast Deutsch bereits ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "§7Du hast Deutsch bereits ausgewählt.");
 					langInv(p);
 				}
 			}else {
 				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
 					e.setCancelled(true);
 					updateLang(p, "en-uk");
-					p.sendMessage(Main.prefix() + "§7You have now selected the english language.");
+					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
 					langInv(p);
 				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
 					e.setCancelled(true);
 					updateLang(p, "de-de");
-					p.sendMessage(Main.prefix() + "§7Du hast nun die deutsche Sprache ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
 					langInv(p);
 				}
 			}

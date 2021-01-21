@@ -27,7 +27,6 @@ import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.cmd.MoneyAPI;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
-import at.mlps.rc.main.Serverupdater;
 import at.mlps.rc.mysql.lb.MySQL;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;

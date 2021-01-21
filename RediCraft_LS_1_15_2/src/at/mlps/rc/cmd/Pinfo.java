@@ -11,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
@@ -75,7 +76,7 @@ public class Pinfo implements CommandExecutor {
 					LanguageHandler.sendMSGReady(p, "cmd.pinfo.onlynumchars");
 				}
 			}else {
-				p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/pinfo <PlayerID>");
+				p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/pinfo <PlayerID>");
 			}
 		}
 		return false;

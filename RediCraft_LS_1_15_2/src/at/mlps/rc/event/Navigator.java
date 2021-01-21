@@ -19,6 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import at.mlps.rc.api.ItemsAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
@@ -106,7 +107,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("Creative", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Creative"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Creative"));
 				}else {
 					boolean monitor = getData("Creative", "monitoring");
 					boolean online = getData("Creative", "online");
@@ -118,7 +119,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "creative", creative);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Creative"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Creative"));
 					}
 					
 				}
@@ -126,7 +127,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("Survival", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Survival"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Survival"));
 				}else {
 					boolean monitor = getData("Survival", "monitoring");
 					boolean online = getData("Survival", "online");
@@ -138,7 +139,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "survival", survival);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Survival"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Survival"));
 					}
 					
 				}
@@ -146,7 +147,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("SkyBlock", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "SkyBlock"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "SkyBlock"));
 				}else {
 					boolean monitor = getData("SkyBlock", "monitoring");
 					boolean online = getData("SkyBlock", "online");
@@ -158,7 +159,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "skyblock", skyblock);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "SkyBlock"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "SkyBlock"));
 					}
 					
 				}
@@ -166,7 +167,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("Farmserver", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Farmserver"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Farmserver"));
 				}else {
 					boolean monitor = getData("Farmserver", "monitoring");
 					boolean online = getData("Farmserver", "online");
@@ -178,7 +179,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "farmserver", farmserver);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Farmserver"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Farmserver"));
 					}
 					
 				}
@@ -186,7 +187,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("Towny", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Towny"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Towny"));
 				}else {
 					boolean monitor = getData("Towny", "monitoring");
 					boolean online = getData("Towny", "online");
@@ -198,7 +199,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "towny", towny);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Towny"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Towny"));
 					}
 					
 				}
@@ -206,7 +207,7 @@ public class Navigator implements Listener{
 				e.setCancelled(true);
 				boolean lock = getData("Staffserver", "locked");
 				if(lock) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Staffserver"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Staffserver"));
 				}else {
 					boolean monitor = getData("Staffserver", "monitoring");
 					boolean online = getData("Staffserver", "online");
@@ -218,7 +219,7 @@ public class Navigator implements Listener{
 							sendPlayer(p, "bauserver", bauserver);
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Staffserver"));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Staffserver"));
 					}
 					
 				}
@@ -252,7 +253,7 @@ public class Navigator implements Listener{
 		ByteArrayOutputStream b = new ByteArrayOutputStream();
 		DataOutputStream out = new DataOutputStream(b);
 		try {
-			p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.success").replace("%server", dserver));
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.success").replace("%server", dserver));
 			out.writeUTF("Connect");
 			out.writeUTF(server);
 		} catch (IOException e) {

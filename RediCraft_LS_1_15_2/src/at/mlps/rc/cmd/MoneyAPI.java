@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import at.mlps.rc.api.MojangAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
@@ -27,21 +28,21 @@ public class MoneyAPI implements CommandExecutor{
 			Player p = (Player)sender;
 			if(cmd.getName().equalsIgnoreCase("money")) {
 				if(args.length == 0) {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.money.player.own").replace("%money", String.valueOf(getMoney(p.getUniqueId()))));
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.money.bank.own").replace("%money", String.valueOf(getBankMoney(p.getUniqueId()))));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.player.own").replace("%money", String.valueOf(getMoney(p.getUniqueId()))));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.bank.own").replace("%money", String.valueOf(getBankMoney(p.getUniqueId()))));
 				}else if(args.length == 1) {
 					Player p2 = Bukkit.getPlayerExact(args[0]);
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.money.player.other").replace("%money", String.valueOf(getMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.money.bank.other").replace("%money", String.valueOf(getBankMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.player.other").replace("%money", String.valueOf(getMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.bank.other").replace("%money", String.valueOf(getBankMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/money [Player]");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/money [Player]");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("setmoney")) {
 				if(!p.hasPermission("mlps.setmoney")) {
 					LanguageHandler.noPerm(p);
 				}else {
 					if(args.length == 0) {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
 					}else if(args.length >= 1 && args.length <= 2) {
 						Player p2 = Bukkit.getPlayerExact(args[0]);
 						if(p2 == null) {
@@ -52,12 +53,12 @@ public class MoneyAPI implements CommandExecutor{
 								LanguageHandler.sendMSGReady(p, "cmd.setmoney.belowzero");
 							}else {
 								setMoney(p2.getUniqueId(), money);
-								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
+								p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
 								//LanguageHandler.sendMSGReady(p, "cmd.setmoney.successfull");
 							}
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/setmoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("addmoney")) {
@@ -72,11 +73,11 @@ public class MoneyAPI implements CommandExecutor{
 							int money = Integer.parseInt(args[1]);
 							int oldmoney = getMoney(p2.getUniqueId());
 							setMoney(p2.getUniqueId(), (money + oldmoney));
-							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.addmoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.addmoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
 							//LanguageHandler.sendMSGReady(p, "cmd.addmoney.successfull");
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/addmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/addmoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("removemoney")) {
@@ -92,14 +93,14 @@ public class MoneyAPI implements CommandExecutor{
 							int oldmoney = getMoney(p2.getUniqueId());
 							if(money <= oldmoney) {
 								setMoney(p2.getUniqueId(), (oldmoney - money));
-								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.removemoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
+								p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.removemoney.successfull").replace("%money", String.valueOf(money)).replace("%displayer", p2.getDisplayName()));
 								//LanguageHandler.sendMSGReady(p, "cmd.removemoney.successfull");
 							}else {
 								LanguageHandler.sendMSGReady(p, "cmd.removemoney.belowzero");
 							}
 						}
 					}else {
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/removemoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/removemoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("pay")) {
@@ -114,14 +115,14 @@ public class MoneyAPI implements CommandExecutor{
 						if(money <= oldmoney1) {
 							setMoney(p2.getUniqueId(), (oldmoney2 + money));
 							setMoney(p.getUniqueId(), (oldmoney1 - money));
-							p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.pay.successfull").replace("%displayer", p2.getDisplayName()).replace("%money", args[1]));
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.pay.successfull").replace("%displayer", p2.getDisplayName()).replace("%money", args[1]));
 							//LanguageHandler.sendMSGReady(p, "cmd.pay.successfull");
 						}else {
 							LanguageHandler.sendMSGReady(p, "cmd.pay.belowzero");
 						}
 					}
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/pay <Player> <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/pay <Player> <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("topmoney")) {
 				try {
@@ -146,14 +147,14 @@ public class MoneyAPI implements CommandExecutor{
 								LanguageHandler.sendMSGReady(p, "cmd.setbankmoney.belowzero");
 							}else {
 								setBankMoney(p2.getUniqueId(), money);
-								p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.setbankmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
+								p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setbankmoney.successfull").replace("%money", args[1]).replace("%displayer", p2.getDisplayName()));
 							}
 						}else {
 							LanguageHandler.noPerm(p);
 						}
 					}
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/setbankmoney <Player> <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/setbankmoney <Player> <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("bankdeposit")) { //add to bankaccount
 				if(args.length == 1) {
@@ -163,12 +164,12 @@ public class MoneyAPI implements CommandExecutor{
 					if(money <= currMoney) {
 						setBankMoney(p.getUniqueId(), (bankcurrMoney + money));
 						setMoney(p.getUniqueId(), (currMoney - money));
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.bankdeposit.successfull").replace("%money", args[0]));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.bankdeposit.successfull").replace("%money", args[0]));
 					}else {
 						LanguageHandler.sendMSGReady(p, "cmd.bankdeposit.moreaspossible");
 					}
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/bankdeposit <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/bankdeposit <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("bankwithdraw")) { //remove from bankaccount
 				if(args.length == 1) {
@@ -178,12 +179,12 @@ public class MoneyAPI implements CommandExecutor{
 					if(money <= currMoney) {
 						setBankMoney(p.getUniqueId(), (currMoney - money));
 						setMoney(p.getUniqueId(), (usercurrMoney + money));
-						p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "cmd.bankwithdraw.successfull").replace("%money", args[0]));
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.bankwithdraw.successfull").replace("%money", args[0]));
 					}else {
 						LanguageHandler.sendMSGReady(p, "cmd.bankwithdraw.moreaspossible");
 					}
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "usage") + " §7/bankwithdraw <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " §7/bankwithdraw <Money>");
 				}
 			}
 		}

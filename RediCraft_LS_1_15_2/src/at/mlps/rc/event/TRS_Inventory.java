@@ -16,10 +16,10 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 
 import at.mlps.rc.api.ItemsAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.api.TRS_API;
 import at.mlps.rc.cmd.MoneyAPI;
 import at.mlps.rc.main.LanguageHandler;
-import at.mlps.rc.main.Main;
 
 public class TRS_Inventory implements Listener{
 	
@@ -74,44 +74,44 @@ public class TRS_Inventory implements Listener{
 				if(TRS_API.isAllowed(p, "default.default")) {
 					int money = 2500;
 					TRS_API.setReward(p, "default.default");
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward").replace("|", "\n").replace("%money", "2500"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward").replace("|", "\n").replace("%money", "2500"));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.default")));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.default")));
 				}
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Fix §ePremium")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "premium.default")) {
 					int money = 5000;
 					TRS_API.setReward(p, "premium.default");
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward §ePremium").replace("|", "\n").replace("%money", "5000"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward §ePremium").replace("|", "\n").replace("%money", "5000"));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.default")));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.default")));
 				}
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Random")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "default.random")) {
 					int money = random(0, 2500);
 					TRS_API.setReward(p, "default.random");
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward").replace("|", "\n").replace("%money", String.valueOf(money)));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward").replace("|", "\n").replace("%money", String.valueOf(money)));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.random")));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.random")));
 				}
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Random §ePremium")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "premium.random")) {
 					int money = random(2500, 5000);
 					TRS_API.setReward(p, "premium.random");
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward §ePremium").replace("|", "\n").replace("%money", String.valueOf(money)));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward §ePremium").replace("|", "\n").replace("%money", String.valueOf(money)));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
-					p.sendMessage(Main.prefix() + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.random")));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.random")));
 				}
 			}
 		}

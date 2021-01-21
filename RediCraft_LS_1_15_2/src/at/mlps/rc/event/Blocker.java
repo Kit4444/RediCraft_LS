@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
@@ -66,7 +67,7 @@ public class Blocker implements Listener{
 			e.setCancelled(true);
 			if(issuer.getType() == EntityType.PLAYER) {
 				Player p = (Player) issuer;
-				p.sendMessage(Main.prefix() + "§7You can't do that!");
+				p.sendMessage(Prefix.prefix("main") + "§7You can't do that!");
 			}
 		}
 	}
@@ -85,7 +86,7 @@ public class Blocker implements Listener{
     public void onInvClick(InventoryClickEvent e) {
         Player p = (Player)e.getWhoClicked();
         String i = e.getCurrentItem().getItemMeta().getDisplayName();
-        String nomove = Main.prefix() + LanguageHandler.returnStringReady(p, "event.move.cancel").replace("%item", i);
+        String nomove = Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.move.cancel").replace("%item", i);
         if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Navigator.title)) {
         	e.setCancelled(true);
             p.sendMessage(nomove);
@@ -102,7 +103,7 @@ public class Blocker implements Listener{
     public void onDropItems(PlayerDropItemEvent e) {
         Player p = e.getPlayer();
         String i = e.getItemDrop().getItemStack().getItemMeta().getDisplayName();
-        String nodrop = Main.prefix() + LanguageHandler.returnStringReady(p, "event.drop.cancel").replace("%item", i);
+        String nodrop = Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.drop.cancel").replace("%item", i);
         if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals(Navigator.title)) {
             p.sendMessage(nodrop);
             e.setCancelled(true);

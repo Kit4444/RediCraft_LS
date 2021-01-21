@@ -17,7 +17,7 @@ import org.bukkit.inventory.Inventory;
 
 import at.mlps.rc.api.Advents_API;
 import at.mlps.rc.api.ItemsAPI;
-import at.mlps.rc.main.Main;
+import at.mlps.rc.api.Prefix;
 
 public class Advents_Handler implements Listener{
 	
@@ -442,7 +442,7 @@ public class Advents_Handler implements Listener{
 			if(dmg.getType() == EntityType.PLAYER) {
 				Player p = (Player) dmg;
 				e.setCancelled(true);
-				p.sendMessage(Main.prefix() + "Hey, why you want to hurt our poor snowman?");
+				p.sendMessage(Prefix.prefix("main") + "Hey, why you want to hurt our poor snowman?");
 			}else {
 				e.setCancelled(true);
 			}

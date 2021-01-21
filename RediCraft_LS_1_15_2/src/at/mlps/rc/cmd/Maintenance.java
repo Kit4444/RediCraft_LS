@@ -22,6 +22,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 
 import at.mlps.rc.api.MojangAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
@@ -38,7 +39,7 @@ public class Maintenance implements CommandExecutor, Listener{
 			Player p = (Player)sender;
 			if(cmd.getName().equalsIgnoreCase("whitelist")) {
 				if(args.length == 0) {
-					p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+					p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
 				}else if(args.length == 2) {
 					if(p.hasPermission("mlps.whitelist")) {
 						String uuid = MojangAPI.getUUIDfromName(args[1]);
@@ -97,16 +98,16 @@ public class Maintenance implements CommandExecutor, Listener{
 								e.printStackTrace();
 							}
 						}else {
-							p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+							p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
 						}
 					}
 				}else {
-					p.sendMessage(Main.prefix() + "§7Usage: /whitelist <add|remove> <Name>");
+					p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
 				}
 			}
 			if(cmd.getName().equalsIgnoreCase("userlist")) {
 				if(args.length == 0) {
-					p.sendMessage(Main.prefix() + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
+					p.sendMessage(Prefix.prefix("main") + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
 				}else if(args.length >= 0) {
 					SimpleDateFormat date = new SimpleDateFormat("dd/MM/yy-HH:mm:ss");
 				    String sdate = date.format(new Date());
@@ -213,7 +214,7 @@ public class Maintenance implements CommandExecutor, Listener{
 								p.sendMessage("§cError while performing this command.");
 							}
 						}else {
-							p.sendMessage(Main.prefix() + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
+							p.sendMessage(Prefix.prefix("main") + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
 						}
 					}else {
 						LanguageHandler.sendMSGReady(p, "noPermission");
@@ -224,7 +225,7 @@ public class Maintenance implements CommandExecutor, Listener{
 					try { whitelist.createNewFile(); }catch (IOException e) { e.printStackTrace(); }
 				}
 				if(args.length == 0) {
-					p.sendMessage(Main.prefix() + "§7Usage: /maintenance <on|off|status> <(if on)Message>");
+					p.sendMessage(Prefix.prefix("main") + "§7Usage: /maintenance <on|off|status> <(if on)Message>");
 				}else if(args.length >= 1) {
 					if(p.hasPermission("mlps.maintenance")) {
 						YamlConfiguration cfg = YamlConfiguration.loadConfiguration(whitelist);
@@ -236,14 +237,14 @@ public class Maintenance implements CommandExecutor, Listener{
 						String msg = sb.toString();
 						if(args[0].equalsIgnoreCase("on")) {
 							if(msg.isEmpty()) {
-								p.sendMessage(Main.prefix() + "§cPlease give at least one Word for Reason.");
+								p.sendMessage(Prefix.prefix("main") + "§cPlease give at least one Word for Reason.");
 							}else {
 								cfg.set("Whitelist.Maintenance.Message", msg);
 								cfg.set("Whitelist.Maintenance.Boolean", true);
 								cfg.set("Whitelist.Maintenance.activatedFrom", p.getName());
 								try {
 									cfg.save(whitelist);
-									p.sendMessage(Main.prefix() + "§7You activated the maintenance - state.");
+									p.sendMessage(Prefix.prefix("main") + "§7You activated the maintenance - state.");
 									p.sendMessage("§7Message: §9" + msg);
 								} catch (IOException e) {
 									e.printStackTrace();
@@ -253,7 +254,7 @@ public class Maintenance implements CommandExecutor, Listener{
 							cfg.set("Whitelist.Maintenance.Boolean", false);
 							try {
 								cfg.save(whitelist);
-								p.sendMessage(Main.prefix() + "§7You deactivated the maintenance - state.");
+								p.sendMessage(Prefix.prefix("main") + "§7You deactivated the maintenance - state.");
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
@@ -262,12 +263,12 @@ public class Maintenance implements CommandExecutor, Listener{
 							boolean boo = cfg.getBoolean("Whitelist.Maintenance.Boolean");
 							String admin = cfg.getString("Whitelist.Maintenance.deactivatedFrom", p.getName());
 							if(boo == true) {
-								p.sendMessage(Main.prefix() + "§7Status of Maintenance: §cactive");
+								p.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §cactive");
 							}else if(boo == false) {
-								p.sendMessage(Main.prefix() + "§7Status of Maintenance: §ainactive");
+								p.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §ainactive");
 							}
-							p.sendMessage(Main.prefix() + "§7Last Maintenance-Message: §f" + cfgmsg);
-							p.sendMessage(Main.prefix() + "§7Admin: " + admin);
+							p.sendMessage(Prefix.prefix("main") + "§7Last Maintenance-Message: §f" + cfgmsg);
+							p.sendMessage(Prefix.prefix("main") + "§7Admin: " + admin);
 						}
 					}else {
 						LanguageHandler.sendMSGReady(p, "noPermission");
@@ -298,7 +299,7 @@ public class Maintenance implements CommandExecutor, Listener{
 						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 							@Override
 							public void run() {
-								e.getPlayer().sendMessage(Main.prefix() + "§7Bypassed the maintenance-mode!");
+								e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
 								p.sendMessage("§7Reason: §a" + returnReason(uuid));
 							}
 						}, 10);
@@ -312,7 +313,7 @@ public class Maintenance implements CommandExecutor, Listener{
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 						@Override
 						public void run() {
-							e.getPlayer().sendMessage(Main.prefix() + "§7Bypassed the maintenance-mode!");
+							e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
 							p.sendMessage("§7Reason: §a" + returnReason(uuid));
 						}
 					}, 10);
@@ -325,52 +326,6 @@ public class Maintenance implements CommandExecutor, Listener{
 			e1.printStackTrace();
 		}
 	}
-	
-	/*@EventHandler(priority=EventPriority.HIGHEST)
-	public void onLogin(PlayerLoginEvent e) {
-		Player p = e.getPlayer();
-		String uuid = p.getUniqueId().toString().replace("-", "");
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(whitelist);
-		boolean boo = cfg.getBoolean("Whitelist.Maintenance.Boolean");
-		//String msg = cfg.getString("Whitelist.Maintenance.Message");
-		//String uname = cfg.getString("Whitelist.Maintenance.activatedFrom");
-		if(boo == true) {
-			if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
-				e.allow();
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
-					@Override
-					public void run() {
-						e.getPlayer().sendMessage(Main.prefix() + "§7Bypassed the maintenance-mode!");
-						p.sendMessage("§7Reason: §a" + returnReason(uuid));
-					}
-				}, 10);
-			}else {
-				try {
-					HashMap<String, Object> hm = new HashMap<>();
-					hm.put("uuid", p.getUniqueId().toString().replace("-", ""));
-					if(Main.mysql.isInDatabase("redicore_userwhitelist", hm)) {
-						PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userwhitelist WHERE uuid = ?");
-						ps.setString(1, p.getUniqueId().toString().replace("-", ""));
-						ResultSet rs = ps.executeQuery();
-						rs.next();
-						if(rs.getBoolean("enabled")) {
-							e.allow();
-						}else {
-							e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
-						}
-					}else {
-						e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				//e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§2Hey " + e.getPlayer().getName() + ", thank you for joining the network,\n§2but currently we need time for server maintenance.\n§aAdmin: §r" + uname + "\n§aReason: §6" + msg + "\n \n§7If you believe this is a mistake,\n§7please report it to Maurice_Bailey.\n \n§aOur Public Beta Weekends are always between\n§6Friday 12:00 UTC to Sunday 22:00 UTC.\n§aJoin, select the right server and have fun!");
-			}
-		}else {
-			e.allow();
-		}
-	}*/
 	
 	private void setStatus(String name, String uuid, String admin, String timest, String reason, long timets, boolean allowed) {
 		try {
