@@ -19,7 +19,6 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import at.mlps.rc.api.Prefix;
 import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.main.LanguageHandler;
-import at.mlps.rc.main.Main;
 
 public class Blocker implements Listener{
 	

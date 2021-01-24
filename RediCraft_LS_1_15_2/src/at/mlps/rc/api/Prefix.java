@@ -11,7 +11,7 @@ public class Prefix {
 	
 	public static HashMap<String, String> prefix = new HashMap<>();
 	
-	public void onLoad() {
+	public static void onLoad() {
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_igprefix");
 			ResultSet rs = ps.executeQuery();

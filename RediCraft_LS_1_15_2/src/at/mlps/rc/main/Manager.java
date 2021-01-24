@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.cmd.AFK_CMD;
 import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.cmd.CMD_SetID_SetPf;
@@ -118,6 +119,7 @@ public class Manager {
 		sb.SBSched(0, 20);
 		Serverupdater.runUpdaters(0, 100);
 		LanguageHandler.loadConfig();
+		Prefix.onLoad();
 	}
 
 }
