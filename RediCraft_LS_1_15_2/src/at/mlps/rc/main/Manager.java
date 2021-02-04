@@ -117,7 +117,6 @@ public class Manager {
 		}catch (SQLException e) {}
 		ScoreboardClass sb = new ScoreboardClass();
 		sb.SBSched(0, 20);
-		Serverupdater.runUpdaters(0, 100);
 		LanguageHandler.loadConfig();
 		Prefix.onLoad();
 	}

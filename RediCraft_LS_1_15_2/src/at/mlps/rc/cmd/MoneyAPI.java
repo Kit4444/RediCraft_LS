@@ -129,9 +129,10 @@ public class MoneyAPI implements CommandExecutor{
 					PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_money ORDER BY money DESC LIMIT 10");
 					ResultSet rs = ps.executeQuery();
 					int i = 0;
+					MojangAPI mapi = new MojangAPI();
 					while(rs.next()) {
 						i++;
-						p.sendMessage("§7Place §a" + i + " §7| User: §a" + MojangAPI.getNamefromUUID(rs.getString("uuid_ut")) + " §7| Balance: §a" + rs.getInt("money") + " §7Coins");
+						p.sendMessage("§7Place §a" + i + " §7| User: §a" + mapi.getNamefromUUID(rs.getString("uuid_ut")) + " §7| Balance: §a" + rs.getInt("money") + " §7Coins");
 					}
 				}catch (SQLException e) {
 				}
@@ -199,6 +200,8 @@ public class MoneyAPI implements CommandExecutor{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			i = rs.getInt("bankmoney");
+			rs.close();
+			ps.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -213,6 +216,8 @@ public class MoneyAPI implements CommandExecutor{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			i = rs.getInt("money");
+			rs.close();
+			ps.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -230,7 +235,7 @@ public class MoneyAPI implements CommandExecutor{
 			ps.setInt(1, money);
 			ps.setString(2, uuid.toString().replace("-", ""));
 			ps.executeUpdate();
-			ps.closeOnCompletion();
+			ps.close();
 		}catch (SQLException e) {
 		}
 	}
@@ -241,7 +246,7 @@ public class MoneyAPI implements CommandExecutor{
 			ps.setInt(1, money);
 			ps.setString(2, uuid.toString().replace("-", ""));
 			ps.executeUpdate();
-			ps.closeOnCompletion();
+			ps.close();
 		}catch (SQLException e) {
 		}
 	}

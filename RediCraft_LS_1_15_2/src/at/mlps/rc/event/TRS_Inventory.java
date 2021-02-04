@@ -25,39 +25,40 @@ public class TRS_Inventory implements Listener{
 	
 	public static void trsinv(Player p) {
 		Inventory inv = null;
+		ItemsAPI iapi = new ItemsAPI();
 		if(p.hasPermission("mlps.drew.premium")) {
 			inv = Bukkit.createInventory(null, 5*9, "§aDaily §cRewards");
 			if(TRS_API.isAllowed(p, "default.default")) {
-				inv.setItem(11, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
+				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
 			}else {
-				inv.setItem(11, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
+				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
 			}
 			if(TRS_API.isAllowed(p, "default.random")) {
-				inv.setItem(15, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
+				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
 			}else {
-				inv.setItem(15, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
+				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
 			}
 			if(TRS_API.isAllowed(p, "premium.default")) {
-				inv.setItem(29, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Fix §ePremium"));
+				inv.setItem(29, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix §ePremium"));
 			}else {
-				inv.setItem(29, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Fix §ePremium", "§7Remaining Time", "§a" + time(p, "premium.default")));
+				inv.setItem(29, iapi.l2Item(Material.MINECART, 1, "§aReward Fix §ePremium", "§7Remaining Time", "§a" + time(p, "premium.default")));
 			}
 			if(TRS_API.isAllowed(p, "premium.random")) {
-				inv.setItem(33, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Random §ePremium"));
+				inv.setItem(33, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random §ePremium"));
 			}else {
-				inv.setItem(33, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Random §ePremium", "§7Remaining Time", "§a" + time(p, "premium.random")));
+				inv.setItem(33, iapi.l2Item(Material.MINECART, 1, "§aReward Random §ePremium", "§7Remaining Time", "§a" + time(p, "premium.random")));
 			}
 		}else {
 			inv = Bukkit.createInventory(null, 3*9, "§aDaily §cRewards");
 			if(TRS_API.isAllowed(p, "default.default")) {
-				inv.setItem(11, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
+				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
 			}else {
-				inv.setItem(11, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
+				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
 			}
 			if(TRS_API.isAllowed(p, "default.random")) {
-				inv.setItem(15, ItemsAPI.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
+				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
 			}else {
-				inv.setItem(15, ItemsAPI.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
+				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
 			}
 		}
 		p.openInventory(inv);

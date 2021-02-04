@@ -82,6 +82,8 @@ public class PlayerMove implements Listener{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			boo = rs.getBoolean("afk");
+			rs.close();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 		return boo;
 	}
@@ -92,6 +94,7 @@ public class PlayerMove implements Listener{
 			ps.setBoolean(1, boo);
 			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
 			ps.executeUpdate();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 	}
 	

@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 
 public class MojangAPI {
 	
-	public static String getUUIDfromName(String name) {
+	public String getUUIDfromName(String name) {
 		String url = "https://api.mojang.com/users/profiles/minecraft/" + name;
 		String uuid = "";
 		try {
@@ -26,7 +26,7 @@ public class MojangAPI {
 		return uuid;
 	}
 	
-	public static String getNamefromUUID(String uuid) {
+	public String getNamefromUUID(String uuid) {
 		String url = "https://api.mojang.com/user/profiles/" + uuid.replace("-", "") + "/names";
 		String name = "";
 		try {

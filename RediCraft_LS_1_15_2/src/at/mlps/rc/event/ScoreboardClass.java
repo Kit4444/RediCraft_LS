@@ -27,6 +27,7 @@ import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.cmd.MoneyAPI;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
+import at.mlps.rc.main.Serverupdater;
 import at.mlps.rc.mysql.lb.MySQL;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -490,7 +491,7 @@ public class ScoreboardClass implements Listener{
 		    rs.next();
 		    s = rs.getString("userid");
 		    rs.close();
-		    ps.closeOnCompletion();
+		    ps.close();
 		}catch (SQLException e) { }
 		return s;
 	}
@@ -508,7 +509,7 @@ public class ScoreboardClass implements Listener{
 			prefix = pre;
 		}
 		rs.close();
-		ps.closeOnCompletion();
+		ps.close();
 		return prefix;
 	}
 	
@@ -521,7 +522,7 @@ public class ScoreboardClass implements Listener{
 			rs.next();
 			boo = rs.getBoolean("afk");
 			rs.close();
-			ps.closeOnCompletion();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 		return boo;
 	}
@@ -593,14 +594,25 @@ public class ScoreboardClass implements Listener{
 		}
 	}
 	
+	int pause = 0;
+	
 	public void SBSched(int delay, int sbsched) {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
 				String stime = time.format(new Date());
+				Serverupdater su = new Serverupdater();
+				su.Serverrestarter();
+				pause++;
+				if(pause == 5) {
+					pause = 0;
+					su.updateServer();
+					su.updateWorlds();
+				}
+				GetBukkitInfo bukkit = new GetBukkitInfo();
 				for(Player all : Bukkit.getOnlinePlayers()) {
-					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", GetBukkitInfo.getServerName()).replace("%serverid", GetBukkitInfo.getServerId()));
+					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", bukkit.getServerName()).replace("%serverid", bukkit.getServerId()));
 					try {
 						setScoreboard(all);
 					} catch (SQLException e) {

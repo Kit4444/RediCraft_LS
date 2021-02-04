@@ -18,6 +18,8 @@ public class Prefix {
 			while(rs.next()) {
 				prefix.put(rs.getString("type"), rs.getString("prefix"));
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

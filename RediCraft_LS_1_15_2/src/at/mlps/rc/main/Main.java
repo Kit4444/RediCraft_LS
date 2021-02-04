@@ -49,16 +49,18 @@ public class Main extends JavaPlugin{
 	
 	public static void setPlayerBar(Player p) {
 		p.getInventory().clear();
-		p.getInventory().setItem(2, ItemsAPI.defItem(Material.DIAMOND, 1, ExtrasInv.mainTitle));
-		p.getInventory().setItem(4, ItemsAPI.defItem(Material.COMPASS, 1, Navigator.title));
-		p.getInventory().setItem(6, ItemsAPI.defItem(Material.BOOK, 1, LanguageInv.mainTitle));
+		ItemsAPI iapi = new ItemsAPI();
+		p.getInventory().setItem(2, iapi.defItem(Material.DIAMOND, 1, ExtrasInv.mainTitle));
+		p.getInventory().setItem(4, iapi.defItem(Material.COMPASS, 1, Navigator.title));
+		p.getInventory().setItem(6, iapi.defItem(Material.BOOK, 1, LanguageInv.mainTitle));
 	}
 	
 	private void updateOnline(boolean boo) {
+		GetBukkitInfo bukkit = new GetBukkitInfo();
 		try {
 			PreparedStatement ps = at.mlps.rc.mysql.lb.MySQL.getConnection().prepareStatement("UPDATE redicore_serverstats SET online = ? WHERE servername = ?");
 			ps.setBoolean(1, boo);
-			ps.setString(2, GetBukkitInfo.getServerName());
+			ps.setString(2, bukkit.getServerName());
 			ps.executeUpdate();
 			ps.close();
 			if(boo == true) {

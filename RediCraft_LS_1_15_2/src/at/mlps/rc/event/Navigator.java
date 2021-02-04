@@ -50,40 +50,41 @@ public class Navigator implements Listener{
 	
 	//main servernavi
 	public static void mainnavi(Player p) {
+		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9*3, title);
-		inv.setItem(0, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(1, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(3, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(4, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(5, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(6, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(7, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(8, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(9, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(11, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(12, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(14, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(15, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(17, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(18, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(19, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(21, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(22, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(23, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(25, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(0, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(1, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(3, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(4, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(5, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(6, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(7, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(8, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(9, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(11, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(12, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(14, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(15, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(17, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(18, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(19, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(21, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(22, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(23, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(25, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
 		//inv w/ items
-		inv.setItem(6, ItemsAPI.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
-		inv.setItem(10, ItemsAPI.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
-		inv.setItem(16, ItemsAPI.naviItem(Material.GOLDEN_SHOVEL, farmserver, "Farmserver"));
-		inv.setItem(20, ItemsAPI.naviItem(Material.BRICKS, towny, "Towny"));
-		inv.setItem(24, ItemsAPI.naviItem(Material.IRON_AXE, survival, "Survival"));
+		inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
+		inv.setItem(10, iapi.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
+		inv.setItem(16, iapi.naviItem(Material.GOLDEN_SHOVEL, farmserver, "Farmserver"));
+		inv.setItem(20, iapi.naviItem(Material.BRICKS, towny, "Towny"));
+		inv.setItem(24, iapi.naviItem(Material.IRON_AXE, survival, "Survival"));
 		if(p.hasPermission("mlps.isTeam")) {
-			inv.setItem(26, ItemsAPI.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
+			inv.setItem(26, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
 		}else {
-			inv.setItem(26, ItemsAPI.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+			inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
 		}
-		inv.setItem(2, ItemsAPI.defItem(Material.EMERALD, 1, dailyrew)); //dailyrewards
-		inv.setItem(13, ItemsAPI.defItem(Material.NETHER_STAR, 1, spawn)); //spawn
+		inv.setItem(2, iapi.defItem(Material.EMERALD, 1, dailyrew)); //dailyrewards
+		inv.setItem(13, iapi.defItem(Material.NETHER_STAR, 1, spawn)); //spawn
 		p.openInventory(inv);
 		p.updateInventory();
 	}

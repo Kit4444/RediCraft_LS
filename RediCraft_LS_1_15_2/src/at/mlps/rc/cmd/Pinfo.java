@@ -66,8 +66,8 @@ public class Pinfo implements CommandExecutor {
 								p.sendMessage("§7Firstjoin IP: §a" + rs.getString("firstjoinip"));
 								p.sendMessage("§7Last login IP: §a" + rs.getString("lastloginip"));
 							}
-						}else {
-							
+							rs.close();
+							ps.close();
 						}
 					} catch (SQLException e) {
 						e.printStackTrace();

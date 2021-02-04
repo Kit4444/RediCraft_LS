@@ -37,12 +37,13 @@ public class Maintenance implements CommandExecutor, Listener{
 			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
 		}else {
 			Player p = (Player)sender;
+			MojangAPI mapi = new MojangAPI();
 			if(cmd.getName().equalsIgnoreCase("whitelist")) {
 				if(args.length == 0) {
 					p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
 				}else if(args.length == 2) {
 					if(p.hasPermission("mlps.whitelist")) {
-						String uuid = MojangAPI.getUUIDfromName(args[1]);
+						String uuid = mapi.getUUIDfromName(args[1]);
 						if(args[0].equalsIgnoreCase("add")) {
 							if(uuid.equalsIgnoreCase("errored")) {
 								p.sendMessage("§7========[§aAdduser§7]========");
@@ -86,6 +87,7 @@ public class Maintenance implements CommandExecutor, Listener{
 									p.sendMessage("§7========[§bWhitelist§7]========");
 									p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
 									p.sendMessage("§7Player is now disallowed to join.");
+									ps.close();
 								}else {
 									hm.put("admin", p.getUniqueId().toString());
 									hm.put("enabled", false);
@@ -120,7 +122,7 @@ public class Maintenance implements CommandExecutor, Listener{
 								sb.append(" ");
 							}
 							String msg = sb.toString();
-							String uuid = MojangAPI.getUUIDfromName(name);
+							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
 								p.sendMessage("§7========[§aAdduser§7]========");
 								p.sendMessage("§7User: §a" + name);
@@ -139,7 +141,7 @@ public class Maintenance implements CommandExecutor, Listener{
 								sb.append(" ");
 							}
 							String msg = sb.toString();
-							String uuid = MojangAPI.getUUIDfromName(name);
+							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
 								p.sendMessage("§7========[§cRemoveuser§7]========");
 								p.sendMessage("§7User: §a" + name);
@@ -167,6 +169,8 @@ public class Maintenance implements CommandExecutor, Listener{
 								admin = rs.getString("admin");
 								datifo = rs.getString("timest");
 								boo = rs.getBoolean("allowed");
+								rs.close();
+								ps.close();
 							}catch (SQLException e) { }
 							p.sendMessage("§7========[§2Checkuser§7]========");
 							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
@@ -186,7 +190,7 @@ public class Maintenance implements CommandExecutor, Listener{
 								sb.append(" ");
 							}
 							String msg = sb.toString();
-							String uuid = MojangAPI.getUUIDfromName(name);
+							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
 								p.sendMessage("§7========[§eChangereason§7]========");
 								p.sendMessage("§7User: §a" + name);
@@ -210,6 +214,8 @@ public class Maintenance implements CommandExecutor, Listener{
 										p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §c" + allow);
 									}
 								}
+								rs.close();
+								ps.close();
 							}catch (SQLException e) {
 								p.sendMessage("§cError while performing this command.");
 							}
@@ -322,7 +328,6 @@ public class Maintenance implements CommandExecutor, Listener{
 				}
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -341,6 +346,7 @@ public class Maintenance implements CommandExecutor, Listener{
 				ps.setString(6, admin);
 				ps.setString(7, uuid);
 				ps.executeUpdate();
+				ps.close();
 			}else {
 				hm.put("name", name);
 				hm.put("allowed", allowed);
@@ -366,6 +372,7 @@ public class Maintenance implements CommandExecutor, Listener{
 				ps.setString(3, admin);
 				ps.setString(4, uuid);
 				ps.executeUpdate();
+				ps.close();
 			}
 		}catch (SQLException e) {}
 	}
@@ -381,6 +388,8 @@ public class Maintenance implements CommandExecutor, Listener{
 				ResultSet rs = ps.executeQuery();
 				rs.next();
 				s = rs.getString("reason");
+				rs.close();
+				ps.close();
 			}
 		}catch (SQLException e) {}
 		return s;
@@ -397,6 +406,8 @@ public class Maintenance implements CommandExecutor, Listener{
 				ResultSet rs = ps.executeQuery();
 				rs.next();
 				boo = rs.getBoolean("allowed");
+				rs.close();
+				ps.close();
 			}
 		}catch (SQLException e) {}
 		return boo;
