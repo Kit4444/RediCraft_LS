@@ -73,6 +73,8 @@ public class LogSystem implements CommandExecutor{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			boo = rs.getBoolean("loggedin");
+			rs.close();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 		return boo;
 	}
@@ -83,6 +85,7 @@ public class LogSystem implements CommandExecutor{
 			ps.setBoolean(1, boo);
 			ps.setString(2, uuid);
 			ps.executeUpdate();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 	}
 

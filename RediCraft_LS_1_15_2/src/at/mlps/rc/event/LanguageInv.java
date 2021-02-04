@@ -24,8 +24,9 @@ public class LanguageInv implements Listener{
 	public static String mainTitle = "§6Language";
 	
 	public static void langInv(Player p) {
+		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 1*9, mainTitle);
-		ItemStack item = ItemsAPI.defItem(Material.ORANGE_STAINED_GLASS_PANE, 1, "§6");
+		ItemStack item = iapi.defItem(Material.ORANGE_STAINED_GLASS_PANE, 1, "§6");
 		inv.setItem(0, item);
 		inv.setItem(1, item);
 		inv.setItem(2, item);
@@ -37,14 +38,14 @@ public class LanguageInv implements Listener{
 			@Override
 			public void run() {
 				if(retLang(p).equalsIgnoreCase("en-uk")) {
-					inv.setItem(3, ItemsAPI.enchItem(Material.CYAN_CONCRETE, 1, "§bEnglish", Enchantment.LUCK));
-					inv.setItem(5, ItemsAPI.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(3, iapi.enchItem(Material.CYAN_CONCRETE, 1, "§bEnglish", Enchantment.LUCK));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
 				}else if(retLang(p).equalsIgnoreCase("de-de")) {
-					inv.setItem(3, ItemsAPI.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglisch"));
-					inv.setItem(5, ItemsAPI.enchItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch", Enchantment.LUCK));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglisch"));
+					inv.setItem(5, iapi.enchItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch", Enchantment.LUCK));
 				}else {
-					inv.setItem(3, ItemsAPI.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglish"));
-					inv.setItem(5, ItemsAPI.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglish"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
 				}
 			}
 		}, 5);
@@ -104,6 +105,8 @@ public class LanguageInv implements Listener{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			langKey = rs.getString("language");
+			rs.next();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); return null; }
 		return langKey;
 	}
@@ -114,6 +117,7 @@ public class LanguageInv implements Listener{
 			ps.setString(1, langKey);
 			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
 			ps.executeUpdate();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 	}
 }

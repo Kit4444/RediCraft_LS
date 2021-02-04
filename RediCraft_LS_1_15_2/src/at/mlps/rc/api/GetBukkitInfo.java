@@ -7,9 +7,8 @@ import java.util.Properties;
 
 public class GetBukkitInfo {
 	
-	static File file = new File("server.properties");
-	
-	public static String getServerName() {
+	public String getServerName() {
+		File file = new File("server.properties");
 		Properties p = new Properties();
 		String s = "";
 		try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
@@ -21,7 +20,8 @@ public class GetBukkitInfo {
 		return s;
 	}
 	
-	public static String getServerId() {
+	public String getServerId() {
+		File file = new File("server.properties");
 		Properties p = new Properties();
 		String s = "";
 		try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){

@@ -17,7 +17,7 @@ import at.mlps.rc.mysql.lb.MySQL;
 
 public class ItemsAPI {
 	
-	public static ItemStack defItem(Material mat, int avg, String dpname) {
+	public ItemStack defItem(Material mat, int avg, String dpname) {
 		ItemStack is = new ItemStack(mat, avg);
 		ItemMeta im = is.getItemMeta();
 		im.setDisplayName(dpname);
@@ -25,7 +25,7 @@ public class ItemsAPI {
 		return is;
 	}
 	
-	public static ItemStack potionItem(int avg, PotionType effect, String dpname) {
+	public ItemStack potionItem(int avg, PotionType effect, String dpname) {
 		ItemStack item = new ItemStack(Material.POTION, avg);
 		PotionMeta potion = (PotionMeta) item.getItemMeta();
 		potion.setBasePotionData(new PotionData(effect, false, false));
@@ -34,7 +34,7 @@ public class ItemsAPI {
 		return item;
 	}
 	
-	public static ItemStack enchItem(Material mat, int avg, String dpname, Enchantment ench) {
+	public ItemStack enchItem(Material mat, int avg, String dpname, Enchantment ench) {
 		ItemStack item = new ItemStack(mat, avg);
 		ItemMeta mitem = item.getItemMeta();
 		mitem.setDisplayName(dpname);
@@ -43,7 +43,7 @@ public class ItemsAPI {
 		return item;
 	}
 	
-	public static ItemStack l2Item(Material mat, int avg, String dpname, String lore1, String lore2) {
+	public ItemStack l2Item(Material mat, int avg, String dpname, String lore1, String lore2) {
 	    ArrayList<String> lore = new ArrayList<String>();
 	    ItemStack item = new ItemStack(mat, avg);
 	    ItemMeta mitem = item.getItemMeta();
@@ -56,7 +56,7 @@ public class ItemsAPI {
 	  }
 	
 	@Deprecated
-	public static ItemStack onlineItem(Material mat, int avg, String dpname, int online) {
+	public ItemStack onlineItem(Material mat, int avg, String dpname, int online) {
 		ArrayList<String> lore = new ArrayList<>();
 		ItemStack item = new ItemStack(mat, avg);
 		ItemMeta mitem = item.getItemMeta();
@@ -67,7 +67,7 @@ public class ItemsAPI {
 		return item;
 	}
 	
-	public static ItemStack naviItem(Material mat, String dpname, String servername) {
+	public  ItemStack naviItem(Material mat, String dpname, String servername) {
 		ArrayList<String> lore = new ArrayList<>();
 		ItemStack item = new ItemStack(mat, 1);
 		ItemMeta mitem = item.getItemMeta();
@@ -92,7 +92,7 @@ public class ItemsAPI {
 		return item;
 	}
 	
-	private static boolean getData(String server, String column) {
+	private boolean getData(String server, String column) {
 		boolean boo = false;
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_serverstats WHERE servername = ?");
@@ -106,7 +106,7 @@ public class ItemsAPI {
 		return boo;
 	}
 	
-	private static int getPlayers(String server) {
+	private int getPlayers(String server) {
 		int i = 0;
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_serverstats WHERE servername = ?");

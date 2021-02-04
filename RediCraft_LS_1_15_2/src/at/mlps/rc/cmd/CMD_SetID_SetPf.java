@@ -48,14 +48,14 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 										LanguageHandler.sendMSGReady(p, "cmd.setid.idalreadyexists");
 									}
 									rs.close();
-									ps.closeOnCompletion();
+									ps.close();
 								}catch (SQLException e) {
 									try {
 										PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userid = ? WHERE uuid = ?");
 										ps.setInt(1, id);
 										ps.setString(2, p2.getUniqueId().toString().replace("-", ""));
 										ps.executeUpdate();
-										ps.closeOnCompletion();
+										ps.close();
 										p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setid.updatesuccessfull").replace("%displayer", p2.getDisplayName()).replace("%id", String.valueOf(id)));
 									}catch (SQLException e1) {
 										e1.printStackTrace();
@@ -73,14 +73,14 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 											LanguageHandler.sendMSGReady(p, "cmd.setid.idalreadyexists");
 										}
 										rs.close();
-										ps.closeOnCompletion();
+										ps.close();
 									}catch (SQLException e) {
 										try {
 											PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET userid = ? WHERE uuid = ?");
 											ps.setInt(1, id);
 											ps.setString(2, p2.getUniqueId().toString().replace("-", ""));
 											ps.executeUpdate();
-											ps.closeOnCompletion();
+											ps.close();
 											p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setid.updatesuccessfull").replace("%displayer", p2.getDisplayName()).replace("%id", String.valueOf(id)));
 										}catch (SQLException e1) {
 											e1.printStackTrace();
@@ -121,7 +121,7 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 										ps.setString(2, "RESET");
 										ps.setString(3, uuid2);
 										ps.executeUpdate();
-										ps.closeOnCompletion();
+										ps.close();
 										p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setpf.playerreset").replace("%displayer", p2.getDisplayName()));
 									}catch (SQLException e) { }
 								}else {
@@ -131,7 +131,7 @@ public class CMD_SetID_SetPf implements CommandExecutor{
 										ps.setString(2, prefix.replace("§a", "").replace("§b", "").replace("§c", "").replace("§d", "").replace("§e", "").replace("§f", "").replace("§1", "").replace("§2", "").replace("§3", "").replace("§4", "").replace("§5", "").replace("§6", "").replace("§7", "").replace("§8", "").replace("§9", "").replace("§0", ""));
 										ps.setString(3, uuid2);
 										ps.executeUpdate();
-										ps.closeOnCompletion();
+										ps.close();
 										p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.setpf.newprefix").replace("%displayer", p2.getDisplayName()).replace("%prefix", prefix).replace("|", "\n"));
 									}catch (SQLException e) { }
 								}

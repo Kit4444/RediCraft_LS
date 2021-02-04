@@ -23,6 +23,7 @@ public class LanguageHandler {
 				langCache_DE.put(rs.getString("lang_key"), rs.getString("German"));
 				langCache_EN.put(rs.getString("lang_key"), rs.getString("English"));
 			}
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

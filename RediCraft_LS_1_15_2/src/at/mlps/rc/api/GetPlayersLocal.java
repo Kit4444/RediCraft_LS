@@ -16,6 +16,8 @@ public class GetPlayersLocal {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			i = rs.getInt(type);
+			rs.close();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 		return i;
 	}

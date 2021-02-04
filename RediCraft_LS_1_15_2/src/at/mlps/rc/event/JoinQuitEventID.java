@@ -62,6 +62,7 @@ public class JoinQuitEventID implements Listener{
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         HashMap<String, Object> player = new HashMap<>();
         player.put("uuid", uuid);
+        GetBukkitInfo bukkit = new GetBukkitInfo();
         try {
         	if(!Main.mysql.isInDatabase("redicore_userstats", player)) {
         		player.put("userrank", "default");
@@ -73,7 +74,7 @@ public class JoinQuitEventID implements Listener{
         		player.put("firstjoints", ts.getTime());
         		player.put("firstjoinstring", stime);
         		player.put("firstjoinip", p.getAddress().getHostString());
-        		player.put("server", GetBukkitInfo.getServerName());
+        		player.put("server", bukkit.getServerName());
         		player.put("loggedin", false);
         		player.put("isstaff", false);
         		player.put("language", "en-UK");
@@ -124,7 +125,7 @@ public class JoinQuitEventID implements Listener{
 	        		ps.setString(1, "Player");
 	        	}
         		ps.setBoolean(2, true);
-        		ps.setString(3, GetBukkitInfo.getServerName());
+        		ps.setString(3, bukkit.getServerName());
         		ps.setLong(4, ts.getTime());
         		ps.setString(5, stime);
         		ps.setString(6, p.getAddress().getHostString());
@@ -236,7 +237,7 @@ public class JoinQuitEventID implements Listener{
 			rs.next();
 			s = rs.getString("version");
 			rs.close();
-			ps.closeOnCompletion();
+			ps.close();
 		}catch (SQLException ex) { ex.printStackTrace(); }
 		return s;
 	}

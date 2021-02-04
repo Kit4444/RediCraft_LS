@@ -41,6 +41,8 @@ public class AFK_CMD implements CommandExecutor{
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			boo = rs.getBoolean("afk");
+			rs.close();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 		return boo;
 	}
@@ -51,6 +53,7 @@ public class AFK_CMD implements CommandExecutor{
 			ps.setBoolean(1, boo);
 			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
 			ps.executeUpdate();
+			ps.close();
 		}catch (SQLException e) { e.printStackTrace(); }
 	}
 }
