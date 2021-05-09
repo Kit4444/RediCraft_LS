@@ -67,7 +67,7 @@ public class ItemsAPI {
 		return item;
 	}
 	
-	public  ItemStack naviItem(Material mat, String dpname, String servername) {
+	public ItemStack naviItem(Material mat, String dpname, String servername) {
 		ArrayList<String> lore = new ArrayList<>();
 		ItemStack item = new ItemStack(mat, 1);
 		ItemMeta mitem = item.getItemMeta();
