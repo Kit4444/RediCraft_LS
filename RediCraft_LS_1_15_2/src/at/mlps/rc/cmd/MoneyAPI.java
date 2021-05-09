@@ -268,12 +268,6 @@ public class MoneyAPI implements CommandExecutor{
 	}
 	
 	public static boolean hasenoughmoney(int usermoney, int needmoney) {
-		boolean boo = false;
-		if(needmoney <= usermoney) {
-			boo = true;
-		}else {
-			boo = false;
-		}
-		return boo;
+		return needmoney <= usermoney;
 	}
 }
