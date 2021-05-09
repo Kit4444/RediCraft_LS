@@ -69,7 +69,7 @@ public class BuildClass implements CommandExecutor, Listener{
 		Player p = e.getPlayer();
 		if(build.contains(p.getName())) {
 			e.setCancelled(false);
-		}else {
+		}else{
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.build.cantdothat");
 		}
