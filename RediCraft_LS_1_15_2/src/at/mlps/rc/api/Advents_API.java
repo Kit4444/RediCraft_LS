@@ -22,24 +22,22 @@ public class Advents_API {
 		}
 	}
 	
-	public boolean hasRewardUsed(Player p, int day) {
-		boolean bool = false;
+	public boolean hasRewardUsed(Player p, int day){
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		if(cfg.contains("Advents." + p.getUniqueId().toString() + ".Day" + day)) {
-			bool = true;
+			return true;
 		}
-		return bool;
+		return false;
 	}
 	
 	public boolean isAllowedDate(String date) {
-		boolean boo = false;
 		String formDate = date + "/12";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
 		String sdff = sdf.format(new Date(1608037200000L));
 		if(formDate.equalsIgnoreCase(sdff)) {
-			boo = true;
+			return true;
 		}
-		return boo;
+		return false;
 	}
 
 }

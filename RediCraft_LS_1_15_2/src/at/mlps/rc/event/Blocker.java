@@ -1,5 +1,8 @@
 package at.mlps.rc.event;
 
+
+import java.util.LinkedList;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fish;
@@ -23,25 +26,25 @@ import at.mlps.rc.main.LanguageHandler;
 public class Blocker implements Listener{
 	
 	@EventHandler
-	public void onDMG(EntityDamageEvent e) {
-		if(e.getEntity() instanceof Player) {
-			if(e.getCause() == DamageCause.ENTITY_ATTACK) {
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.FALL) {
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.CONTACT){
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.LAVA) {
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.DROWNING) {
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.FIRE) {
-				e.setCancelled(true);
-			}else if(e.getCause() == DamageCause.WITHER) {
-				e.setCancelled(true);
+	public void onDMG(EntityDamageEvent damageEvent) {
+
+		LinkedList<DamageCause> causes = new LinkedList<>();
+		causes.add(DamageCause.ENTITY_ATTACK);
+		causes.add(DamageCause.FALL);
+		causes.add(DamageCause.CONTACT);
+		causes.add(DamageCause.LAVA);
+		causes.add(DamageCause.DROWNING);
+		causes.add(DamageCause.FIRE);
+		causes.add(DamageCause.WITHER);
+
+		Entity entity = damageEvent.getEntity();
+		if(entity instanceof Player || entity instanceof Fish){
+			if(entity instanceof Player){
+				if(causes.contains(damageEvent.getCause())){
+					damageEvent.setCancelled(true);
+				}
 			}
-		}else if(e.getEntity() instanceof Fish){
-			e.setCancelled(true);
+			else{ damageEvent.setCancelled(true); }
 		}
 	}
 	
