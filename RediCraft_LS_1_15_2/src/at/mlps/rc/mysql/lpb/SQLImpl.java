@@ -16,7 +16,7 @@ public abstract class SQLImpl implements SQL{
     @Override
     public void disconnect() throws SQLException {
         if (con != null) {
-                con.close();
+        	con.close();
         }
     }
 

@@ -26,15 +26,17 @@ public class Prefix {
 		
 	}
 
-	public static String prefix(String type) {
-		String s = "";
-		if(type.equalsIgnoreCase("main") || type.equalsIgnoreCase("prefix")) {
-			s = prefix.get("main");
-		}else if(type.equalsIgnoreCase("scoreboard")) {
-			s = prefix.get("scoreboard");
-		}else if(type.equalsIgnoreCase("pmsystem") || type.equalsIgnoreCase("pm")) {
-			s = prefix.get("pmsys");
+	public static String prefix(String type){
+		if(type.equalsIgnoreCase("main") || type.equalsIgnoreCase("prefix")){
+			return prefix.get("main");
 		}
-		return s;
+		else if(type.equalsIgnoreCase("scoreboard")){
+			return prefix.get("scoreboard");
+		}
+		else if(type.equalsIgnoreCase("pmsystem") || type.equalsIgnoreCase("pm")){
+			return prefix.get("pmsys");
+		}
+		
+		return "";
 	}
 }

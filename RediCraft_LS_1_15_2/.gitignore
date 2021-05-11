@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 /.classpath
+=======
+bin
+libs
+.classpath
+.project
+.settings
+>>>>>>> branch 'master' of https://github.com/MauriceLPs/RediCraft_LS.git
