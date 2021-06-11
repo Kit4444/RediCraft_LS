@@ -40,15 +40,15 @@ public class Maintenance implements CommandExecutor, Listener{
 			MojangAPI mapi = new MojangAPI();
 			if(cmd.getName().equalsIgnoreCase("whitelist")) {
 				if(args.length == 0) {
-					p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /whitelist <add|remove> <Name>");
 				}else if(args.length == 2) {
 					if(p.hasPermission("mlps.whitelist")) {
 						String uuid = mapi.getUUIDfromName(args[1]);
 						if(args[0].equalsIgnoreCase("add")) {
 							if(uuid.equalsIgnoreCase("errored")) {
-								p.sendMessage("§7========[§aAdduser§7]========");
-								p.sendMessage("§7User: §a" + args[1]);
-								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+								p.sendMessage("Â§7========[Â§aAdduserÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + args[1]);
+								p.sendMessage("Â§7Reason: Â§cPlayer couldn't be found. Please check the name again.");
 							}else {
 								HashMap<String, Object> hm = new HashMap<>();
 								hm.put("uuid", uuid);
@@ -59,16 +59,16 @@ public class Maintenance implements CommandExecutor, Listener{
 										ps.setBoolean(2, true);
 										ps.setString(3, uuid);
 										ps.executeUpdate();
-										p.sendMessage("§7========[§bWhitelist§7]========");
-										p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
-										p.sendMessage("§7Player is now allowed to join.");
+										p.sendMessage("Â§7========[Â§bWhitelistÂ§7]========");
+										p.sendMessage("Â§7User: Â§a" + args[1] + " Â§7/Â§a " + uuid);
+										p.sendMessage("Â§7Player is now allowed to join.");
 									}else {
 										hm.put("admin", p.getUniqueId().toString());
 										hm.put("enabled", true);
 										Main.mysql.insertInto("redicore_userwhitelist", hm);
-										p.sendMessage("§7========[§bWhitelist§7]========");
-										p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
-										p.sendMessage("§7Player has been added and is now able to join.");
+										p.sendMessage("Â§7========[Â§bWhitelistÂ§7]========");
+										p.sendMessage("Â§7User: Â§a" + args[1] + " Â§7/Â§a " + uuid);
+										p.sendMessage("Â§7Player has been added and is now able to join.");
 									}
 								} catch (SQLException e) {
 									e.printStackTrace();
@@ -84,32 +84,32 @@ public class Maintenance implements CommandExecutor, Listener{
 									ps.setBoolean(2, false);
 									ps.setString(3, uuid);
 									ps.executeUpdate();
-									p.sendMessage("§7========[§bWhitelist§7]========");
-									p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
-									p.sendMessage("§7Player is now disallowed to join.");
+									p.sendMessage("Â§7========[Â§bWhitelistÂ§7]========");
+									p.sendMessage("Â§7User: Â§a" + args[1] + " Â§7/Â§a " + uuid);
+									p.sendMessage("Â§7Player is now disallowed to join.");
 									ps.close();
 								}else {
 									hm.put("admin", p.getUniqueId().toString());
 									hm.put("enabled", false);
 									Main.mysql.insertInto("redicore_userwhitelist", hm);
-									p.sendMessage("§7========[§bWhitelist§7]========");
-									p.sendMessage("§7User: §a" + args[1] + " §7/§a " + uuid);
-									p.sendMessage("§7Player has been added but is §cnot §7able to join.");
+									p.sendMessage("Â§7========[Â§bWhitelistÂ§7]========");
+									p.sendMessage("Â§7User: Â§a" + args[1] + " Â§7/Â§a " + uuid);
+									p.sendMessage("Â§7Player has been added but is Â§cnot Â§7able to join.");
 								}
 							} catch (SQLException e) {
 								e.printStackTrace();
 							}
 						}else {
-							p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
+							p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /whitelist <add|remove> <Name>");
 						}
 					}
 				}else {
-					p.sendMessage(Prefix.prefix("main") + "§7Usage: /whitelist <add|remove> <Name>");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /whitelist <add|remove> <Name>");
 				}
 			}
 			if(cmd.getName().equalsIgnoreCase("userlist")) {
 				if(args.length == 0) {
-					p.sendMessage(Prefix.prefix("main") + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
 				}else if(args.length >= 0) {
 					SimpleDateFormat date = new SimpleDateFormat("dd/MM/yy-HH:mm:ss");
 				    String sdate = date.format(new Date());
@@ -124,14 +124,14 @@ public class Maintenance implements CommandExecutor, Listener{
 							String msg = sb.toString();
 							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
-								p.sendMessage("§7========[§aAdduser§7]========");
-								p.sendMessage("§7User: §a" + name);
-								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+								p.sendMessage("Â§7========[Â§aAdduserÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name);
+								p.sendMessage("Â§7Reason: Â§cPlayer couldn't be found. Please check the name again.");
 							}else {
 								setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), true);
-								p.sendMessage("§7========[§aAdduser§7]========");
-								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-								p.sendMessage("§7Reason: §a" + msg);
+								p.sendMessage("Â§7========[Â§aAdduserÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name + " Â§7/Â§a " + uuid);
+								p.sendMessage("Â§7Reason: Â§a" + msg);
 							}
 						}else if(args[0].equalsIgnoreCase("remove")) {
 							String name = args[1].toLowerCase();
@@ -143,20 +143,20 @@ public class Maintenance implements CommandExecutor, Listener{
 							String msg = sb.toString();
 							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
-								p.sendMessage("§7========[§cRemoveuser§7]========");
-								p.sendMessage("§7User: §a" + name);
-								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+								p.sendMessage("Â§7========[Â§cRemoveuserÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name);
+								p.sendMessage("Â§7Reason: Â§cPlayer couldn't be found. Please check the name again.");
 							}else {
 								setStatus(name, uuid, p.getName(), sdate, msg, System.currentTimeMillis(), false);
-								p.sendMessage("§7========[§cRemoveuser§7]========");
-								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-								p.sendMessage("§7Reason: §a" + msg);
+								p.sendMessage("Â§7========[Â§cRemoveuserÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name + " Â§7/Â§a " + uuid);
+								p.sendMessage("Â§7Reason: Â§a" + msg);
 							}
 						}else if(args[0].equalsIgnoreCase("check")) {
 							String name = args[1].toLowerCase();
 							String uuid = "";
-							String msg = "§aDefault Reason.";
-							String admin = "§cAlex";
+							String msg = "Â§aDefault Reason.";
+							String admin = "Â§cAlex";
 							String datifo = "dd/MM/yy - HH:mm:ss";
 							boolean boo = false;
 							try {
@@ -172,15 +172,15 @@ public class Maintenance implements CommandExecutor, Listener{
 								rs.close();
 								ps.close();
 							}catch (SQLException e) { }
-							p.sendMessage("§7========[§2Checkuser§7]========");
-							p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-							p.sendMessage("§7Reason: §a" + msg);
-							p.sendMessage("§7Admin: §a" + admin);
-							p.sendMessage("§7Date & Time: §a" + datifo);
+							p.sendMessage("Â§7========[Â§2CheckuserÂ§7]========");
+							p.sendMessage("Â§7User: Â§a" + name + " Â§7/Â§a " + uuid);
+							p.sendMessage("Â§7Reason: Â§a" + msg);
+							p.sendMessage("Â§7Admin: Â§a" + admin);
+							p.sendMessage("Â§7Date & Time: Â§a" + datifo);
 							if(boo == true) {
-								p.sendMessage("§7Can Join: §ayes");
+								p.sendMessage("Â§7Can Join: Â§ayes");
 							}else {
-								p.sendMessage("§7Can Join: §cno");
+								p.sendMessage("Â§7Can Join: Â§cno");
 							}
 						}else if(args[0].equalsIgnoreCase("changereason")) {
 							String name = args[1].toLowerCase();
@@ -192,35 +192,35 @@ public class Maintenance implements CommandExecutor, Listener{
 							String msg = sb.toString();
 							String uuid = mapi.getUUIDfromName(name);
 							if(uuid.equalsIgnoreCase("errored")) {
-								p.sendMessage("§7========[§eChangereason§7]========");
-								p.sendMessage("§7User: §a" + name);
-								p.sendMessage("§7Reason: §cPlayer couldn't be found. Please check the name again.");
+								p.sendMessage("Â§7========[Â§eChangereasonÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name);
+								p.sendMessage("Â§7Reason: Â§cPlayer couldn't be found. Please check the name again.");
 							}else {
 								changeStatus(uuid, name, p.getName(), msg);
-								p.sendMessage("§7========[§eChangereason§7]========");
-								p.sendMessage("§7User: §a" + name + " §7/§a " + uuid);
-								p.sendMessage("§7Reason: §a" + msg);
+								p.sendMessage("Â§7========[Â§eChangereasonÂ§7]========");
+								p.sendMessage("Â§7User: Â§a" + name + " Â§7/Â§a " + uuid);
+								p.sendMessage("Â§7Reason: Â§a" + msg);
 							}
 						}else if(args[0].equalsIgnoreCase("listall")) {
 							try {
 								PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_whitelist");
 								ResultSet rs = ps.executeQuery();
-								p.sendMessage("§7========[§9Listall§7]========");
+								p.sendMessage("Â§7========[Â§9ListallÂ§7]========");
 								while(rs.next()) {
 									boolean allow = rs.getBoolean("allowed");
 									if(allow == true) {
-										p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §a" + allow);
+										p.sendMessage("Â§7ID: Â§2" + rs.getInt("id") + " Â§7| Player: Â§a" + rs.getString("name") + " Â§7| Whitelisted: Â§a" + allow);
 									}else {
-										p.sendMessage("§7ID: §2" + rs.getInt("id") + " §7| Player: §a" + rs.getString("name") + " §7| Whitelisted: §c" + allow);
+										p.sendMessage("Â§7ID: Â§2" + rs.getInt("id") + " Â§7| Player: Â§a" + rs.getString("name") + " Â§7| Whitelisted: Â§c" + allow);
 									}
 								}
 								rs.close();
 								ps.close();
 							}catch (SQLException e) {
-								p.sendMessage("§cError while performing this command.");
+								p.sendMessage("Â§cError while performing this command.");
 							}
 						}else {
-							p.sendMessage(Prefix.prefix("main") + "§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
+							p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /userlist <add|remove|changereason|check|listall> <Name> <Message>");
 						}
 					}else {
 						LanguageHandler.sendMSGReady(p, "noPermission");
@@ -231,7 +231,7 @@ public class Maintenance implements CommandExecutor, Listener{
 					try { whitelist.createNewFile(); }catch (IOException e) { e.printStackTrace(); }
 				}
 				if(args.length == 0) {
-					p.sendMessage(Prefix.prefix("main") + "§7Usage: /maintenance <on|off|status> <(if on)Message>");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Usage: /maintenance <on|off|status> <(if on)Message>");
 				}else if(args.length >= 1) {
 					if(p.hasPermission("mlps.maintenance")) {
 						YamlConfiguration cfg = YamlConfiguration.loadConfiguration(whitelist);
@@ -243,15 +243,15 @@ public class Maintenance implements CommandExecutor, Listener{
 						String msg = sb.toString();
 						if(args[0].equalsIgnoreCase("on")) {
 							if(msg.isEmpty()) {
-								p.sendMessage(Prefix.prefix("main") + "§cPlease give at least one Word for Reason.");
+								p.sendMessage(Prefix.prefix("main") + "Â§cPlease give at least one Word for Reason.");
 							}else {
 								cfg.set("Whitelist.Maintenance.Message", msg);
 								cfg.set("Whitelist.Maintenance.Boolean", true);
 								cfg.set("Whitelist.Maintenance.activatedFrom", p.getName());
 								try {
 									cfg.save(whitelist);
-									p.sendMessage(Prefix.prefix("main") + "§7You activated the maintenance - state.");
-									p.sendMessage("§7Message: §9" + msg);
+									p.sendMessage(Prefix.prefix("main") + "Â§7You activated the maintenance - state.");
+									p.sendMessage("Â§7Message: Â§9" + msg);
 								} catch (IOException e) {
 									e.printStackTrace();
 								}
@@ -260,7 +260,7 @@ public class Maintenance implements CommandExecutor, Listener{
 							cfg.set("Whitelist.Maintenance.Boolean", false);
 							try {
 								cfg.save(whitelist);
-								p.sendMessage(Prefix.prefix("main") + "§7You deactivated the maintenance - state.");
+								p.sendMessage(Prefix.prefix("main") + "Â§7You deactivated the maintenance - state.");
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
@@ -269,12 +269,12 @@ public class Maintenance implements CommandExecutor, Listener{
 							boolean boo = cfg.getBoolean("Whitelist.Maintenance.Boolean");
 							String admin = cfg.getString("Whitelist.Maintenance.deactivatedFrom", p.getName());
 							if(boo == true) {
-								p.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §cactive");
+								p.sendMessage(Prefix.prefix("main") + "Â§7Status of Maintenance: Â§cactive");
 							}else if(boo == false) {
-								p.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §ainactive");
+								p.sendMessage(Prefix.prefix("main") + "Â§7Status of Maintenance: Â§ainactive");
 							}
-							p.sendMessage(Prefix.prefix("main") + "§7Last Maintenance-Message: §f" + cfgmsg);
-							p.sendMessage(Prefix.prefix("main") + "§7Admin: " + admin);
+							p.sendMessage(Prefix.prefix("main") + "Â§7Last Maintenance-Message: Â§f" + cfgmsg);
+							p.sendMessage(Prefix.prefix("main") + "Â§7Admin: " + admin);
 						}
 					}else {
 						LanguageHandler.sendMSGReady(p, "noPermission");
@@ -305,12 +305,12 @@ public class Maintenance implements CommandExecutor, Listener{
 						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 							@Override
 							public void run() {
-								e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
-								p.sendMessage("§7Reason: §a" + returnReason(uuid));
+								e.getPlayer().sendMessage(Prefix.prefix("main") + "Â§7Bypassed the maintenance-mode!");
+								p.sendMessage("Â§7Reason: Â§a" + returnReason(uuid));
 							}
 						}, 10);
 					}else {
-						e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+						e.disallow(Result.KICK_OTHER, "\nÂ§aRediÂ§cCraft\n \nÂ§7Hey " + e.getPlayer().getName() + ",\nÂ§7thank you for joining our server,\nÂ§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
 					}
 				}
 			}else {
@@ -319,12 +319,12 @@ public class Maintenance implements CommandExecutor, Listener{
 					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 						@Override
 						public void run() {
-							e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
-							p.sendMessage("§7Reason: §a" + returnReason(uuid));
+							e.getPlayer().sendMessage(Prefix.prefix("main") + "Â§7Bypassed the maintenance-mode!");
+							p.sendMessage("Â§7Reason: Â§a" + returnReason(uuid));
 						}
 					}, 10);
 				}else {
-					e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
+					e.disallow(Result.KICK_OTHER, "\nÂ§aRediÂ§cCraft\n \nÂ§7Hey " + e.getPlayer().getName() + ",\nÂ§7thank you for joining our server,\nÂ§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
 				}
 			}
 		} catch (SQLException e1) {

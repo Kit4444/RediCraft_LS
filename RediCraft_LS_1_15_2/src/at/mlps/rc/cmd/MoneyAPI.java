@@ -35,14 +35,14 @@ public class MoneyAPI implements CommandExecutor{
 					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.player.other").replace("%money", String.valueOf(getMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
 					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "cmd.money.bank.other").replace("%money", String.valueOf(getBankMoney(p2.getUniqueId())).replace("%displayer", p2.getDisplayName())));
 				}else {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/money [Player]");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/money [Player]");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("setmoney")) {
 				if(!p.hasPermission("mlps.setmoney")) {
 					LanguageHandler.noPerm(p);
 				}else {
 					if(args.length == 0) {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/setmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/setmoney <Player> <Money>");
 					}else if(args.length >= 1 && args.length <= 2) {
 						Player p2 = Bukkit.getPlayerExact(args[0]);
 						if(p2 == null) {
@@ -58,7 +58,7 @@ public class MoneyAPI implements CommandExecutor{
 							}
 						}
 					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/setmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/setmoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("addmoney")) {
@@ -77,7 +77,7 @@ public class MoneyAPI implements CommandExecutor{
 							//LanguageHandler.sendMSGReady(p, "cmd.addmoney.successfull");
 						}
 					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/addmoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/addmoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("removemoney")) {
@@ -100,7 +100,7 @@ public class MoneyAPI implements CommandExecutor{
 							}
 						}
 					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/removemoney <Player> <Money>");
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/removemoney <Player> <Money>");
 					}
 				}
 			}else if(cmd.getName().equalsIgnoreCase("pay")) {
@@ -122,7 +122,7 @@ public class MoneyAPI implements CommandExecutor{
 						}
 					}
 				}else {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/pay <Player> <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/pay <Player> <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("topmoney")) {
 				try {
@@ -132,7 +132,7 @@ public class MoneyAPI implements CommandExecutor{
 					MojangAPI mapi = new MojangAPI();
 					while(rs.next()) {
 						i++;
-						p.sendMessage("ง7Place งa" + i + " ง7| User: งa" + mapi.getNamefromUUID(rs.getString("uuid_ut")) + " ง7| Balance: งa" + rs.getInt("money") + " ง7Coins");
+						p.sendMessage("ยง7Place ยงa" + i + " ยง7| User: ยงa" + mapi.getNamefromUUID(rs.getString("uuid_ut")) + " ยง7| Balance: ยงa" + rs.getInt("money") + " ยง7Coins");
 					}
 				}catch (SQLException e) {
 				}
@@ -155,7 +155,7 @@ public class MoneyAPI implements CommandExecutor{
 						}
 					}
 				}else {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/setbankmoney <Player> <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/setbankmoney <Player> <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("bankdeposit")) { //add to bankaccount
 				if(args.length == 1) {
@@ -170,7 +170,7 @@ public class MoneyAPI implements CommandExecutor{
 						LanguageHandler.sendMSGReady(p, "cmd.bankdeposit.moreaspossible");
 					}
 				}else {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/bankdeposit <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/bankdeposit <Money>");
 				}
 			}else if(cmd.getName().equalsIgnoreCase("bankwithdraw")) { //remove from bankaccount
 				if(args.length == 1) {
@@ -185,7 +185,7 @@ public class MoneyAPI implements CommandExecutor{
 						LanguageHandler.sendMSGReady(p, "cmd.bankwithdraw.moreaspossible");
 					}
 				}else {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ง7/bankwithdraw <Money>");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "usage") + " ยง7/bankwithdraw <Money>");
 				}
 			}
 		}

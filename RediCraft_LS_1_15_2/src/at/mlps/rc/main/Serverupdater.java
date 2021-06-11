@@ -19,10 +19,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
 import at.mlps.rc.api.GetBukkitInfo;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.mysql.lb.MySQL;
 import net.md_5.bungee.api.ChatColor;
-import net.minecraft.server.v1_16_R3.MinecraftServer;
+import net.minecraft.server.MinecraftServer;
 
 public class Serverupdater implements Listener{
 	
@@ -110,9 +112,9 @@ public class Serverupdater implements Listener{
 				ps.executeUpdate();
 				ps.close();
 				
-		    }catch (SQLException e) { e.printStackTrace(); Bukkit.getConsoleSender().sendMessage("§cCan't update DB-Stats."); }
+		    }catch (SQLException e) { e.printStackTrace(); Bukkit.getConsoleSender().sendMessage("Â§cCan't update DB-Stats."); }
 		}else {
-			Bukkit.getConsoleSender().sendMessage("§cDB is not connected.");
+			Bukkit.getConsoleSender().sendMessage("Â§cDB is not connected.");
 		}
 		Serverrestarter();
 	}
@@ -122,91 +124,91 @@ public class Serverupdater implements Listener{
 	    String stime = time.format(new Date());
 	    if(stime.equals("20:00:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Stunden").replace("%time_en", "4 hours"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Stunden").replace("%time_en", "4 hours").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("21:00:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Stunden").replace("%time_en", "3 hours"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Stunden").replace("%time_en", "3 hours").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("22:00:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Stunden").replace("%time_en", "2 hours"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Stunden").replace("%time_en", "2 hours").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("22:30:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "90 Minuten").replace("%time_en", "90 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "90 Minuten").replace("%time_en", "90 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:00:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "60 Minuten").replace("%time_en", "60 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "60 Minuten").replace("%time_en", "60 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:30:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "30 Minuten").replace("%time_en", "30 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "30 Minuten").replace("%time_en", "30 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:45:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "15 Minuten").replace("%time_en", "15 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "15 Minuten").replace("%time_en", "15 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:55:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "5 Minuten").replace("%time_en", "5 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "5 Minuten").replace("%time_en", "5 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:56:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Minuten").replace("%time_en", "4 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Minuten").replace("%time_en", "4 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:57:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Minuten").replace("%time_en", "3 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Minuten").replace("%time_en", "3 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:58:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Minuten").replace("%time_en", "2 minutes"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Minuten").replace("%time_en", "2 minutes").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:00")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "1 Minute").replace("%time_en", "1 minute"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "1 Minute").replace("%time_en", "1 minute").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:50")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "10 Sekunden").replace("%time_en", "10 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "10 Sekunden").replace("%time_en", "10 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:51")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "9 Sekunden").replace("%time_en", "9 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "9 Sekunden").replace("%time_en", "9 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:52")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "8 Sekunden").replace("%time_en", "8 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "8 Sekunden").replace("%time_en", "8 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:53")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "7 Sekunden").replace("%time_en", "7 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "7 Sekunden").replace("%time_en", "7 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:54")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "6 Sekunden").replace("%time_en", "6 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "6 Sekunden").replace("%time_en", "6 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:55")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "5 Sekunden").replace("%time_en", "5 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "5 Sekunden").replace("%time_en", "5 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:56")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Sekunden").replace("%time_en", "4 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "4 Sekunden").replace("%time_en", "4 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:57")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Sekunden").replace("%time_en", "3 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "3 Sekunden").replace("%time_en", "3 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:58")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Sekunden").replace("%time_en", "2 seconds"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "2 Sekunden").replace("%time_en", "2 seconds").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("23:59:59")) {
 	    	for(Player all : Bukkit.getOnlinePlayers()) {
-	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "1 Sekunde").replace("%time_en", "1 second"));
+	    		all.sendMessage(LanguageHandler.returnStringReady(all, "restarter.time").replace("%time_de", "1 Sekunde").replace("%time_en", "1 second").replace("%prefix", Prefix.prefix("main")));
 	    	}
 	    }else if(stime.equals("00:00:01")) {
 	    	Bukkit.shutdown();

@@ -27,38 +27,38 @@ public class TRS_Inventory implements Listener{
 		Inventory inv = null;
 		ItemsAPI iapi = new ItemsAPI();
 		if(p.hasPermission("mlps.drew.premium")) {
-			inv = Bukkit.createInventory(null, 5*9, "§aDaily §cRewards");
+			inv = Bukkit.createInventory(null, 5*9, "Â§aDaily Â§cRewards");
 			if(TRS_API.isAllowed(p, "default.default")) {
-				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
+				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Fix"));
 			}else {
-				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
+				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "Â§aReward Fix", "Â§7Remaining Time", "Â§a" + time(p, "default.default")));
 			}
 			if(TRS_API.isAllowed(p, "default.random")) {
-				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
+				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Random"));
 			}else {
-				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
+				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "Â§aReward Random", "Â§7Remaining Time", "Â§a" + time(p, "default.random")));
 			}
 			if(TRS_API.isAllowed(p, "premium.default")) {
-				inv.setItem(29, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix §ePremium"));
+				inv.setItem(29, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Fix Â§ePremium"));
 			}else {
-				inv.setItem(29, iapi.l2Item(Material.MINECART, 1, "§aReward Fix §ePremium", "§7Remaining Time", "§a" + time(p, "premium.default")));
+				inv.setItem(29, iapi.l2Item(Material.MINECART, 1, "Â§aReward Fix Â§ePremium", "Â§7Remaining Time", "Â§a" + time(p, "premium.default")));
 			}
 			if(TRS_API.isAllowed(p, "premium.random")) {
-				inv.setItem(33, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random §ePremium"));
+				inv.setItem(33, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Random Â§ePremium"));
 			}else {
-				inv.setItem(33, iapi.l2Item(Material.MINECART, 1, "§aReward Random §ePremium", "§7Remaining Time", "§a" + time(p, "premium.random")));
+				inv.setItem(33, iapi.l2Item(Material.MINECART, 1, "Â§aReward Random Â§ePremium", "Â§7Remaining Time", "Â§a" + time(p, "premium.random")));
 			}
 		}else {
-			inv = Bukkit.createInventory(null, 3*9, "§aDaily §cRewards");
+			inv = Bukkit.createInventory(null, 3*9, "Â§aDaily Â§cRewards");
 			if(TRS_API.isAllowed(p, "default.default")) {
-				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Fix"));
+				inv.setItem(11, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Fix"));
 			}else {
-				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "§aReward Fix", "§7Remaining Time", "§a" + time(p, "default.default")));
+				inv.setItem(11, iapi.l2Item(Material.MINECART, 1, "Â§aReward Fix", "Â§7Remaining Time", "Â§a" + time(p, "default.default")));
 			}
 			if(TRS_API.isAllowed(p, "default.random")) {
-				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "§aReward Random"));
+				inv.setItem(15, iapi.defItem(Material.CHEST_MINECART, 1, "Â§aReward Random"));
 			}else {
-				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "§aReward Random", "§7Remaining Time", "§a" + time(p, "default.random")));
+				inv.setItem(15, iapi.l2Item(Material.MINECART, 1, "Â§aReward Random", "Â§7Remaining Time", "Â§a" + time(p, "default.random")));
 			}
 		}
 		p.openInventory(inv);
@@ -68,47 +68,47 @@ public class TRS_Inventory implements Listener{
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 		Player p = (Player)e.getWhoClicked();
-		if(e.getView().getTitle().equalsIgnoreCase("§aDaily §cRewards")) {
+		if(e.getView().getTitle().equalsIgnoreCase("Â§aDaily Â§cRewards")) {
 			e.setCancelled(true);
-			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Fix")) {
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§aReward Fix")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "default.default")) {
 					int money = 2500;
 					TRS_API.setReward(p, "default.default");
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward").replace("|", "\n").replace("%money", "2500"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "Â§aDefault Reward").replace("|", "\n").replace("%money", "2500"));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.default")));
 				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Fix §ePremium")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§aReward Fix Â§ePremium")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "premium.default")) {
 					int money = 5000;
 					TRS_API.setReward(p, "premium.default");
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aDefault Reward §ePremium").replace("|", "\n").replace("%money", "5000"));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "Â§aDefault Reward Â§ePremium").replace("|", "\n").replace("%money", "5000"));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "premium.default")));
 				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Random")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§aReward Random")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "default.random")) {
 					int money = random(0, 2500);
 					TRS_API.setReward(p, "default.random");
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward").replace("|", "\n").replace("%money", String.valueOf(money)));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "Â§aRandom Reward").replace("|", "\n").replace("%money", String.valueOf(money)));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
 					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.await").replace("%time", time(p, "default.random")));
 				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§aReward Random §ePremium")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§aReward Random Â§ePremium")) {
 				e.setCancelled(true);
 				if(TRS_API.isAllowed(p, "premium.random")) {
 					int money = random(2500, 5000);
 					TRS_API.setReward(p, "premium.random");
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "§aRandom Reward §ePremium").replace("|", "\n").replace("%money", String.valueOf(money)));
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.dailyrewards.claimed").replace("%type", "Â§aRandom Reward Â§ePremium").replace("|", "\n").replace("%money", String.valueOf(money)));
 					MoneyAPI.addMoney(p.getUniqueId(), money);
 					trsinv(p);
 				}else {
@@ -124,7 +124,7 @@ public class TRS_Inventory implements Listener{
 		Entity ent = e.getRightClicked();
 		if(ent.getType() == EntityType.VILLAGER) {
 			Villager v = (Villager) ent;
-			if(v.getCustomName().equalsIgnoreCase("§aDaily §cRewards")) {
+			if(v.getCustomName().equalsIgnoreCase("Â§aDaily Â§cRewards")) {
 				e.setCancelled(true);
 				trsinv(p);
 			}

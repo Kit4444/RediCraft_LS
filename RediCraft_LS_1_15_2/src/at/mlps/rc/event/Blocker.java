@@ -69,7 +69,7 @@ public class Blocker implements Listener{
 			e.setCancelled(true);
 			if(issuer.getType() == EntityType.PLAYER) {
 				Player p = (Player) issuer;
-				p.sendMessage(Prefix.prefix("main") + "ง7You can't do that!");
+				p.sendMessage(Prefix.prefix("main") + "ยง7You can't do that!");
 			}
 		}
 	}

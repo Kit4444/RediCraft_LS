@@ -21,12 +21,12 @@ import at.mlps.rc.mysql.lb.MySQL;
 
 public class LanguageInv implements Listener{
 	
-	public static String mainTitle = "§6Language";
+	public static String mainTitle = "Â§6Language";
 	
 	public static void langInv(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 1*9, mainTitle);
-		ItemStack item = iapi.defItem(Material.ORANGE_STAINED_GLASS_PANE, 1, "§6");
+		ItemStack item = iapi.defItem(Material.ORANGE_STAINED_GLASS_PANE, 1, "Â§6");
 		inv.setItem(0, item);
 		inv.setItem(1, item);
 		inv.setItem(2, item);
@@ -38,14 +38,14 @@ public class LanguageInv implements Listener{
 			@Override
 			public void run() {
 				if(retLang(p).equalsIgnoreCase("en-uk")) {
-					inv.setItem(3, iapi.enchItem(Material.CYAN_CONCRETE, 1, "§bEnglish", Enchantment.LUCK));
-					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(3, iapi.enchItem(Material.CYAN_CONCRETE, 1, "Â§bEnglish", Enchantment.LUCK));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "Â§6German"));
 				}else if(retLang(p).equalsIgnoreCase("de-de")) {
-					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglisch"));
-					inv.setItem(5, iapi.enchItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch", Enchantment.LUCK));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "Â§bEnglisch"));
+					inv.setItem(5, iapi.enchItem(Material.ORANGE_CONCRETE, 1, "Â§6Deutsch", Enchantment.LUCK));
 				}else {
-					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglish"));
-					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "Â§bEnglish"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "Â§6German"));
 				}
 			}
 		}, 5);
@@ -57,40 +57,40 @@ public class LanguageInv implements Listener{
 	public void onInvClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
 		if(e.getView().getTitle().equalsIgnoreCase(mainTitle)) {
-			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6")) {
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§6")) {
 				e.setCancelled(true);
 			}if(retLang(p).equalsIgnoreCase("en-uk")) {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§bEnglish")) {
 					e.setCancelled(true);
-					p.sendMessage(Prefix.prefix("main") + "§7You have english already selected.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7You have english already selected.");
 					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§6German")) {
 					e.setCancelled(true);
 					updateLang(p, "de-de");
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Du hast nun die deutsche Sprache ausgewÃ¤hlt.");
 					langInv(p);
 				}
 			}else if(retLang(p).equalsIgnoreCase("de-de")) {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglisch")) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§bEnglisch")) {
 					e.setCancelled(true);
 					updateLang(p, "en-uk");
-					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7You have now selected the english language.");
 					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Deutsch")) {
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§6Deutsch")) {
 					e.setCancelled(true);
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast Deutsch bereits ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Du hast Deutsch bereits ausgewÃ¤hlt.");
 					langInv(p);
 				}
 			}else {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§bEnglish")) {
 					e.setCancelled(true);
 					updateLang(p, "en-uk");
-					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7You have now selected the english language.");
 					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§6German")) {
 					e.setCancelled(true);
 					updateLang(p, "de-de");
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
+					p.sendMessage(Prefix.prefix("main") + "Â§7Du hast nun die deutsche Sprache ausgewÃ¤hlt.");
 					langInv(p);
 				}
 			}

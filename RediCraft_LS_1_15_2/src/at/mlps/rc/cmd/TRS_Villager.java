@@ -29,7 +29,7 @@ public class TRS_Villager implements CommandExecutor{
 						v.setAgeLock(true);
 						v.setAdult();
 						v.setCustomNameVisible(true);
-						v.setCustomName("§aDaily §cRewards");
+						v.setCustomName("Â§aDaily Â§cRewards");
 						v.setProfession(Profession.LIBRARIAN);
 					}else {
 						LanguageHandler.noPerm(p);
@@ -38,7 +38,7 @@ public class TRS_Villager implements CommandExecutor{
 					if(p.hasPermission("mlps.setVillager")) {
 						Snowman v = (Snowman)p.getWorld().spawnEntity(p.getLocation(), EntityType.SNOWMAN);
 						v.setCustomNameVisible(true);
-						v.setCustomName("§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr");
+						v.setCustomName("Â§cAÂ§fdÂ§cvÂ§feÂ§cnÂ§ft Â§cCÂ§faÂ§clÂ§feÂ§cnÂ§fdÂ§caÂ§fr");
 						v.setAI(true);
 						v.setGlowing(true);
 						v.setDerp(true);

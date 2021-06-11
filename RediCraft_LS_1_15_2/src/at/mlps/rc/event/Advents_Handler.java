@@ -21,7 +21,7 @@ public class Advents_Handler implements Listener{
 	
 	public static void setAdventInv(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
-		Inventory inv = Bukkit.createInventory(null, 9*6, "§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr");
+		Inventory inv = Bukkit.createInventory(null, 9*6, "Â§cAÂ§fdÂ§cvÂ§feÂ§cnÂ§ft Â§cCÂ§faÂ§clÂ§feÂ§cnÂ§fdÂ§caÂ§fr");
 		Advents_API aapi = new Advents_API();
 		int slot1 = 0;
 		int slot2 = 3;
@@ -50,314 +50,314 @@ public class Advents_Handler implements Listener{
 		
 		if(aapi.isAllowedDate("01")) {
 			if(aapi.hasRewardUsed(p, 1)) {
-				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "§cDay 1"));
+				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "Â§cDay 1"));
 			}else {
-				inv.setItem(slot1, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 1"));
+				inv.setItem(slot1, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 1"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 1)) {
-				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "§cDay 1 §7- used"));
+				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "Â§cDay 1 Â§7- used"));
 			}else {
-				inv.setItem(slot1, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot1, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("02")) {
 			if(aapi.hasRewardUsed(p, 2)) {
-				inv.setItem(slot2, iapi.defItem(Material.MINECART, 1, "§cDay 2"));
+				inv.setItem(slot2, iapi.defItem(Material.MINECART, 1, "Â§cDay 2"));
 			}else {
-				inv.setItem(slot2, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 2"));
+				inv.setItem(slot2, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 2"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 2)) {
-				inv.setItem(slot2, iapi.defItem(Material.MINECART, 1, "§cDay 2 §7- used"));
+				inv.setItem(slot2, iapi.defItem(Material.MINECART, 1, "Â§cDay 2 Â§7- used"));
 			}else {
-				inv.setItem(slot2, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot2, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("03")) {
 			if(aapi.hasRewardUsed(p, 3)) {
-				inv.setItem(slot3, iapi.defItem(Material.MINECART, 1, "§cDay 3"));
+				inv.setItem(slot3, iapi.defItem(Material.MINECART, 1, "Â§cDay 3"));
 			}else {
-				inv.setItem(slot3, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 3"));
+				inv.setItem(slot3, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 3"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 3)) {
-				inv.setItem(slot3, iapi.defItem(Material.MINECART, 1, "§cDay 3 §7- used"));
+				inv.setItem(slot3, iapi.defItem(Material.MINECART, 1, "Â§cDay 3 Â§7- used"));
 			}else {
-				inv.setItem(slot3, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot3, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("04")) {
 			if(aapi.hasRewardUsed(p, 4)) {
-				inv.setItem(slot4, iapi.defItem(Material.MINECART, 1, "§cDay 4"));
+				inv.setItem(slot4, iapi.defItem(Material.MINECART, 1, "Â§cDay 4"));
 			}else {
-				inv.setItem(slot4, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 4"));
+				inv.setItem(slot4, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 4"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 4)) {
-				inv.setItem(slot4, iapi.defItem(Material.MINECART, 1, "§cDay 4 §7- used"));
+				inv.setItem(slot4, iapi.defItem(Material.MINECART, 1, "Â§cDay 4 Â§7- used"));
 			}else {
-				inv.setItem(slot4, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot4, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("05")) {
 			if(aapi.hasRewardUsed(p, 5)) {
-				inv.setItem(slot5, iapi.defItem(Material.MINECART, 1, "§cDay 5"));
+				inv.setItem(slot5, iapi.defItem(Material.MINECART, 1, "Â§cDay 5"));
 			}else {
-				inv.setItem(slot5, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 5"));
+				inv.setItem(slot5, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 5"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 5)) {
-				inv.setItem(slot5, iapi.defItem(Material.MINECART, 1, "§cDay 5 §7- used"));
+				inv.setItem(slot5, iapi.defItem(Material.MINECART, 1, "Â§cDay 5 Â§7- used"));
 			}else {
-				inv.setItem(slot5, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot5, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("06")) {
 			if(aapi.hasRewardUsed(p, 6)) {
-				inv.setItem(slot6, iapi.defItem(Material.MINECART, 1, "§cDay 6"));
+				inv.setItem(slot6, iapi.defItem(Material.MINECART, 1, "Â§cDay 6"));
 			}else {
-				inv.setItem(slot6, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 6"));
+				inv.setItem(slot6, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 6"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 6)) {
-				inv.setItem(slot6, iapi.defItem(Material.MINECART, 1, "§cDay 6 §7- used"));
+				inv.setItem(slot6, iapi.defItem(Material.MINECART, 1, "Â§cDay 6 Â§7- used"));
 			}else {
-				inv.setItem(slot6, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot6, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("07")) {
 			if(aapi.hasRewardUsed(p, 7)) {
-				inv.setItem(slot7, iapi.defItem(Material.MINECART, 1, "§cDay 7"));
+				inv.setItem(slot7, iapi.defItem(Material.MINECART, 1, "Â§cDay 7"));
 			}else {
-				inv.setItem(slot7, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 7"));
+				inv.setItem(slot7, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 7"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 7)) {
-				inv.setItem(slot7, iapi.defItem(Material.MINECART, 1, "§cDay 7 §7- used"));
+				inv.setItem(slot7, iapi.defItem(Material.MINECART, 1, "Â§cDay 7 Â§7- used"));
 			}else {
-				inv.setItem(slot7, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot7, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("08")) {
 			if(aapi.hasRewardUsed(p, 8)) {
-				inv.setItem(slot8, iapi.defItem(Material.MINECART, 1, "§cDay 8"));
+				inv.setItem(slot8, iapi.defItem(Material.MINECART, 1, "Â§cDay 8"));
 			}else {
-				inv.setItem(slot8, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 8"));
+				inv.setItem(slot8, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 8"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 8)) {
-				inv.setItem(slot8, iapi.defItem(Material.MINECART, 1, "§cDay 8 §7- used"));
+				inv.setItem(slot8, iapi.defItem(Material.MINECART, 1, "Â§cDay 8 Â§7- used"));
 			}else {
-				inv.setItem(slot8, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot8, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("09")) {
 			if(aapi.hasRewardUsed(p, 9)) {
-				inv.setItem(slot9, iapi.defItem(Material.MINECART, 1, "§cDay 9"));
+				inv.setItem(slot9, iapi.defItem(Material.MINECART, 1, "Â§cDay 9"));
 			}else {
-				inv.setItem(slot9, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 9"));
+				inv.setItem(slot9, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 9"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 9)) {
-				inv.setItem(slot9, iapi.defItem(Material.MINECART, 1, "§cDay 9 §7- used"));
+				inv.setItem(slot9, iapi.defItem(Material.MINECART, 1, "Â§cDay 9 Â§7- used"));
 			}else {
-				inv.setItem(slot9, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot9, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("10")) {
 			if(aapi.hasRewardUsed(p, 10)) {
-				inv.setItem(slot10, iapi.defItem(Material.MINECART, 1, "§cDay 10"));
+				inv.setItem(slot10, iapi.defItem(Material.MINECART, 1, "Â§cDay 10"));
 			}else {
-				inv.setItem(slot10, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 10"));
+				inv.setItem(slot10, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 10"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 10)) {
-				inv.setItem(slot10, iapi.defItem(Material.MINECART, 1, "§cDay 10 §7- used"));
+				inv.setItem(slot10, iapi.defItem(Material.MINECART, 1, "Â§cDay 10 Â§7- used"));
 			}else {
-				inv.setItem(slot10, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot10, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("11")) {
 			if(aapi.hasRewardUsed(p, 11)) {
-				inv.setItem(slot11, iapi.defItem(Material.MINECART, 1, "§cDay 11"));
+				inv.setItem(slot11, iapi.defItem(Material.MINECART, 1, "Â§cDay 11"));
 			}else {
-				inv.setItem(slot11, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 11"));
+				inv.setItem(slot11, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 11"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 11)) {
-				inv.setItem(slot11, iapi.defItem(Material.MINECART, 1, "§cDay 11 §7- used"));
+				inv.setItem(slot11, iapi.defItem(Material.MINECART, 1, "Â§cDay 11 Â§7- used"));
 			}else {
-				inv.setItem(slot11, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot11, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("12")) {
 			if(aapi.hasRewardUsed(p, 12)) {
-				inv.setItem(slot12, iapi.defItem(Material.MINECART, 1, "§cDay 12"));
+				inv.setItem(slot12, iapi.defItem(Material.MINECART, 1, "Â§cDay 12"));
 			}else {
-				inv.setItem(slot12, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 12"));
+				inv.setItem(slot12, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 12"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 12)) {
-				inv.setItem(slot12, iapi.defItem(Material.MINECART, 1, "§cDay 12 §7- used"));
+				inv.setItem(slot12, iapi.defItem(Material.MINECART, 1, "Â§cDay 12 Â§7- used"));
 			}else {
-				inv.setItem(slot12, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot12, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("13")) {
 			if(aapi.hasRewardUsed(p, 13)) {
-				inv.setItem(slot13, iapi.defItem(Material.MINECART, 1, "§cDay 103"));
+				inv.setItem(slot13, iapi.defItem(Material.MINECART, 1, "Â§cDay 103"));
 			}else {
-				inv.setItem(slot13, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 13"));
+				inv.setItem(slot13, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 13"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 13)) {
-				inv.setItem(slot13, iapi.defItem(Material.MINECART, 1, "§cDay 13 §7- used"));
+				inv.setItem(slot13, iapi.defItem(Material.MINECART, 1, "Â§cDay 13 Â§7- used"));
 			}else {
-				inv.setItem(slot13, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot13, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("14")) {
 			if(aapi.hasRewardUsed(p, 14)) {
-				inv.setItem(slot14, iapi.defItem(Material.MINECART, 1, "§cDay 14"));
+				inv.setItem(slot14, iapi.defItem(Material.MINECART, 1, "Â§cDay 14"));
 			}else {
-				inv.setItem(slot14, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 14"));
+				inv.setItem(slot14, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 14"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 14)) {
-				inv.setItem(slot14, iapi.defItem(Material.MINECART, 1, "§cDay 14 §7- used"));
+				inv.setItem(slot14, iapi.defItem(Material.MINECART, 1, "Â§cDay 14 Â§7- used"));
 			}else {
-				inv.setItem(slot14, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot14, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("15")) {
 			if(aapi.hasRewardUsed(p, 15)) {
-				inv.setItem(slot15, iapi.defItem(Material.MINECART, 1, "§cDay 15"));
+				inv.setItem(slot15, iapi.defItem(Material.MINECART, 1, "Â§cDay 15"));
 			}else {
-				inv.setItem(slot15, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 15"));
+				inv.setItem(slot15, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 15"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 15)) {
-				inv.setItem(slot15, iapi.defItem(Material.MINECART, 1, "§cDay 15 §7- used"));
+				inv.setItem(slot15, iapi.defItem(Material.MINECART, 1, "Â§cDay 15 Â§7- used"));
 			}else {
-				inv.setItem(slot15, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot15, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("16")) {
 			if(aapi.hasRewardUsed(p, 16)) {
-				inv.setItem(slot16, iapi.defItem(Material.MINECART, 1, "§cDay 16"));
+				inv.setItem(slot16, iapi.defItem(Material.MINECART, 1, "Â§cDay 16"));
 			}else {
-				inv.setItem(slot16, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 16"));
+				inv.setItem(slot16, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 16"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 16)) {
-				inv.setItem(slot16, iapi.defItem(Material.MINECART, 1, "§cDay 16 §7- used"));
+				inv.setItem(slot16, iapi.defItem(Material.MINECART, 1, "Â§cDay 16 Â§7- used"));
 			}else {
-				inv.setItem(slot16, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot16, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("17")) {
 			if(aapi.hasRewardUsed(p, 17)) {
-				inv.setItem(slot17, iapi.defItem(Material.MINECART, 1, "§cDay 17"));
+				inv.setItem(slot17, iapi.defItem(Material.MINECART, 1, "Â§cDay 17"));
 			}else {
-				inv.setItem(slot17, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 17"));
+				inv.setItem(slot17, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 17"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 17)) {
-				inv.setItem(slot17, iapi.defItem(Material.MINECART, 1, "§cDay 17 §7- used"));
+				inv.setItem(slot17, iapi.defItem(Material.MINECART, 1, "Â§cDay 17 Â§7- used"));
 			}else {
-				inv.setItem(slot17, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot17, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("18")) {
 			if(aapi.hasRewardUsed(p, 18)) {
-				inv.setItem(slot18, iapi.defItem(Material.MINECART, 1, "§cDay 18"));
+				inv.setItem(slot18, iapi.defItem(Material.MINECART, 1, "Â§cDay 18"));
 			}else {
-				inv.setItem(slot18, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 18"));
+				inv.setItem(slot18, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 18"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 18)) {
-				inv.setItem(slot18, iapi.defItem(Material.MINECART, 1, "§cDay 18 §7- used"));
+				inv.setItem(slot18, iapi.defItem(Material.MINECART, 1, "Â§cDay 18 Â§7- used"));
 			}else {
-				inv.setItem(slot18, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot18, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("19")) {
 			if(aapi.hasRewardUsed(p, 19)) {
-				inv.setItem(slot19, iapi.defItem(Material.MINECART, 1, "§cDay 19"));
+				inv.setItem(slot19, iapi.defItem(Material.MINECART, 1, "Â§cDay 19"));
 			}else {
-				inv.setItem(slot19, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 19"));
+				inv.setItem(slot19, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 19"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 19)) {
-				inv.setItem(slot19, iapi.defItem(Material.MINECART, 1, "§cDay 19 §7- used"));
+				inv.setItem(slot19, iapi.defItem(Material.MINECART, 1, "Â§cDay 19 Â§7- used"));
 			}else {
-				inv.setItem(slot19, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot19, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("20")) {
 			if(aapi.hasRewardUsed(p, 20)) {
-				inv.setItem(slot20, iapi.defItem(Material.MINECART, 1, "§cDay 20"));
+				inv.setItem(slot20, iapi.defItem(Material.MINECART, 1, "Â§cDay 20"));
 			}else {
-				inv.setItem(slot20, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 20"));
+				inv.setItem(slot20, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 20"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 20)) {
-				inv.setItem(slot20, iapi.defItem(Material.MINECART, 1, "§cDay 20 §7- used"));
+				inv.setItem(slot20, iapi.defItem(Material.MINECART, 1, "Â§cDay 20 Â§7- used"));
 			}else {
-				inv.setItem(slot20, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot20, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("21")) {
 			if(aapi.hasRewardUsed(p, 21)) {
-				inv.setItem(slot21, iapi.defItem(Material.MINECART, 1, "§cDay 21"));
+				inv.setItem(slot21, iapi.defItem(Material.MINECART, 1, "Â§cDay 21"));
 			}else {
-				inv.setItem(slot21, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 21"));
+				inv.setItem(slot21, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 21"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 21)) {
-				inv.setItem(slot21, iapi.defItem(Material.MINECART, 1, "§cDay 21 §7- used"));
+				inv.setItem(slot21, iapi.defItem(Material.MINECART, 1, "Â§cDay 21 Â§7- used"));
 			}else {
-				inv.setItem(slot21, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot21, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("22")) {
 			if(aapi.hasRewardUsed(p, 22)) {
-				inv.setItem(slot22, iapi.defItem(Material.MINECART, 1, "§cDay 22"));
+				inv.setItem(slot22, iapi.defItem(Material.MINECART, 1, "Â§cDay 22"));
 			}else {
-				inv.setItem(slot22, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 22"));
+				inv.setItem(slot22, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 22"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 22)) {
-				inv.setItem(slot22, iapi.defItem(Material.MINECART, 1, "§cDay 22 §7- used"));
+				inv.setItem(slot22, iapi.defItem(Material.MINECART, 1, "Â§cDay 22 Â§7- used"));
 			}else {
-				inv.setItem(slot22, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot22, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("23")) {
 			if(aapi.hasRewardUsed(p, 23)) {
-				inv.setItem(slot23, iapi.defItem(Material.MINECART, 1, "§cDay 23"));
+				inv.setItem(slot23, iapi.defItem(Material.MINECART, 1, "Â§cDay 23"));
 			}else {
-				inv.setItem(slot23, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 23"));
+				inv.setItem(slot23, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 23"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 23)) {
-				inv.setItem(slot23, iapi.defItem(Material.MINECART, 1, "§cDay 23 §7- used"));
+				inv.setItem(slot23, iapi.defItem(Material.MINECART, 1, "Â§cDay 23 Â§7- used"));
 			}else {
-				inv.setItem(slot23, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot23, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		if(aapi.isAllowedDate("24")) {
 			if(aapi.hasRewardUsed(p, 24)) {
-				inv.setItem(slot24, iapi.defItem(Material.MINECART, 1, "§cDay 24"));
+				inv.setItem(slot24, iapi.defItem(Material.MINECART, 1, "Â§cDay 24"));
 			}else {
-				inv.setItem(slot24, iapi.defItem(Material.CHEST_MINECART, 1, "§cDay 24"));
+				inv.setItem(slot24, iapi.defItem(Material.CHEST_MINECART, 1, "Â§cDay 24"));
 			}
 		}else {
 			if(aapi.hasRewardUsed(p, 24)) {
-				inv.setItem(slot24, iapi.defItem(Material.MINECART, 1, "§cDay 24 §7- used"));
+				inv.setItem(slot24, iapi.defItem(Material.MINECART, 1, "Â§cDay 24 Â§7- used"));
 			}else {
-				inv.setItem(slot24, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
+				inv.setItem(slot24, iapi.defItem(Material.HOPPER_MINECART, 1, "Â§cA Â§fDÂ§caÂ§fy"));
 			}
 		}
 		p.openInventory(inv);
@@ -367,55 +367,55 @@ public class Advents_Handler implements Listener{
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
 		//Player p = (Player) e.getWhoClicked();
-		if(e.getView().getTitle().equalsIgnoreCase("§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr")) {
+		if(e.getView().getTitle().equalsIgnoreCase("Â§cAÂ§fdÂ§cvÂ§feÂ§cnÂ§ft Â§cCÂ§faÂ§clÂ§feÂ§cnÂ§fdÂ§caÂ§fr")) {
 			e.setCancelled(true);
-			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay ")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§cDay ")) {
 				
 			}
 		}
@@ -427,7 +427,7 @@ public class Advents_Handler implements Listener{
 		Entity ent = e.getRightClicked();
 		if(ent.getType() == EntityType.SNOWMAN) {
 			Snowman v = (Snowman) ent;
-			if(v.getCustomName().equalsIgnoreCase("§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr")) {
+			if(v.getCustomName().equalsIgnoreCase("Â§cAÂ§fdÂ§cvÂ§feÂ§cnÂ§ft Â§cCÂ§faÂ§clÂ§feÂ§cnÂ§fdÂ§caÂ§fr")) {
 				setAdventInv(p);
 			}
 		}

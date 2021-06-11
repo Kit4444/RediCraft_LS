@@ -79,15 +79,15 @@ public class LanguageHandler {
 		String string = "";
 		if(lang.equalsIgnoreCase("en-uk")) {
 			if(langCache_EN.containsKey(path)) {
-				string = langCache_EN.get(path).replace("&", "§");
+				string = langCache_EN.get(path).replace("&", "Â§");
 			}else {
-				string = "§cThis path doesn't exists.";
+				string = "Â§cThis path doesn't exists.";
 			}
 		}else if(lang.equalsIgnoreCase("de-de")) {
 			if(langCache_DE.containsKey(path)) {
-				string = langCache_DE.get(path).replace("&", "§");
+				string = langCache_DE.get(path).replace("&", "Â§");
 			}else {
-				string = "§cDieser Pfad existiert nicht.";
+				string = "3cDieser Pfad existiert nicht.";
 			}
 		}
 		return string;

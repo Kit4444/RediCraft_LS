@@ -60,7 +60,7 @@ public class ItemsAPI {
 		ArrayList<String> lore = new ArrayList<>();
 		ItemStack item = new ItemStack(mat, avg);
 		ItemMeta mitem = item.getItemMeta();
-		lore.add("§aOnline§7: " + online);
+		lore.add("Â§aOnlineÂ§7: " + online);
 		mitem.setLore(lore);
 		mitem.setDisplayName(dpname);
 		item.setItemMeta(mitem);
@@ -75,16 +75,16 @@ public class ItemsAPI {
 		boolean locked = getData(servername, "locked");
 		boolean monitor = getData(servername, "monitoring");
 		if(online){
-			lore.add("§7Online: §ayes");
-			lore.add("§7Online: §a" + getPlayers(servername) + " §7Players");
+			lore.add("Â§7Online: Â§ayes");
+			lore.add("Â§7Online: Â§a" + getPlayers(servername) + " Â§7Players");
 		}else {
-			lore.add("§7Online: §cno");
+			lore.add("Â§7Online: Â§cno");
 		}
 		if(locked) {
-			lore.add("§7Locked: §cyes");
+			lore.add("Â§7Locked: Â§cyes");
 		}
 		if(monitor) {
-			lore.add("§7Monitoring: §cyes");
+			lore.add("Â§7Monitoring: Â§cyes");
 		}
 		mitem.setLore(lore);
 		mitem.setDisplayName(dpname);

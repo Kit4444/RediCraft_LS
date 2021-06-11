@@ -143,9 +143,9 @@ public class JoinQuitEventID implements Listener{
         	String isVer = Main.instance.getDescription().getVersion();
             String shouldVer = retVersion();
             if(!isVer.equalsIgnoreCase(shouldVer)) {
-            	p.sendMessage(Prefix.prefix("main") + "§cInfo, the Version you use is different to the DB.");
-            	p.sendMessage("§aServerversion§7: " + isVer);
-            	p.sendMessage("§cDB-Version§7: " + shouldVer);
+            	p.sendMessage(Prefix.prefix("main") + "Â§cInfo, the Version you use is different to the DB.");
+            	p.sendMessage("Â§aServerversionÂ§7: " + isVer);
+            	p.sendMessage("Â§cDB-VersionÂ§7: " + shouldVer);
             }
         }
 	}

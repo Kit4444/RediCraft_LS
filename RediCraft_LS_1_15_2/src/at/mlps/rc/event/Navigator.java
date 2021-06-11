@@ -28,23 +28,23 @@ public class Navigator implements Listener{
 	
 	/*
 	 * item = online
-	 * blau = monitoring "§7- &9monitoring"
-	 * gelb = offline "§7- §coffline"
-	 * rot = gelockt "§7- §4locked"
+	 * blau = monitoring "Â§7- &9monitoring"
+	 * gelb = offline "Â§7- Â§coffline"
+	 * rot = gelockt "Â§7- Â§4locked"
 	 */
-	public static String title = "§aServer§cNavigator";
-	static String dailyrew = "§aDaily Rewards";
-	static String spawn = "§6Spawn";
-	static String skyblock = "§7Sky§2Block";
-	static String creative = "§eCreative";
-	static String survival = "§cSurvival";
-	static String towny = "§6Towny";
-	static String farmserver = "§5Farmserver";
-	static String bauserver = "§bStaffserver";
+	public static String title = "Â§aServerÂ§cNavigator";
+	static String dailyrew = "Â§aDaily Rewards";
+	static String spawn = "Â§6Spawn";
+	static String skyblock = "Â§7SkyÂ§2Block";
+	static String creative = "Â§eCreative";
+	static String survival = "Â§cSurvival";
+	static String towny = "Â§6Towny";
+	static String farmserver = "Â§5Farmserver";
+	static String bauserver = "Â§bStaffserver";
 	
-	static String locked = " §7- §4locked";
-	static String monitored = " §7- §9monitoring";
-	static String offline = " §7- §eoffline";
+	static String locked = " Â§7- Â§4locked";
+	static String monitored = " Â§7- Â§9monitoring";
+	static String offline = " Â§7- Â§eoffline";
 	
 	static File spawnfile = new File("plugins/RCLS/spawn.yml");
 	
@@ -52,26 +52,26 @@ public class Navigator implements Listener{
 	public static void mainnavi(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9*3, title);
-		inv.setItem(0, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(1, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(3, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(4, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(5, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(6, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(7, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(8, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(9, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(11, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(12, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(14, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(15, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(17, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(18, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(19, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(21, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(22, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(23, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(25, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		inv.setItem(0, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(1, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(3, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(4, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(5, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(6, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(7, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(8, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(9, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(11, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(12, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(14, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(15, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(17, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(18, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(19, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(21, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(22, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(23, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
+		inv.setItem(25, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
 		//inv w/ items
 		inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
 		inv.setItem(10, iapi.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
@@ -81,7 +81,7 @@ public class Navigator implements Listener{
 		if(p.hasPermission("mlps.isTeam")) {
 			inv.setItem(26, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
 		}else {
-			inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+			inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "Â§0"));
 		}
 		inv.setItem(2, iapi.defItem(Material.EMERALD, 1, dailyrew)); //dailyrewards
 		inv.setItem(13, iapi.defItem(Material.NETHER_STAR, 1, spawn)); //spawn

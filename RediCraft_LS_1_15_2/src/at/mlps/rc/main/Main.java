@@ -31,8 +31,8 @@ public class Main extends JavaPlugin{
 	/*public static String prefix() {
 		return Prefix.prefix("main");
 	}*/
-	public static String mysqlprefix = "§eMySQL §7- ";
-	public static String consolesend = Prefix.prefix("main") + "§7Please use this ingame.";
+	public static String mysqlprefix = "Â§eMySQL Â§7- ";
+	public static String consolesend = Prefix.prefix("main") + "Â§7Please use this ingame.";
 	public static Main instance;
 	public static MySQL mysql;
 	
