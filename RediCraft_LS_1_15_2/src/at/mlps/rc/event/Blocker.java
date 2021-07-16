@@ -87,17 +87,21 @@ public class Blocker implements Listener{
 	@EventHandler
     public void onInvClick(InventoryClickEvent e) {
         Player p = (Player)e.getWhoClicked();
-        String i = e.getCurrentItem().getItemMeta().getDisplayName();
-        String nomove = Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.move.cancel").replace("%item", i);
-        if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Navigator.title)) {
+        if(e.getCurrentItem() != null) {
+        	String i = e.getCurrentItem().getItemMeta().getDisplayName();
+            String nomove = Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.move.cancel").replace("%item", i);
+            if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Navigator.title)) {
+            	e.setCancelled(true);
+                p.sendMessage(nomove);
+            }else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ExtrasInv.mainTitle)) {
+            	e.setCancelled(true);
+                p.sendMessage(nomove);
+            }else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageInv.mainTitle)) {
+            	e.setCancelled(true);
+                p.sendMessage(nomove);
+            }
+        }else {
         	e.setCancelled(true);
-            p.sendMessage(nomove);
-        }else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ExtrasInv.mainTitle)) {
-        	e.setCancelled(true);
-            p.sendMessage(nomove);
-        }else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(LanguageInv.mainTitle)) {
-        	e.setCancelled(true);
-            p.sendMessage(nomove);
         }
     }
 	

@@ -94,137 +94,141 @@ public class Navigator implements Listener{
 		Player p = (Player)e.getWhoClicked();
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawnfile);
 		if(e.getView().getTitle().equalsIgnoreCase(title)) {
-			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(dailyrew)) {
-				e.setCancelled(true);
-				p.closeInventory();
-				p.teleport(retLoc(cfg, "drew"));
-				LanguageHandler.sendMSGReady(p, "event.navigator.local.dailyreward");
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(spawn)) {
-				e.setCancelled(true);
-				p.closeInventory();
-				p.teleport(retLoc(cfg, "general"));
-				LanguageHandler.sendMSGReady(p, "event.navigator.local.spawn");
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(creative)) {
-				e.setCancelled(true);
-				boolean lock = getData("Creative", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Creative"));
-				}else {
-					boolean monitor = getData("Creative", "monitoring");
-					boolean online = getData("Creative", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "creative", creative);
-						}else {
-							sendPlayer(p, "creative", creative);
-						}
+			if(e.getCurrentItem() != null) {
+				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(dailyrew)) {
+					e.setCancelled(true);
+					e.getView().close();
+					p.teleport(retLoc(cfg, "drew"));
+					LanguageHandler.sendMSGReady(p, "event.navigator.local.dailyreward");
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(spawn)) {
+					e.setCancelled(true);
+					p.closeInventory();
+					p.teleport(retLoc(cfg, "general"));
+					LanguageHandler.sendMSGReady(p, "event.navigator.local.spawn");
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(creative)) {
+					e.setCancelled(true);
+					boolean lock = getData("Creative", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Creative"));
 					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Creative"));
-					}
-					
-				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(survival)) {
-				e.setCancelled(true);
-				boolean lock = getData("Survival", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Survival"));
-				}else {
-					boolean monitor = getData("Survival", "monitoring");
-					boolean online = getData("Survival", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "survival", survival);
+						boolean monitor = getData("Creative", "monitoring");
+						boolean online = getData("Creative", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "creative", creative);
+							}else {
+								sendPlayer(p, "creative", creative);
+							}
 						}else {
-							sendPlayer(p, "survival", survival);
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Creative"));
 						}
-					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Survival"));
+						
 					}
-					
-				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(skyblock)) {
-				e.setCancelled(true);
-				boolean lock = getData("SkyBlock", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "SkyBlock"));
-				}else {
-					boolean monitor = getData("SkyBlock", "monitoring");
-					boolean online = getData("SkyBlock", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "skyblock", skyblock);
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(survival)) {
+					e.setCancelled(true);
+					boolean lock = getData("Survival", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Survival"));
+					}else {
+						boolean monitor = getData("Survival", "monitoring");
+						boolean online = getData("Survival", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "survival", survival);
+							}else {
+								sendPlayer(p, "survival", survival);
+							}
 						}else {
-							sendPlayer(p, "skyblock", skyblock);
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Survival"));
 						}
-					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "SkyBlock"));
+						
 					}
-					
-				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(farmserver)) {
-				e.setCancelled(true);
-				boolean lock = getData("Farmserver", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Farmserver"));
-				}else {
-					boolean monitor = getData("Farmserver", "monitoring");
-					boolean online = getData("Farmserver", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "farmserver", farmserver);
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(skyblock)) {
+					e.setCancelled(true);
+					boolean lock = getData("SkyBlock", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "SkyBlock"));
+					}else {
+						boolean monitor = getData("SkyBlock", "monitoring");
+						boolean online = getData("SkyBlock", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "skyblock", skyblock);
+							}else {
+								sendPlayer(p, "skyblock", skyblock);
+							}
 						}else {
-							sendPlayer(p, "farmserver", farmserver);
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "SkyBlock"));
 						}
-					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Farmserver"));
+						
 					}
-					
-				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(towny)) {
-				e.setCancelled(true);
-				boolean lock = getData("Towny", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Towny"));
-				}else {
-					boolean monitor = getData("Towny", "monitoring");
-					boolean online = getData("Towny", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "towny", towny);
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(farmserver)) {
+					e.setCancelled(true);
+					boolean lock = getData("Farmserver", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Farmserver"));
+					}else {
+						boolean monitor = getData("Farmserver", "monitoring");
+						boolean online = getData("Farmserver", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "farmserver", farmserver);
+							}else {
+								sendPlayer(p, "farmserver", farmserver);
+							}
 						}else {
-							sendPlayer(p, "towny", towny);
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Farmserver"));
 						}
-					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Towny"));
+						
 					}
-					
-				}
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(bauserver)) {
-				e.setCancelled(true);
-				boolean lock = getData("Staffserver", "locked");
-				if(lock) {
-					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Staffserver"));
-				}else {
-					boolean monitor = getData("Staffserver", "monitoring");
-					boolean online = getData("Staffserver", "online");
-					if(online) {
-						if(monitor) {
-							LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-							sendPlayer(p, "bauserver", bauserver);
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(towny)) {
+					e.setCancelled(true);
+					boolean lock = getData("Towny", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Towny"));
+					}else {
+						boolean monitor = getData("Towny", "monitoring");
+						boolean online = getData("Towny", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "towny", towny);
+							}else {
+								sendPlayer(p, "towny", towny);
+							}
 						}else {
-							sendPlayer(p, "bauserver", bauserver);
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Towny"));
 						}
-					}else {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Staffserver"));
+						
 					}
-					
+				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(bauserver)) {
+					e.setCancelled(true);
+					boolean lock = getData("Staffserver", "locked");
+					if(lock) {
+						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Staffserver"));
+					}else {
+						boolean monitor = getData("Staffserver", "monitoring");
+						boolean online = getData("Staffserver", "online");
+						if(online) {
+							if(monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "bauserver", bauserver);
+							}else {
+								sendPlayer(p, "bauserver", bauserver);
+							}
+						}else {
+							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Staffserver"));
+						}
+						
+					}
+				}else if(e.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+					e.setCancelled(true);
 				}
-			}else if(e.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+			}else {
 				e.setCancelled(true);
 			}
 		}
