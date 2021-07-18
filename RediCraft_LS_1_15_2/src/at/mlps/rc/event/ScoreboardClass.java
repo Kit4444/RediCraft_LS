@@ -180,7 +180,7 @@ public class ScoreboardClass implements Listener{
 					}else {
 						hr.addPlayer(all);
 						all.setDisplayName(retPrefix("hr", "prefix_chat") + all.getName());
-						all.setPlayerListName(retPrefix("hr", "prefix_chat") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+						all.setPlayerListName(retPrefix("hr", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}else {
 					if(isAFK(all)) {
@@ -239,8 +239,8 @@ public class ScoreboardClass implements Listener{
 						all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
 					}else {
 						gmmman.addPlayer(all);
-						all.setDisplayName(retPrefix("aman", "prefix_chat") + all.getName());
-						all.setPlayerListName(retPrefix("aman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+						all.setDisplayName(retPrefix("gmmman", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("gmmman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
 				}else {
 					if(isAFK(all)) {
@@ -434,21 +434,43 @@ public class ScoreboardClass implements Listener{
 				}
 			}else if(pp.inGroup("part")) {
 				if(rs.getBoolean("loggedin")) {
-					afk.addPlayer(all);
-					all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+					if(isAFK(all)) {
+						afk.addPlayer(all);
+						all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+					}else {
+						part.addPlayer(all);
+						all.setDisplayName(retPrefix("part", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("part", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
 				}else {
-					part.addPlayer(all);
-					all.setDisplayName(retPrefix("part", "prefix_chat") + all.getName());
-					all.setPlayerListName(retPrefix("part", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					if(isAFK(all)) {
+						afk.addPlayer(all);
+						all.setPlayerListName(retPrefix("safk", "prefix_tab") + all.getName() + "7| ID: §a" + igid(all) + " " + igpre(all));
+					}else {
+						player.addPlayer(all);
+						all.setDisplayName(retPrefix("default", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("default", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
 				}
 			}else if(pp.inGroup("bt")) {
-				if(isAFK(all)) {
-					afk.addPlayer(all);
-					all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+				if(rs.getBoolean("loggedin")) {
+					if(isAFK(all)) {
+						afk.addPlayer(all);
+						all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+					}else {
+						bt.addPlayer(all);
+						all.setDisplayName(retPrefix("bt", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("bt", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
 				}else {
-					bt.addPlayer(all);
-					all.setDisplayName(retPrefix("beta", "prefix_chat") + all.getName());
-					all.setPlayerListName(retPrefix("beta", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					if(isAFK(all)) {
+						afk.addPlayer(all);
+						all.setPlayerListName(retPrefix("safk", "prefix_tab") + all.getName() + "7| ID: §a" + igid(all) + " " + igpre(all));
+					}else {
+						player.addPlayer(all);
+						all.setDisplayName(retPrefix("default", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("default", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
+					}
 				}
 			}else if(pp.inGroup("fs")) {
 				if(rs.getBoolean("loggedin")) {

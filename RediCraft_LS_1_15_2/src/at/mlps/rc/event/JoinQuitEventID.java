@@ -75,7 +75,7 @@ public class JoinQuitEventID implements Listener{
         		player.put("firstjoinstring", stime);
         		player.put("firstjoinip", p.getAddress().getHostString());
         		player.put("server", bukkit.getServerName());
-        		player.put("loggedin", false);
+        		player.put("loggedin", true);
         		player.put("isstaff", false);
         		player.put("language", "en-UK");
         		player.put("scoreboard", 1);

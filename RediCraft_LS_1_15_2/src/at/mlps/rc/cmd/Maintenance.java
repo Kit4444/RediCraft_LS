@@ -302,13 +302,6 @@ public class Maintenance implements CommandExecutor, Listener{
 				}else {
 					if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
 						e.allow();
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
-							@Override
-							public void run() {
-								e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
-								p.sendMessage("§7Reason: §a" + returnReason(uuid));
-							}
-						}, 10);
 					}else {
 						e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
 					}
@@ -316,13 +309,6 @@ public class Maintenance implements CommandExecutor, Listener{
 			}else {
 				if(p.hasPermission("mlps.isTeam") || getStatus(uuid) == true) {
 					e.allow();
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
-						@Override
-						public void run() {
-							e.getPlayer().sendMessage(Prefix.prefix("main") + "§7Bypassed the maintenance-mode!");
-							p.sendMessage("§7Reason: §a" + returnReason(uuid));
-						}
-					}, 10);
 				}else {
 					e.disallow(Result.KICK_OTHER, "\n§aRedi§cCraft\n \n§7Hey " + e.getPlayer().getName() + ",\n§7thank you for joining our server,\n§7but it seems you are not allowed to join our server.\n \nIf you want to play on our server, you have to fill out our Google Forms.\nURL: https://forms.gle/2mvyoJ8DGqeBP2fH7 \n \nYou want to know more about it?\nJoin our Discord Server now: https://discord.gg/sHDF9WR");
 				}
@@ -375,24 +361,6 @@ public class Maintenance implements CommandExecutor, Listener{
 				ps.close();
 			}
 		}catch (SQLException e) {}
-	}
-	
-	private String returnReason(String uuid) {
-		String s = "";
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("uuid", uuid);
-		try {
-			if(Main.mysql.isInDatabase("redicore_whitelist", hm)) {
-				PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_whitelist WHERE uuid = ?");
-				ps.setString(1, uuid);
-				ResultSet rs = ps.executeQuery();
-				rs.next();
-				s = rs.getString("reason");
-				rs.close();
-				ps.close();
-			}
-		}catch (SQLException e) {}
-		return s;
 	}
 	
 	private boolean getStatus(String uuid) {
