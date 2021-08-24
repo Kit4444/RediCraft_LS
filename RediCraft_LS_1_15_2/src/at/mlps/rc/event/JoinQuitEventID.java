@@ -65,7 +65,7 @@ public class JoinQuitEventID implements Listener{
         GetBukkitInfo bukkit = new GetBukkitInfo();
         try {
         	if(!Main.mysql.isInDatabase("redicore_userstats", player)) {
-        		player.put("userrank", "default");
+        		player.put("userrank", "Player");
         		player.put("userid", 0);
         		player.put("userprefix", "RESET");
         		player.put("userprefix_ncc", "RESET");
