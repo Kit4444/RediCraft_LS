@@ -35,6 +35,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 public class ScoreboardClass implements Listener{
 	
 	public static HashMap<String, Long> buildtime = new HashMap<>();
+	private static HashMap<String, String> tabHM = new HashMap<>();
+	private static HashMap<String, String> chatHM = new HashMap<>();
 	
 	@SuppressWarnings("deprecation")
 	public void setScoreboard(Player p) throws SQLException {
@@ -614,18 +616,36 @@ public class ScoreboardClass implements Listener{
 	
 	private String retPrefix(String rank, String type) {
 		String prefix = "";
-		try {
-			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_ranks WHERE rank = ?");
-			ps.setString(1, rank);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			prefix = rs.getString(type);
-			rs.close();
-			ps.close();
-		}catch (SQLException e) {
-			prefix = "§0ERR";
+		if(type.equalsIgnoreCase("prefix_chat")) {
+			prefix = chatHM.get(rank);
+		}else if(type.equalsIgnoreCase("prefix_tab")) {
+			prefix = tabHM.get(rank);
 		}
-		return prefix.replace("&", "§");
+		if(prefix == null) {
+			return "§7[Player] ";
+		}else {
+			return prefix.replace("&", "§");
+		}
+	}
+	
+	public static void downloadStrings() {
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_ranks");
+			ResultSet rs = ps.executeQuery();
+			tabHM.clear();
+			chatHM.clear();
+			int i = 0;
+			while(rs.next()) {
+				i++;
+				tabHM.put(rs.getString("rank"), rs.getString("prefix_tab"));
+				chatHM.put(rs.getString("rank"), rs.getString("prefix_chat"));
+			}
+			tabHM.put("TEST", "VALUE");
+			chatHM.put("TEST", "VALUE");
+			Bukkit.getConsoleSender().sendMessage("§7Downloaded " + i + " Rankstrings and loaded them.");
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	String getBuildTime(String player) {
@@ -669,6 +689,7 @@ public class ScoreboardClass implements Listener{
 	}
 	
 	int pause = 0;
+	int timer = 599;
 	
 	public void SBSched(int delay, int sbsched) {
 		new BukkitRunnable() {
@@ -679,6 +700,27 @@ public class ScoreboardClass implements Listener{
 				Serverupdater su = new Serverupdater();
 				su.Serverrestarter();
 				pause++;
+				timer++;
+				if(timer == 600) {
+					timer = 0;
+					try {
+						PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_ranks");
+						ResultSet rs = ps.executeQuery();
+						tabHM.clear();
+						chatHM.clear();
+						int i = 0;
+						while(rs.next()) {
+							i++;
+							tabHM.put(rs.getString("rank"), rs.getString("prefix_tab"));
+							chatHM.put(rs.getString("rank"), rs.getString("prefix_chat"));
+						}
+						tabHM.put("TEST", "VALUE");
+						chatHM.put("TEST", "VALUE");
+						Bukkit.getConsoleSender().sendMessage("§7Downloaded " + i + " Rankstrings and loaded them.");
+					}catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
 				if(pause == 5) {
 					pause = 0;
 					su.updateServer();

@@ -33,45 +33,6 @@ import at.mlps.rc.mysql.lpb.MySQL;
 public class Manager {
 	
 	public void init() {
-		Main.instance.getCommand("build").setExecutor(new BuildClass());
-		Main.instance.getCommand("login").setExecutor(new LogSystem());
-		Main.instance.getCommand("logout").setExecutor(new LogSystem());
-		Main.instance.getCommand("togglegroup").setExecutor(new LogSystem());
-		Main.instance.getCommand("maintenance").setExecutor(new Maintenance());
-		Main.instance.getCommand("userlist").setExecutor(new Maintenance());
-		Main.instance.getCommand("whitelist").setExecutor(new Maintenance());
-		Main.instance.getCommand("afk").setExecutor(new AFK_CMD());
-		Main.instance.getCommand("setid").setExecutor(new CMD_SetID_SetPf());
-		Main.instance.getCommand("setpf").setExecutor(new CMD_SetID_SetPf());
-		Main.instance.getCommand("money").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("setmoney").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("removemoney").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("addmoney").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("topmoney").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("setbankmoney").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("bankdeposit").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("bankwithdraw").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("pay").setExecutor(new MoneyAPI());
-		Main.instance.getCommand("spawnvillager").setExecutor(new TRS_Villager());
-		Main.instance.getCommand("pinfo").setExecutor(new Pinfo());
-		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCMD());
-		
-		PluginManager pl = Bukkit.getPluginManager();
-		pl.registerEvents(new ScoreboardClass(), Main.instance);
-		pl.registerEvents(new JoinQuitEventID(), Main.instance);
-		pl.registerEvents(new BuildClass(), Main.instance);
-		pl.registerEvents(new Navigator(Main.instance), Main.instance);
-		pl.registerEvents(new ItemHandling(), Main.instance);
-		pl.registerEvents(new Maintenance(), Main.instance);
-		pl.registerEvents(new ExtrasInv(), Main.instance);
-		pl.registerEvents(new Blocker(), Main.instance);
-		pl.registerEvents(new LanguageInv(), Main.instance);
-		pl.registerEvents(new PlayerMove(), Main.instance);
-		pl.registerEvents(new TRS_Inventory(), Main.instance);
-		pl.registerEvents(new Serverupdater(), Main.instance);
-		pl.registerEvents(new LobbyCMD(), Main.instance);
-		pl.registerEvents(new Advents_Handler(), Main.instance);
-		
 		File config = new File("plugins/RCLS/config.yml");
 		File file = new File("plugins/RCLS");
 		File trs = new File("plugins/RCLS/rewards.yml");
@@ -115,6 +76,47 @@ public class Manager {
 		try {
 			Main.mysql.connect();
 		}catch (SQLException e) {}
+		
+		Main.instance.getCommand("build").setExecutor(new BuildClass());
+		Main.instance.getCommand("login").setExecutor(new LogSystem());
+		Main.instance.getCommand("logout").setExecutor(new LogSystem());
+		Main.instance.getCommand("togglegroup").setExecutor(new LogSystem());
+		Main.instance.getCommand("maintenance").setExecutor(new Maintenance());
+		Main.instance.getCommand("userlist").setExecutor(new Maintenance());
+		Main.instance.getCommand("whitelist").setExecutor(new Maintenance());
+		Main.instance.getCommand("afk").setExecutor(new AFK_CMD());
+		Main.instance.getCommand("setid").setExecutor(new CMD_SetID_SetPf());
+		Main.instance.getCommand("setpf").setExecutor(new CMD_SetID_SetPf());
+		Main.instance.getCommand("money").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("setmoney").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("removemoney").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("addmoney").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("topmoney").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("setbankmoney").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("bankdeposit").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("bankwithdraw").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("pay").setExecutor(new MoneyAPI());
+		Main.instance.getCommand("spawnvillager").setExecutor(new TRS_Villager());
+		Main.instance.getCommand("pinfo").setExecutor(new Pinfo());
+		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCMD());
+		
+		PluginManager pl = Bukkit.getPluginManager();
+		pl.registerEvents(new ScoreboardClass(), Main.instance);
+		pl.registerEvents(new JoinQuitEventID(), Main.instance);
+		pl.registerEvents(new BuildClass(), Main.instance);
+		pl.registerEvents(new Navigator(Main.instance), Main.instance);
+		pl.registerEvents(new ItemHandling(), Main.instance);
+		pl.registerEvents(new Maintenance(), Main.instance);
+		pl.registerEvents(new ExtrasInv(), Main.instance);
+		pl.registerEvents(new Blocker(), Main.instance);
+		pl.registerEvents(new LanguageInv(), Main.instance);
+		pl.registerEvents(new PlayerMove(), Main.instance);
+		pl.registerEvents(new TRS_Inventory(), Main.instance);
+		pl.registerEvents(new Serverupdater(), Main.instance);
+		pl.registerEvents(new LobbyCMD(), Main.instance);
+		pl.registerEvents(new Advents_Handler(), Main.instance);
+		
+		
 		ScoreboardClass sb = new ScoreboardClass();
 		sb.SBSched(0, 20);
 		LanguageHandler.loadConfig();

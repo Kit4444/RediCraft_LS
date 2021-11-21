@@ -1,5 +1,10 @@
 package at.mlps.rc.event;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -16,39 +21,46 @@ import org.bukkit.inventory.Inventory;
 import at.mlps.rc.api.Advents_API;
 import at.mlps.rc.api.ItemsAPI;
 import at.mlps.rc.api.Prefix;
+import at.mlps.rc.main.Main;
 
 public class Advents_Handler implements Listener{
+	
+	static int task = 0;
+	static int days = 1;
 	
 	public static void setAdventInv(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9*6, "§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr");
 		Advents_API aapi = new Advents_API();
-		int slot1 = 0;
-		int slot2 = 3;
-		int slot3 = 8;
-		int slot4 = 28;
-		int slot5 = 14;
-		int slot6 = 23;
-		int slot7 = 53;
-		int slot8 = 41;
-		int slot9 = 21;
-		int slot10 = 16;
-		int slot11 = 33;
-		int slot12 = 39;
-		int slot13 = 51;
-		int slot14 = 44;
-		int slot15 = 19;
-		int slot16 = 48;
-		int slot17 = 6;
-		int slot18 = 36;
-		int slot19 = 26;
-		int slot20 = 18;
-		int slot21 = 11;
-		int slot22 = 31;
-		int slot23 = 41;
-		int slot24 = 47;
+		List<Integer> slotsUsed = new ArrayList<>();
+		HashMap<Integer, Integer> daySlot = new HashMap<>();
+		Bukkit.getConsoleSender().sendMessage("DEBUG 1");
 		
-		if(aapi.isAllowedDate("01")) {
+		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
+			@Override
+			public void run() {
+				if(days >= 25) {
+					Bukkit.getScheduler().cancelTask(task);
+				}else {
+					int slot = random(1, 24);
+					if(slotsUsed.contains(slot)) {
+						slot = random(1, 24);	
+					}
+					slotsUsed.add(slot);
+					daySlot.put(days, slot);
+					days++;
+				}
+			}
+		}, 0, 1);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
+			@Override
+			public void run() {
+				daySlot.forEach((key, value) -> Bukkit.getConsoleSender().sendMessage("Day: " + key + ", Slot: " + value));
+			}
+		}, 30);
+		
+		
+		/*if(aapi.isAllowedDate("01")) {
 			if(aapi.hasRewardUsed(p, 1)) {
 				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "§cDay 1"));
 			}else {
@@ -419,6 +431,7 @@ public class Advents_Handler implements Listener{
 				
 			}
 		}
+		*/
 	}
 	
 	@EventHandler
@@ -448,12 +461,12 @@ public class Advents_Handler implements Listener{
 		}
 	}
 
-	/*private static int random(int low, int max) {
+	private static int random(int low, int max) {
 		Random r = new Random();
 		int number = r.nextInt(max);
 		while(number < low) {
 			number = r.nextInt(max);
 		}
 		return number;
-	}*/
+	}
 }

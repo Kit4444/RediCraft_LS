@@ -16,6 +16,7 @@ import at.mlps.rc.api.Prefix;
 import at.mlps.rc.event.ExtrasInv;
 import at.mlps.rc.event.LanguageInv;
 import at.mlps.rc.event.Navigator;
+import at.mlps.rc.event.ScoreboardClass;
 import at.mlps.rc.mysql.lpb.MySQL;
 
 public class Main extends JavaPlugin{
