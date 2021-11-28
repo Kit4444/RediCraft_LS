@@ -26,18 +26,20 @@ public class Advents_API {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		if(cfg.contains("Advents." + p.getUniqueId().toString() + ".Day" + day)) {
 			return true;
+		}else {
+			return false;
 		}
-		return false;
 	}
 	
 	public boolean isAllowedDate(String date) {
 		String formDate = date + "/12";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
-		String sdff = sdf.format(new Date(1608037200000L));
+		String sdff = sdf.format(new Date());
 		if(formDate.equalsIgnoreCase(sdff)) {
 			return true;
+		}else {
+			return false;
 		}
-		return false;
 	}
 
 }
