@@ -108,6 +108,8 @@ public class ScoreboardClass implements Listener{
 				o.getScore("§7» §2Partner").setScore(3);
 			}else if(po.inGroup("fs")) {
 				o.getScore("§7» §dForum Supporter").setScore(3);
+			}else if(po.inGroup("vip")) {
+				o.getScore("§7» §eVIP").setScore(3);
 			}else if(po.inGroup("nb")) {
 				o.getScore("§7» §dNitro Booster").setScore(3);
 			}else if(po.inGroup("bt")) {
@@ -144,6 +146,7 @@ public class ScoreboardClass implements Listener{
 		Team nb = getTeam(sb, "00160", retPrefix("nb", "prefix_tab"), ChatColor.GRAY);
 		Team bt = getTeam(sb, "00170", retPrefix("bt", "prefix_tab"), ChatColor.GRAY);
 		Team friend = getTeam(sb, "00180", retPrefix("friend", "prefix_tab"), ChatColor.GRAY);
+		Team vip = getTeam(sb, "00181", retPrefix("vip", "prefix_tab"), ChatColor.GRAY);
 		Team player = getTeam(sb, "00190", retPrefix("player", "prefix_tab"), ChatColor.GRAY);
 		Team afk = getTeam(sb, "00200", retPrefix("safk", "prefix_tab"), ChatColor.GRAY);
 		
@@ -533,6 +536,15 @@ public class ScoreboardClass implements Listener{
 						all.setDisplayName(retPrefix("default", "prefix_chat") + all.getName());
 						all.setPlayerListName(retPrefix("default", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 					}
+				}
+			}else if(pp.inGroup("vip")) {
+				if(isAFK(all)) {
+					afk.addPlayer(all);
+					all.setPlayerListName("§9AFK §7- " + all.getName() + " §7| ID§7: §a" + igid(all) + " §f" + igpre(all));
+				}else {
+					vip.addPlayer(all);
+					all.setDisplayName(retPrefix("vip", "prefix_chat") + all.getName());
+					all.setPlayerListName(retPrefix("vip", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + igpre(all));
 				}
 			}else if(pp.inGroup("default")) {
 				if(isAFK(all)) {
