@@ -381,52 +381,76 @@ public class Advents_Handler implements Listener{
 			p.updateInventory();
 			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 1")) {
 				randomGift(p, "1");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 2")) {
 				randomGift(p, "2");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 3")) {
 				randomGift(p, "3");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 4")) {
 				randomGift(p, "4");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 5")) {
 				randomGift(p, "5");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 6")) {
 				randomGift(p, "6");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 7")) {
 				randomGift(p, "7");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 8")) {
 				randomGift(p, "8");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 9")) {
 				randomGift(p, "9");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 10")) {
 				randomGift(p, "10");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 11")) {
 				randomGift(p, "11");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 12")) {
 				randomGift(p, "12");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 13")) {
 				randomGift(p, "13");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 14")) {
 				randomGift(p, "14");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 15")) {
 				randomGift(p, "15");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 16")) {
 				randomGift(p, "16");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 17")) {
 				randomGift(p, "17");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 18")) {
 				randomGift(p, "18");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 19")) {
 				randomGift(p, "19");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 20")) {
 				randomGift(p, "20");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 21")) {
 				randomGift(p, "21");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 22")) {
 				randomGift(p, "22");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 23")) {
 				randomGift(p, "23");
+				p.closeInventory();
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 24")) {
 				randomGift(p, "24");
+				p.closeInventory();
 				//USED SECTION HERE - DO NOT MIX THIS UP!
 			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cDay 1 §7- used")) {
 				p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.used").replace("%day", String.valueOf(1)));
