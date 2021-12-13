@@ -27,7 +27,7 @@ public class Prefix {
 	}
 
 	public static String prefix(String type){
-		if(type.equalsIgnoreCase("main") || type.equalsIgnoreCase("prefix")){
+		/*if(type.equalsIgnoreCase("main") || type.equalsIgnoreCase("prefix")){
 			return prefix.get("main");
 		}
 		else if(type.equalsIgnoreCase("scoreboard")){
@@ -37,6 +37,15 @@ public class Prefix {
 			return prefix.get("pmsys");
 		}
 		
+		
 		return "";
+		
+		*/
+		return switch(type.toLowerCase()){
+			case "main", "prefix" -> prefix.get("main");
+			case "scoreboard" -> prefix.get("scoreboard");
+			case "pmsystem", "pm" -> prefix.get("pmsys");
+			default -> ""; // I returned empty to respect the old code, but an exception should be used like this one -> throw new IllegalArgumentException("Unexpected value: " + type.toLowerCase()); 
+		};
 	}
 }
