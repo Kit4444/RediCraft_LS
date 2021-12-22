@@ -12,7 +12,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import at.mlps.rc.api.MojangAPI;
 import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
@@ -126,13 +125,12 @@ public class MoneyAPI implements CommandExecutor{
 				}
 			}else if(cmd.getName().equalsIgnoreCase("topmoney")) {
 				try {
-					PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_money ORDER BY money DESC LIMIT 10");
+					PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userstats ORDER BY money DESC LIMIT 10");
 					ResultSet rs = ps.executeQuery();
 					int i = 0;
-					MojangAPI mapi = new MojangAPI();
 					while(rs.next()) {
 						i++;
-						p.sendMessage("§7Place §a" + i + " §7| User: §a" + mapi.getNamefromUUID(rs.getString("uuid_ut")) + " §7| Balance: §a" + rs.getInt("money") + " §7Coins");
+						p.sendMessage("§7Place §a" + i + " §7| User: §a" + rs.getString("name") + " §7| Balance: §a" + rs.getInt("money") + " §7Coins");
 					}
 				}catch (SQLException e) {
 				}

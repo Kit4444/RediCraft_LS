@@ -10,7 +10,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
+
 public class MojangAPI {
+	
 	
 	public String getUUIDfromName(String name) {
 		String url = "https://api.mojang.com/users/profiles/minecraft/" + name;
@@ -29,15 +31,18 @@ public class MojangAPI {
 	public String getNamefromUUID(String uuid) {
 		String url = "https://api.mojang.com/user/profiles/" + uuid.replace("-", "") + "/names";
 		String name = "";
-		try{
-			String nameJson = IOUtils.toString(new URL(url), StandardCharsets.UTF_8);
+		String nameJson;
+		try {
+			nameJson = IOUtils.toString(new URL(url), StandardCharsets.UTF_8);
 			JSONArray nameVal = (JSONArray) JSONValue.parseWithException(nameJson);
 			String playerSlot = nameVal.get(nameVal.size()-1).toString();
 			JSONObject UUIDObject = (JSONObject) JSONValue.parseWithException(playerSlot);
 			name =  UUIDObject.get("name").toString();
-		}catch(IOException|ParseException e) {
-			name = "ERRORED";
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return name;
 	}
 
