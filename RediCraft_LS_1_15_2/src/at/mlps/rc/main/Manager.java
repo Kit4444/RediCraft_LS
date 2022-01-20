@@ -12,6 +12,7 @@ import at.mlps.rc.api.Prefix;
 import at.mlps.rc.cmd.AFK_CMD;
 import at.mlps.rc.cmd.BuildClass;
 import at.mlps.rc.cmd.CMD_SetID_SetPf;
+import at.mlps.rc.cmd.DLStringsFromDBCMD;
 import at.mlps.rc.cmd.LobbyCMD;
 import at.mlps.rc.cmd.LogSystem;
 import at.mlps.rc.cmd.Maintenance;
@@ -99,6 +100,7 @@ public class Manager {
 		Main.instance.getCommand("spawnvillager").setExecutor(new TRS_Villager());
 		Main.instance.getCommand("pinfo").setExecutor(new Pinfo());
 		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCMD());
+		Main.instance.getCommand("stringmanager").setExecutor(new DLStringsFromDBCMD());
 		
 		PluginManager pl = Bukkit.getPluginManager();
 		pl.registerEvents(new ScoreboardClass(), Main.instance);

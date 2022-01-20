@@ -34,9 +34,12 @@ public class JoinQuitEventID implements Listener{
 	@EventHandler
 	public void onSpawnJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
+		SimpleDateFormat diy = new SimpleDateFormat("D");
+		int day = Integer.parseInt(diy.format(new Date()));
 		e.setJoinMessage(null);
 		p.setGameMode(GameMode.SURVIVAL);
 		Main.setPlayerBar(p);
+		p.setLevel(day);
 		p.setFoodLevel(20);
 		p.setHealth(20.0);
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
@@ -175,7 +178,7 @@ public class JoinQuitEventID implements Listener{
         	String isVer = Main.instance.getDescription().getVersion();
             String shouldVer = retVersion();
             if(!isVer.equalsIgnoreCase(shouldVer)) {
-            	p.sendMessage(Prefix.prefix("main") + "§cInfo, the Version you use is different to the DB.");
+            	p.sendMessage(Prefix.prefix("main") + "§cInformation, this Plugin's version is not the same like in the DB!");
             	p.sendMessage("§aServerversion§7: " + isVer);
             	p.sendMessage("§cDB-Version§7: " + shouldVer);
             }
@@ -296,7 +299,7 @@ public class JoinQuitEventID implements Listener{
 		String s = "";
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT version FROM redicore_versions WHERE type = ?");
-			ps.setString(1, "game");
+			ps.setString(1, "game_ls");
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			s = rs.getString("version");

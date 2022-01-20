@@ -99,10 +99,10 @@ public class LobbyCMD implements CommandExecutor, Listener {
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
 		if(cfg.getString("Spawn.general.WORLD").equalsIgnoreCase(loc.getWorld().getName())) {
 			if(!BuildClass.build.contains(p.getName())) {
-				if(loc.getY() <= cfg.getDouble("cmd.setspawn.lowlimit")) {
+				if(loc.getBlockY() <= cfg.getInt("Spawn.limit.low")) {
 					p.teleport(retLoc(cfg, "general"));
 				}
-				if(loc.getY() <= cfg.getDouble("cmd.setspawn.uplimit")) {
+				if(loc.getBlockY() >= cfg.getInt("Spawn.limit.high")) {
 					p.teleport(retLoc(cfg, "general"));
 				}
 			}
