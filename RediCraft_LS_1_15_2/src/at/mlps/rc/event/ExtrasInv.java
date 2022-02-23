@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
 import at.mlps.rc.api.ItemsAPI;
+import at.mlps.rc.api.Prefix;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 
@@ -150,7 +151,7 @@ public class ExtrasInv implements Listener{
 	
 	public static void openEffectsInv(Player p){
 		ItemsAPI iapi = new ItemsAPI();
-		Inventory inv = Bukkit.createInventory(null, 9*4, effects);
+		Inventory inv = Bukkit.createInventory(null, 9*5, effects);
 		String uuid = p.getUniqueId().toString().replace("-", "");
 		File file = new File("plugins/RCLS/effectslist.yml");
 		if(!file.exists()) { try { file.createNewFile(); } catch (IOException e) { e.printStackTrace(); } }
@@ -169,83 +170,106 @@ public class ExtrasInv implements Listener{
 		inv.setItem(18, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
 		inv.setItem(26, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
 		inv.setItem(27, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(28, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(29, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(30, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(31, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(32, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(33, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
-		inv.setItem(34, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
 		inv.setItem(35, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(36, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(37, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(38, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(39, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(40, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(41, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(42, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(43, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
+		inv.setItem(44, iapi.defItem(Material.PURPLE_STAINED_GLASS_PANE, 1, "§9"));
 		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
 				if(cfg.getBoolean("Effects." + uuid + ".Hearts")) {
-					inv.setItem(11, iapi.enchItem(Material.RED_DYE, 1, "§7§ §cHearts", Enchantment.DURABILITY));
+					inv.setItem(11, iapi.enchItem(Material.RED_DYE, 1, "§7» §cHearts", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(11, iapi.defItem(Material.RED_DYE, 1, "§7§ §cHearts"));
+					inv.setItem(11, iapi.defItem(Material.RED_DYE, 1, "§7» §cHearts"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Clouds")) {
-					inv.setItem(12, iapi.enchItem(Material.BONE_MEAL, 1, "§7§ §fClouds", Enchantment.DURABILITY));
+					inv.setItem(12, iapi.enchItem(Material.BONE_MEAL, 1, "§7» §fClouds", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(12, iapi.defItem(Material.BONE_MEAL, 1, "§7§ §fClouds"));
+					inv.setItem(12, iapi.defItem(Material.BONE_MEAL, 1, "§7» §fClouds"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Music")) {
-					inv.setItem(13, iapi.enchItem(Material.NOTE_BLOCK, 1, "§7§ §6Musicnotes", Enchantment.DURABILITY));
+					inv.setItem(13, iapi.enchItem(Material.NOTE_BLOCK, 1, "§7» §6Musicnotes", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(13, iapi.defItem(Material.NOTE_BLOCK, 1, "§7§ §6Musicnotes"));
+					inv.setItem(13, iapi.defItem(Material.NOTE_BLOCK, 1, "§7» §6Musicnotes"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Slime")) {
-					inv.setItem(14, iapi.enchItem(Material.SLIME_BALL, 1, "§7§ §aSlime", Enchantment.DURABILITY));
+					inv.setItem(14, iapi.enchItem(Material.SLIME_BALL, 1, "§7» §aSlime", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(14, iapi.defItem(Material.SLIME_BALL, 1, "§7§ §aSlime"));
+					inv.setItem(14, iapi.defItem(Material.SLIME_BALL, 1, "§7» §aSlime"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Water")) {
-					inv.setItem(15, iapi.enchItem(Material.WATER_BUCKET, 1, "§7§ §1Waterdrops", Enchantment.DURABILITY));
+					inv.setItem(15, iapi.enchItem(Material.WATER_BUCKET, 1, "§7» §1Waterdrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(15, iapi.defItem(Material.WATER_BUCKET, 1, "§7§ §1Waterdrops"));
+					inv.setItem(15, iapi.defItem(Material.WATER_BUCKET, 1, "§7» §1Waterdrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Ender")) {
-					inv.setItem(20, iapi.enchItem(Material.ENDER_EYE, 1, "§7§ §9Enderteleport", Enchantment.DURABILITY));
+					inv.setItem(20, iapi.enchItem(Material.ENDER_EYE, 1, "§7» §9Enderteleport", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(20, iapi.defItem(Material.ENDER_EYE, 1, "§7§ §9Enderteleport"));
+					inv.setItem(20, iapi.defItem(Material.ENDER_EYE, 1, "§7» §9Enderteleport"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Emerald")) {
-					inv.setItem(24, iapi.enchItem(Material.EMERALD, 1, "§7§ §aEmerald", Enchantment.DURABILITY));
+					inv.setItem(24, iapi.enchItem(Material.EMERALD, 1, "§7» §aEmerald", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(24, iapi.defItem(Material.EMERALD, 1, "§7§ §aEmerald"));
+					inv.setItem(24, iapi.defItem(Material.EMERALD, 1, "§7» §aEmerald"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Lava")) {
-					inv.setItem(10, iapi.enchItem(Material.LAVA_BUCKET, 1, "§7§ §cLavadrops", Enchantment.DURABILITY));
+					inv.setItem(10, iapi.enchItem(Material.LAVA_BUCKET, 1, "§7» §cLavadrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(10, iapi.defItem(Material.LAVA_BUCKET, 1, "§7§ §cLavadrops"));
+					inv.setItem(10, iapi.defItem(Material.LAVA_BUCKET, 1, "§7» §cLavadrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Honey")) {
-					inv.setItem(16, iapi.enchItem(Material.HONEY_BOTTLE, 1, "§7§ §6Honeydrops", Enchantment.DURABILITY));
+					inv.setItem(16, iapi.enchItem(Material.HONEY_BOTTLE, 1, "§7» §6Honeydrops", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(16, iapi.defItem(Material.HONEY_BOTTLE, 1, "§7§ §6Honeydrops"));
+					inv.setItem(16, iapi.defItem(Material.HONEY_BOTTLE, 1, "§7» §6Honeydrops"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Redstone")) {
-					inv.setItem(19, iapi.enchItem(Material.REDSTONE, 1, "§7§ §cC§2o§6l§co§ar§9s", Enchantment.DURABILITY));
+					inv.setItem(19, iapi.enchItem(Material.REDSTONE, 1, "§7» §cC§2o§6l§co§ar§9s", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(19, iapi.defItem(Material.REDSTONE, 1, "§7§ §cC§2o§6l§co§ar§9s"));
+					inv.setItem(19, iapi.defItem(Material.REDSTONE, 1, "§7» §cC§2o§6l§co§ar§9s"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Snow")) {
-					inv.setItem(25, iapi.enchItem(Material.SNOWBALL, 1, "§7§ §fSnowball", Enchantment.DURABILITY));
+					inv.setItem(25, iapi.enchItem(Material.SNOWBALL, 1, "§7» §fSnowball", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(25, iapi.defItem(Material.SNOWBALL, 1, "§7§ §fSnowball"));
+					inv.setItem(25, iapi.defItem(Material.SNOWBALL, 1, "§7» §fSnowball"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame")) {
-					inv.setItem(21, iapi.enchItem(Material.SOUL_TORCH, 1, "§7§ §bSoulfireflames", Enchantment.DURABILITY));
+					inv.setItem(21, iapi.enchItem(Material.SOUL_TORCH, 1, "§7» §bSoulfireflames", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(21, iapi.defItem(Material.SOUL_TORCH, 1, "§7§ §bSoulfireflames"));
+					inv.setItem(21, iapi.defItem(Material.SOUL_TORCH, 1, "§7» §bSoulfireflames"));
 				}
 				if(cfg.getBoolean("Effects." + uuid + ".Ash")) {
-					inv.setItem(23, iapi.enchItem(Material.BASALT, 1, "§7§ §7Ash", Enchantment.DURABILITY));
+					inv.setItem(23, iapi.enchItem(Material.BASALT, 1, "§7» §7Ash", Enchantment.DURABILITY));
 				}else {
-					inv.setItem(23, iapi.defItem(Material.BASALT, 1, "§7§ §7Ash"));
+					inv.setItem(23, iapi.defItem(Material.BASALT, 1, "§7» §7Ash"));
 				}
-				inv.setItem(22, iapi.defItem(Material.BARRIER, 1, "§cclose..."));
+				if(cfg.getBoolean("Effects." + uuid + ".Souls")) {
+					inv.setItem(29, iapi.enchItem(Material.SOUL_SAND, 1, "§7» §bSouls", Enchantment.DURABILITY));
+				}else {
+					inv.setItem(29, iapi.defItem(Material.SOUL_SAND, 1, "§7» §bSouls"));
+				}
+				if(cfg.getBoolean("Effects." + uuid + ".Glow")) {
+					inv.setItem(30, iapi.enchItem(Material.GLOWSTONE, 1, "§7» §eGlow", Enchantment.DURABILITY));
+				}else {
+					inv.setItem(30, iapi.defItem(Material.GLOWSTONE, 1, "§7» §eGlow"));
+				}
+				if(cfg.getBoolean("Effects." + uuid + ".EndRod")) {
+					inv.setItem(32, iapi.enchItem(Material.END_ROD, 1, "§7» §fEnd Rod Particles", Enchantment.DURABILITY));
+				}else {
+					inv.setItem(32, iapi.defItem(Material.END_ROD, 1, "§7» §fEnd Rod Particles"));
+				}
+				if(cfg.getBoolean("Effects." + uuid + ".ObsidianTears")) {
+					inv.setItem(33, iapi.enchItem(Material.CRYING_OBSIDIAN, 1, "§7» §5Obsidian Tears", Enchantment.DURABILITY));
+				}else {
+					inv.setItem(33, iapi.defItem(Material.CRYING_OBSIDIAN, 1, "§7» §5Obsidian Tears"));
+				}
+				inv.setItem(31, iapi.defItem(Material.BARRIER, 1, "§cclose..."));
+				//drip obsidian tear, end rod, glow, soul
 			}
 		}, 5);
 		p.openInventory(inv);
@@ -357,162 +381,210 @@ public class ExtrasInv implements Listener{
 			e.setCancelled(true);
 			if(e.getCurrentItem().getType() == Material.PURPLE_STAINED_GLASS_PANE) {
 				e.setCancelled(true);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §cHearts")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cHearts")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Hearts")) {
 					cfg.set("Effects." + uuid + ".Hearts", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Heart.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§cHearts"));
 				}else {
 					cfg.set("Effects." + uuid + ".Hearts", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Heart.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§cHearts"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§7§ §fClouds")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§7» §fClouds")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Clouds")) {
 					cfg.set("Effects." + uuid + ".Clouds", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Cloud.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§fCouds"));
 				}else {
 					cfg.set("Effects." + uuid + ".Clouds", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Cloud.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§fClouds"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §6Musicnotes")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Musicnotes")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Music")) {
 					cfg.set("Effects." + uuid + ".Music", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Music.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§6Musicnotes"));
 				}else {
 					cfg.set("Effects." + uuid + ".Music", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Music.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§6Musicnotes"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §aSlime")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §aSlime")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Slime")) {
 					cfg.set("Effects." + uuid + ".Slime", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Slime.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§aSlime"));
 				}else {
 					cfg.set("Effects." + uuid + ".Slime", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Slime.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§aSlime"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §1Waterdrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §1Waterdrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Water")) {
 					cfg.set("Effects." + uuid + ".Water", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Water.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§1Waterdrops"));
 				}else {
 					cfg.set("Effects." + uuid + ".Water", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Water.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§1Waterdrops"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §9Enderteleport")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §9Enderteleport")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Ender")) {
 					cfg.set("Effects." + uuid + ".Ender", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Ender.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§9Enderteleport"));
 				}else {
 					cfg.set("Effects." + uuid + ".Ender", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Ender.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§9Enderteleport"));
 				}
 
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §cclose...")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cclose...")) {
 				e.setCancelled(true);
 				e.getWhoClicked().closeInventory();
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §aEmerald")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §aEmerald")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Emerald")) {
 					cfg.set("Effects." + uuid + ".Emerald", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Emerald.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§aEmerald"));
 				}else {
 					cfg.set("Effects." + uuid + ".Emerald", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Emerald.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§aEmerald"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §cLavadrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cLavadrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Lava")) {
 					cfg.set("Effects." + uuid + ".Lava", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Lava.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§cLavadrops"));
 				}else {
 					cfg.set("Effects." + uuid + ".Lava", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Lava.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§cLavadrops"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §6Honeydrops")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §6Honeydrops")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Honey")) {
 					cfg.set("Effects." + uuid + ".Honey", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Honey.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§6Honeydrops"));
 				}else {
 					cfg.set("Effects." + uuid + ".Honey", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Honey.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§6Honeydrops"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §cC§2o§6l§co§ar§9s")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §cC§2o§6l§co§ar§9s")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Redstone")) {
 					cfg.set("Effects." + uuid + ".Redstone", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Redstone.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§cC§2o§6l§co§ar§9s"));
 				}else {
 					cfg.set("Effects." + uuid + ".Redstone", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Redstone.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§cC§2o§6l§co§ar§9s"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §fSnowball")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §fSnowball")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Snow")) {
 					cfg.set("Effects." + uuid + ".Snow", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Snow.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§fSnowball"));
 				}else {
 					cfg.set("Effects." + uuid + ".Snow", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Snow.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§fSnowball"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §bSoulfireflames")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §bSoulfireflames")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame")) {
 					cfg.set("Effects." + uuid + ".SoulFireflame", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Soulfire.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§bSoulfireflames"));
 				}else {
 					cfg.set("Effects." + uuid + ".SoulFireflame", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Soulfire.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§bSoulfireflames"));
 				}
 				cfg.save(file);
 				p.closeInventory();
 				openEffectsInv(p);
-			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7§ §7Ash")) {
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §7Ash")) {
 				e.setCancelled(true);
 				if(cfg.getBoolean("Effects." + uuid + ".Ash")) {
 					cfg.set("Effects." + uuid + ".Ash", false);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Ash.removed");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§7Ash"));
 				}else {
 					cfg.set("Effects." + uuid + ".Ash", true);
-					LanguageHandler.sendMSGReady(p, "event.extras.effects.Ash.selected");
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§7Ash"));
+				}
+				cfg.save(file);
+				p.closeInventory();
+				openEffectsInv(p);
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §bSouls")) {
+				e.setCancelled(true);
+				if(cfg.getBoolean("Effects." + uuid + ".Souls")) {
+					cfg.set("Effects." + uuid + ".Souls", false);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§bSouls"));
+				}else {
+					cfg.set("Effects." + uuid + ".Souls", true);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§bSouls"));
+				}
+				cfg.save(file);
+				p.closeInventory();
+				openEffectsInv(p);
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §eGlow")) {
+				e.setCancelled(true);
+				if(cfg.getBoolean("Effects." + uuid + ".Glow")) {
+					cfg.set("Effects." + uuid + ".Glow", false);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§eGlow"));
+				}else {
+					cfg.set("Effects." + uuid + ".Glow", true);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§eGlow"));
+				}
+				cfg.save(file);
+				p.closeInventory();
+				openEffectsInv(p);
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §fEnd Rod Particles")) {
+				e.setCancelled(true);
+				if(cfg.getBoolean("Effects." + uuid + ".EndRod")) {
+					cfg.set("Effects." + uuid + ".EndRod", false);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§fEnd Rod Particles"));
+				}else {
+					cfg.set("Effects." + uuid + ".EndRod", true);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§fEnd Rod Particles"));
+				}
+				cfg.save(file);
+				p.closeInventory();
+				openEffectsInv(p);
+			}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7» §5Obsidian Tears")) {
+				e.setCancelled(true);
+				if(cfg.getBoolean("Effects." + uuid + ".ObsidianTears")) {
+					cfg.set("Effects." + uuid + ".ObsidianTears", false);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.removed").replace("%effect", "§5Obsidian Tears"));
+				}else {
+					cfg.set("Effects." + uuid + ".ObsidianTears", true);
+					p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.extras.effects.selected").replace("%effect", "§5Obsidian Tears"));
 				}
 				cfg.save(file);
 				p.closeInventory();

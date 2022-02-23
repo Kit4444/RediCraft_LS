@@ -45,11 +45,13 @@ public class JoinQuitEventID implements Listener{
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
 		if(p.hasPlayedBefore()) {
 			p.teleport(retLoc(cfg, "general"));
+			p.sendTitle("§aRedi§cCraft", "§7Welcome back, §a" + p.getName(), 40, 100, 40);
 		}else {
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable() {
 				@Override
 				public void run() {
 					p.teleport(retLoc(cfg, "general"));
+					p.sendTitle("§aRedi§cCraft", "§7Welcome, §a" + p.getName(), 40, 100, 40);
 				}
 			}, 10);
 		}

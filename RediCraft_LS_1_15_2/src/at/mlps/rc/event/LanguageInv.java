@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import at.mlps.rc.api.ItemsAPI;
-import at.mlps.rc.api.Prefix;
+import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 import at.mlps.rc.mysql.lb.MySQL;
 
@@ -38,14 +38,30 @@ public class LanguageInv implements Listener{
 			@Override
 			public void run() {
 				if(retLang(p).equalsIgnoreCase("en-uk")) {
+					inv.setItem(1, iapi.defItem(Material.RED_CONCRETE_POWDER, 1, "§6German §f- §cAustria"));
 					inv.setItem(3, iapi.enchItem(Material.CYAN_CONCRETE, 1, "§bEnglish", Enchantment.LUCK));
-					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German §f- §cHigh German"));
+					inv.setItem(7, iapi.defItem(Material.BLUE_CONCRETE_POWDER, 1, "§9Dutch"));
 				}else if(retLang(p).equalsIgnoreCase("de-de")) {
+					inv.setItem(1, iapi.defItem(Material.RED_CONCRETE_POWDER, 1, "§6Deutsch §f- §cÖsterreich"));
 					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglisch"));
-					inv.setItem(5, iapi.enchItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch", Enchantment.LUCK));
+					inv.setItem(5, iapi.enchItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch §f- §cHochdeutsch", Enchantment.LUCK));
+					inv.setItem(7, iapi.defItem(Material.BLUE_CONCRETE_POWDER, 1, "§9Niederländisch"));
+				}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+					inv.setItem(1, iapi.defItem(Material.RED_CONCRETE_POWDER, 1, "§6Duits §f- §cOostenrijk"));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEngels"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE, 1, "§6Duits §f- §cHoogduits"));
+					inv.setItem(7, iapi.enchItem(Material.BLUE_CONCRETE_POWDER, 1, "§9Nederlands", Enchantment.LUCK));
+				}else if(retLang(p).equalsIgnoreCase("de-at")) {
+					inv.setItem(1, iapi.enchItem(Material.RED_CONCRETE_POWDER, 1, "§6Deutsch §f- §cÖsterreichisch", Enchantment.LUCK));
+					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglisch"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE, 1, "§6Deutsch §f- §cHochdeutsch"));
+					inv.setItem(7, iapi.defItem(Material.BLUE_CONCRETE_POWDER, 1, "§9Niederländisch"));
 				}else {
+					inv.setItem(1, iapi.defItem(Material.RED_CONCRETE_POWDER, 1, "§6German §f- §cAustria"));
 					inv.setItem(3, iapi.defItem(Material.CYAN_CONCRETE_POWDER, 1, "§bEnglish"));
-					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German"));
+					inv.setItem(5, iapi.defItem(Material.ORANGE_CONCRETE_POWDER, 1, "§6German §f- §cHigh German"));
+					inv.setItem(7, iapi.defItem(Material.BLUE_CONCRETE_POWDER, 1, "§9Dutch"));
 				}
 			}
 		}, 5);
@@ -60,38 +76,39 @@ public class LanguageInv implements Listener{
 			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6")) {
 				e.setCancelled(true);
 			}if(retLang(p).equalsIgnoreCase("en-uk")) {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
-					e.setCancelled(true);
-					p.sendMessage(Prefix.prefix("main") + "§7You have english already selected.");
-					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
-					e.setCancelled(true);
-					updateLang(p, "de-de");
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
-					langInv(p);
+				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
+				case "§6German §f- §cAustria": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§9Dutch": e.setCancelled(true); updateLang(p, "nl-nl"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6German §f- §cHigh German": e.setCancelled(true); updateLang(p, "de-de"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§bEnglish": e.setCancelled(true); LanguageHandler.sendMSGReady(p, "event.language.alrSel"); break;
 				}
 			}else if(retLang(p).equalsIgnoreCase("de-de")) {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglisch")) {
-					e.setCancelled(true);
-					updateLang(p, "en-uk");
-					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
-					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Deutsch")) {
-					e.setCancelled(true);
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast Deutsch bereits ausgewählt.");
-					langInv(p);
+				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
+				case "§6Deutsch §f- §cÖsterreich": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§bEnglisch": e.setCancelled(true); updateLang(p, "en-uk"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§9Niederländisch": e.setCancelled(true); updateLang(p, "nl-nl"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6Deutsch §f- §cHochdeutsch": e.setCancelled(true); LanguageHandler.sendMSGReady(p, "event.language.alrSel"); break;
+				}
+			}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
+				case "§6Duits §f- §cOostenrijk": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§bEngels": e.setCancelled(true); updateLang(p, "en-uk"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6Duits §f- §cHoogduits": e.setCancelled(true); updateLang(p, "de-de"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§9Nederlands": e.setCancelled(true); LanguageHandler.sendMSGReady(p, "event.language.alrSel"); break;
+				}
+			}else if(retLang(p).equalsIgnoreCase("de-at")) {
+				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
+				case "§9Niederländisch": e.setCancelled(true); updateLang(p, "nl-nl"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§bEnglisch": e.setCancelled(true); updateLang(p, "en-uk"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6Deutsch §f- §cHochdeutsch": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6Deutsch §f- §cÖsterreichisch": e.setCancelled(true); LanguageHandler.sendMSGReady(p, "event.language.alrSel"); break;
 				}
 			}else {
-				if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bEnglish")) {
-					e.setCancelled(true);
-					updateLang(p, "en-uk");
-					p.sendMessage(Prefix.prefix("main") + "§7You have now selected the english language.");
-					langInv(p);
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6German")) {
-					e.setCancelled(true);
-					updateLang(p, "de-de");
-					p.sendMessage(Prefix.prefix("main") + "§7Du hast nun die deutsche Sprache ausgewählt.");
-					langInv(p);
+				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
+				case "§6German §f- §cAustria": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§bEnglish": e.setCancelled(true); updateLang(p, "en-uk"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6German §f- §cHigh German": e.setCancelled(true); updateLang(p, "de-de"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§9Dutch": e.setCancelled(true); updateLang(p, "nl-nl"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
 				}
 			}
 		}

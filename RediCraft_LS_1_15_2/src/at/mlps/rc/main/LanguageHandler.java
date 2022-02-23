@@ -14,6 +14,8 @@ public class LanguageHandler {
 	
 	public static HashMap<String, String> langCache_DE = new HashMap<>();
 	public static HashMap<String, String> langCache_EN = new HashMap<>();
+	public static HashMap<String, String> langCache_NL = new HashMap<>();
+	public static HashMap<String, String> langCache_AT = new HashMap<>();
 	
 	public static void loadConfig() {
 		try {
@@ -22,6 +24,8 @@ public class LanguageHandler {
 			while(rs.next()) {
 				langCache_DE.put(rs.getString("lang_key"), rs.getString("German"));
 				langCache_EN.put(rs.getString("lang_key"), rs.getString("English"));
+				langCache_NL.put(rs.getString("lang_key"), rs.getString("Dutch"));
+				langCache_AT.put(rs.getString("lang_key"), rs.getString("Austrian"));
 			}
 			ps.close();
 		} catch (SQLException e) {
@@ -34,6 +38,10 @@ public class LanguageHandler {
 			p.sendMessage(Prefix.prefix("main") + retString("en-uk", "noPerm"));
 		}else if(retLang(p).equalsIgnoreCase("de-de")) {
 			p.sendMessage(Prefix.prefix("main") + retString("de-de", "noPerm"));
+		}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+			p.sendMessage(Prefix.prefix("main") + retString("nl-nl", "noPerm"));
+		}else if(retLang(p).equalsIgnoreCase("de-at")) {
+			p.sendMessage(Prefix.prefix("main") + retString("de-at", "noPerm"));
 		}
 	}
 	
@@ -42,6 +50,10 @@ public class LanguageHandler {
 			p.sendMessage(Prefix.prefix("main") + retString("en-uk", "notAvailable"));
 		}else if(retLang(p).equalsIgnoreCase("de-de")) {
 			p.sendMessage(Prefix.prefix("main") + retString("de-de", "notAvailable"));
+		}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+			p.sendMessage(Prefix.prefix("main") + retString("nl-nl", "notAvailable"));
+		}else if(retLang(p).equalsIgnoreCase("de-at")) {
+			p.sendMessage(Prefix.prefix("main") + retString("de-at", "notAvailable"));
 		}
 	}
 	
@@ -50,6 +62,10 @@ public class LanguageHandler {
 			p.sendMessage(Prefix.prefix("main") + retString("en-uk", path));
 		}else if(retLang(p).equalsIgnoreCase("de-de")) {
 			p.sendMessage(Prefix.prefix("main") + retString("de-de", path));
+		}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+			p.sendMessage(Prefix.prefix("main") + retString("nl-nl", path));
+		}else if(retLang(p).equalsIgnoreCase("de-at")) {
+			p.sendMessage(Prefix.prefix("main") + retString("de-at", path));
 		}
 	}
 	
@@ -59,6 +75,10 @@ public class LanguageHandler {
 			s = retString("en-uk", path);
 		}else if(retLang(p).equalsIgnoreCase("de-de")) {
 			s = retString("de-de", path);
+		}else if(retLang(p).equalsIgnoreCase("nl-nl")) {
+			s = retString("nl-nl", path);
+		}else if(retLang(p).equalsIgnoreCase("de-at")) {
+			s = retString("de-at", path);
 		}
 		return s;
 	}
@@ -87,7 +107,19 @@ public class LanguageHandler {
 			if(langCache_DE.containsKey(path)) {
 				string = langCache_DE.get(path).replace("&", "§");
 			}else {
-				string = "3cDieser Pfad existiert nicht.";
+				string = "§cDieser Pfad existiert nicht.";
+			}
+		}else if(lang.equalsIgnoreCase("nl-nl")) {
+			if(langCache_NL.containsKey(path)) {
+				string = langCache_NL.get(path).replace("&", "§");
+			}else {
+				string = "§cDit pad bestaat niet.";
+			}
+		}else if(lang.equalsIgnoreCase("de-at")) {
+			if(langCache_AT.containsKey(path)) {
+				string = langCache_AT.get(path).replace("&", "§");
+			}else {
+				string = "§cDea Pfad existiat ned!";
 			}
 		}
 		return string;

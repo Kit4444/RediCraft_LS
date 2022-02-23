@@ -31,47 +31,60 @@ public class PlayerMove implements Listener{
 			updateAFK(p, false);
 			LanguageHandler.sendMSGReady(p, "event.afk.leave");
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Hearts") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Hearts")) {
 			p.getWorld().spawnParticle(Particle.HEART, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Clouds") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Clouds")) {
 			p.getWorld().spawnParticle(Particle.CLOUD, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Music") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Music")) {
 			p.getWorld().spawnParticle(Particle.NOTE, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Slime") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Slime")) {
 			p.getWorld().spawnParticle(Particle.SLIME, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Water") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Water")) {
 			p.getWorld().spawnParticle(Particle.WATER_DROP, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Ender") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Ender")) {
 			p.getWorld().playEffect(p.getLocation().add(0.0, 0.0, 0.0), Effect.ENDER_SIGNAL, 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Emerald") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Emerald")) {
 			p.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Lava") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Lava")) {
 			p.getWorld().spawnParticle(Particle.DRIP_LAVA, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Honey") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Honey")) {
 			p.getWorld().spawnParticle(Particle.DRIPPING_HONEY, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Redstone") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Redstone")) {
 			Particle.DustOptions dust = new Particle.DustOptions(Color.fromRGB(getRGB(), getRGB(), getRGB()), 2);
 			p.getWorld().spawnParticle(Particle.REDSTONE, p.getLocation(), 1, dust);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Snow") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Snow")) {
 			p.getWorld().spawnParticle(Particle.SNOWBALL, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".SoulFireflame")) {
 			p.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, p.getLocation(), 1);
 		}
-		if(cfg.getBoolean("Effects." + uuid + ".Ash") == true) {
+		if(cfg.getBoolean("Effects." + uuid + ".Ash")) {
 			p.getWorld().spawnParticle(Particle.WHITE_ASH, p.getLocation().add(0, 1, 0), 1);
 			p.getWorld().spawnParticle(Particle.ASH, p.getLocation().add(0, 1, 0), 1);
 		}
+		if(cfg.getBoolean("Effects." + uuid + ".Souls")) {
+			p.getWorld().spawnParticle(Particle.SOUL, p.getLocation().add(0, 1, 0), 1);
+		}
+		if(cfg.getBoolean("Effects." + uuid + ".Glow")) {
+			p.getWorld().spawnParticle(Particle.GLOW, p.getLocation().add(0, 1, 0), 1);
+		}
+		if(cfg.getBoolean("Effects." + uuid + ".EndRod")) {
+			p.getWorld().spawnParticle(Particle.END_ROD, p.getLocation().add(0, 1, 0), 1);
+		}
+		if(cfg.getBoolean("Effects." + uuid + ".ObsidianTears")) {
+			p.getWorld().spawnParticle(Particle.DRIPPING_OBSIDIAN_TEAR, p.getLocation().add(0, 1, 0), 1);
+		}
+		//drip obsidian tear, end rod, glow, soul
 	}
 	
 	private static boolean isAFK(Player p) {
