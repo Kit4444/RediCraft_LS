@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.data.type.BigDripleaf;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -79,8 +84,10 @@ public class BuildClass implements CommandExecutor, Listener{
 	public void onInteractwithWeed(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		if(e.getAction() == Action.PHYSICAL) {
-			e.setCancelled(true);
-			LanguageHandler.sendMSGReady(p, "event.wheatdestroy.cantdothat");
+			if(p.getLocation().getBlock().getType() != Material.BIG_DRIPLEAF) {
+				e.setCancelled(true);
+				LanguageHandler.sendMSGReady(p, "event.wheatdestroy.cantdothat");
+			}
 		}
 	}
 	

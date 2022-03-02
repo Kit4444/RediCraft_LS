@@ -17,25 +17,27 @@ public class ItemHandling implements Listener{
 		if(BuildClass.build.contains(p.getName())) {
 			e.setCancelled(false);
 		}else {
-			if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(Navigator.title)) {
-				if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+			if(e.getItem() != null && e.getItem().getItemMeta() != null) {
+				if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(Navigator.title)) {
+					if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+						e.setCancelled(true);
+						Navigator.mainnavi(p);
+					}
+				}else if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ExtrasInv.mainTitle)) {
+					if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+						e.setCancelled(true);
+						ExtrasInv.mainInv(p);
+					}
+				}else if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(LanguageInv.mainTitle)) {
+					if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+						e.setCancelled(true);
+						LanguageInv.langInv(p);
+					}
+				}else if(e.getClickedBlock().getType() == Material.AIR || e.getClickedBlock().getType() == Material.FURNACE || e.getClickedBlock().getType() == Material.CHEST) {
 					e.setCancelled(true);
-					Navigator.mainnavi(p);
+				}else {
+					e.setCancelled(false);
 				}
-			}else if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ExtrasInv.mainTitle)) {
-				if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-					e.setCancelled(true);
-					ExtrasInv.mainInv(p);
-				}
-			}else if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(LanguageInv.mainTitle)) {
-				if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-					e.setCancelled(true);
-					LanguageInv.langInv(p);
-				}
-			}else if(e.getClickedBlock().getType() == Material.AIR || e.getClickedBlock().getType() == Material.FURNACE || e.getClickedBlock().getType() == Material.CHEST) {
-				e.setCancelled(true);
-			}else {
-				e.setCancelled(false);
 			}
 		}
 	}

@@ -36,6 +36,7 @@ public class Blocker implements Listener{
 		causes.add(DamageCause.DROWNING);
 		causes.add(DamageCause.FIRE);
 		causes.add(DamageCause.WITHER);
+		causes.add(DamageCause.HOT_FLOOR);
 
 		Entity entity = damageEvent.getEntity();
 		if(entity instanceof Player || entity instanceof Fish){

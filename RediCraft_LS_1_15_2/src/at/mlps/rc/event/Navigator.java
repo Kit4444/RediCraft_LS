@@ -76,9 +76,8 @@ public class Navigator implements Listener{
 		inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
 		inv.setItem(10, iapi.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
 		inv.setItem(16, iapi.naviItem(Material.GOLDEN_SHOVEL, farmserver, "Farmserver"));
-		inv.setItem(20, iapi.naviItem(Material.BRICKS, towny, "Towny"));
 		inv.setItem(24, iapi.naviItem(Material.IRON_AXE, survival, "Survival"));
-		if(p.hasPermission("mlps.isTeam")) {
+		if(p.hasPermission("mlps.isTeam") || p.hasPermission("mlps.isBuilder") || p.hasPermission("mlps.isStaff")) {
 			inv.setItem(26, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
 		}else {
 			inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
@@ -185,26 +184,6 @@ public class Navigator implements Listener{
 						}
 						
 					}
-				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(towny)) {
-					e.setCancelled(true);
-					boolean lock = getData("Towny", "locked");
-					if(lock) {
-						p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked").replace("%server", "Towny"));
-					}else {
-						boolean monitor = getData("Towny", "monitoring");
-						boolean online = getData("Towny", "online");
-						if(online) {
-							if(monitor) {
-								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-								sendPlayer(p, "towny", towny);
-							}else {
-								sendPlayer(p, "towny", towny);
-							}
-						}else {
-							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Towny"));
-						}
-						
-					}
 				}else if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(bauserver)) {
 					e.setCancelled(true);
 					boolean lock = getData("Staffserver", "locked");
@@ -216,9 +195,9 @@ public class Navigator implements Listener{
 						if(online) {
 							if(monitor) {
 								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
-								sendPlayer(p, "bauserver", bauserver);
+								sendPlayer(p, "staffserver", bauserver);
 							}else {
-								sendPlayer(p, "bauserver", bauserver);
+								sendPlayer(p, "staffserver", bauserver);
 							}
 						}else {
 							p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline").replace("%server", "Staffserver"));

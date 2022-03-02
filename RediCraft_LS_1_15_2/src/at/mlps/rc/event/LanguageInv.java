@@ -100,7 +100,7 @@ public class LanguageInv implements Listener{
 				switch(e.getCurrentItem().getItemMeta().getDisplayName()) {
 				case "§9Niederländisch": e.setCancelled(true); updateLang(p, "nl-nl"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
 				case "§bEnglisch": e.setCancelled(true); updateLang(p, "en-uk"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
-				case "§6Deutsch §f- §cHochdeutsch": e.setCancelled(true); updateLang(p, "de-at"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
+				case "§6Deutsch §f- §cHochdeutsch": e.setCancelled(true); updateLang(p, "de-de"); LanguageHandler.sendMSGReady(p, "event.language.switch"); langInv(p); break;
 				case "§6Deutsch §f- §cÖsterreichisch": e.setCancelled(true); LanguageHandler.sendMSGReady(p, "event.language.alrSel"); break;
 				}
 			}else {
