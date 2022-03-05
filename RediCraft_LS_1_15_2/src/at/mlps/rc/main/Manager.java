@@ -120,6 +120,7 @@ public class Manager {
 		
 		
 		ScoreboardClass sb = new ScoreboardClass();
+		sb.downloadStrings();
 		sb.SBSched(0, 20);
 		LanguageHandler.loadConfig();
 		Prefix.onLoad();
