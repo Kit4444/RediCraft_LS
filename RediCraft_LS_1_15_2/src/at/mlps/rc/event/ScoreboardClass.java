@@ -20,6 +20,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import at.mlps.rc.api.ChatFont;
 import at.mlps.rc.api.GetBukkitInfo;
 import at.mlps.rc.api.GetPlayersLocal;
 import at.mlps.rc.api.Prefix;
@@ -37,6 +38,7 @@ public class ScoreboardClass implements Listener{
 	public static HashMap<String, Long> buildtime = new HashMap<>();
 	private static HashMap<String, String> tabHM = new HashMap<>();
 	private static HashMap<String, String> chatHM = new HashMap<>();
+	private static HashMap<String, String> roleHM = new HashMap<>();
 	private static int sbSide = 0;
 	
 	public void setScoreboard(Player p) throws SQLException {
@@ -80,51 +82,7 @@ public class ScoreboardClass implements Listener{
 				o.getScore("§7» §a" + MoneyAPI.getMoney(p.getUniqueId()) + " §7Cash").setScore(6);
 				o.getScore("§f").setScore(5);
 				o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.rank")).setScore(4);
-				if(po.inGroup("pman")) {
-					o.getScore("§7» §9Project Manager").setScore(3);
-				}else if(po.inGroup("cman")) {
-					o.getScore("§7» §2Community Manager").setScore(3);
-				}else if(po.inGroup("gmmman")) {
-					o.getScore("§7» §4Game Mod. Manager").setScore(3);
-				}else if(po.inGroup("dev")) {
-					o.getScore("§7» §5Developer").setScore(3);
-				}else if(po.inGroup("hr")) {
-					o.getScore("§7» §6Human Resources").setScore(3);
-				}else if(po.inGroup("cm")) {
-					o.getScore("§7» §aCommunity Moderator").setScore(3);
-				}else if(po.inGroup("ct")) {
-					o.getScore("§7» §1Content Team").setScore(3);
-				}else if(po.inGroup("st")) {
-					o.getScore("§7» §eSupport Team").setScore(3);
-				}else if(po.inGroup("bd")) {
-					o.getScore("§7» §bBuilder").setScore(3);
-				}else if(po.inGroup("gm")) {
-					o.getScore("§7» §cGame Moderator").setScore(3);
-				}else if(po.inGroup("aot")) {
-					o.getScore("§7» §dAdd-On Team").setScore(3);
-				}else if(po.inGroup("train")) {
-					o.getScore("§7» §bTrainee").setScore(3);
-				}else if(po.inGroup("rltm")) {
-					o.getScore("§7» §3Retired Legend").setScore(3);
-				}else if(po.inGroup("rtm")) {
-					o.getScore("§7» §3Retired Team Member").setScore(3);
-				}else if(po.inGroup("part")) {
-					o.getScore("§7» §2Partner").setScore(3);
-				}else if(po.inGroup("fs")) {
-					o.getScore("§7» §dForum Supporter").setScore(3);
-				}else if(po.inGroup("vip")) {
-					o.getScore("§7» §eVIP").setScore(3);
-				}else if(po.inGroup("nb")) {
-					o.getScore("§7» §dNitro Booster").setScore(3);
-				}else if(po.inGroup("bt")) {
-					o.getScore("§7» §dBeta Tester").setScore(3);
-				}else if(po.inGroup("friend")) {
-					o.getScore("§7» Friend").setScore(3);
-				}else if(po.inGroup("default")) {
-					o.getScore("§7» §fPlayer").setScore(3);
-				}else {
-					o.getScore("§7» §cunknown Role").setScore(3);
-				}
+				o.getScore(retGroup(po)).setScore(3);
 				o.getScore("§9").setScore(2);
 				o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.playerid")).setScore(1);
 				o.getScore("§7»  §7" + igid(p) + " §f" + igpre(p)).setScore(0);
@@ -141,27 +99,29 @@ public class ScoreboardClass implements Listener{
 		}
 		p.setScoreboard(sb);
 		
-		Team pman = getTeam(sb, "00000", retPrefix("pman", "prefix_tab"), ChatColor.GRAY);
-		Team cman = getTeam(sb, "00010", retPrefix("cman", "prefix_tab"), ChatColor.GRAY);
-		Team gmmman = getTeam(sb, "00020", retPrefix("gmmman", "prefix_tab"), ChatColor.GRAY);
-		Team dev = getTeam(sb, "00030", retPrefix("dev", "prefix_tab"), ChatColor.GRAY);
-		Team cm = getTeam(sb, "00050", retPrefix("cm", "prefix_tab"), ChatColor.GRAY);
-		Team ct = getTeam(sb, "00060", retPrefix("ct", "prefix_tab"), ChatColor.GRAY);
-		Team st = getTeam(sb, "00070", retPrefix("st", "prefix_tab"), ChatColor.GRAY);
-		Team bd = getTeam(sb, "00080", retPrefix("bd", "prefix_tab"), ChatColor.GRAY);
-		Team gm = getTeam(sb, "00090", retPrefix("gm", "prefix_tab"), ChatColor.GRAY);
-		Team aot = getTeam(sb, "00100", retPrefix("aot", "prefix_tab"), ChatColor.GRAY);
-		Team train = getTeam(sb, "00110", retPrefix("train", "prefix_tab"), ChatColor.GRAY);
-		Team rltm = getTeam(sb, "00120", retPrefix("rltm", "prefix_tab"), ChatColor.GRAY);
-		Team rtm = getTeam(sb, "00130", retPrefix("rtm", "prefix_tab"), ChatColor.GRAY);
-		Team part = getTeam(sb, "00140", retPrefix("part", "prefix_tab"), ChatColor.GRAY);
-		Team fs = getTeam(sb, "00150", retPrefix("fs", "prefix_tab"), ChatColor.GRAY);
-		Team nb = getTeam(sb, "00160", retPrefix("nb", "prefix_tab"), ChatColor.GRAY);
-		Team bt = getTeam(sb, "00170", retPrefix("bt", "prefix_tab"), ChatColor.GRAY);
-		Team friend = getTeam(sb, "00180", retPrefix("friend", "prefix_tab"), ChatColor.GRAY);
-		Team vip = getTeam(sb, "00181", retPrefix("vip", "prefix_tab"), ChatColor.GRAY);
-		Team player = getTeam(sb, "00190", retPrefix("player", "prefix_tab"), ChatColor.GRAY);
-		Team afk = getTeam(sb, "00200", retPrefix("safk", "prefix_tab"), ChatColor.GRAY);
+		Team pman = getTeam(sb, "pman", ChatColor.GRAY);
+		Team sman = getTeam(sb, "sman", ChatColor.GRAY);
+		Team gmmman = getTeam(sb, "gmmman", ChatColor.GRAY);
+		Team dev = getTeam(sb, "dev", ChatColor.GRAY);
+		Team gman = getTeam(sb, "gman", ChatColor.GRAY);
+		Team sda = getTeam(sb, "sda", ChatColor.GRAY);
+		Team cm = getTeam(sb, "cm", ChatColor.GRAY);
+		Team ct = getTeam(sb, "ct", ChatColor.GRAY);
+		Team st = getTeam(sb, "st", ChatColor.GRAY);
+		Team bd = getTeam(sb, "bd", ChatColor.GRAY);
+		Team gm = getTeam(sb, "gm", ChatColor.GRAY);
+		Team aot = getTeam(sb, "aot", ChatColor.GRAY);
+		Team train = getTeam(sb, "train", ChatColor.GRAY);
+		Team rltm = getTeam(sb, "rltm", ChatColor.GRAY);
+		Team rtm = getTeam(sb, "rtm", ChatColor.GRAY);
+		Team part = getTeam(sb, "part", ChatColor.GRAY);
+		Team fs = getTeam(sb, "fs", ChatColor.GRAY);
+		Team nb = getTeam(sb, "nb", ChatColor.GRAY);
+		Team bt = getTeam(sb, "bt", ChatColor.GRAY);
+		Team friend = getTeam(sb, "friend", ChatColor.GRAY);
+		Team vip = getTeam(sb, "vip", ChatColor.GRAY);
+		Team player = getTeam(sb, "default", ChatColor.GRAY);
+		Team afk = getTeam(sb, "safk", ChatColor.BLUE);
 		
 		
 		for(Player all : Bukkit.getOnlinePlayers()) {
@@ -192,15 +152,23 @@ public class ScoreboardClass implements Listener{
 		    			pman.addEntry(all.getName());
 						all.setDisplayName(retPrefix("pman", "prefix_chat") + all.getCustomName());
 						all.setPlayerListName(retPrefix("pman", "prefix_tab") + all.getCustomName() + " §7| ID: §a" + rs.getInt("userid") + " §f" + prefix);
-					}else if(pp.inGroup("dev")) {
+					}else if(pp.inGroup("sman")) {
+	    				sman.addEntry(all.getName());
+	    				all.setDisplayName(retPrefix("sman", "prefix_chat") + all.getName());
+	    				all.setPlayerListName(retPrefix("sman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
+	    			}else if(pp.inGroup("dev")) {
 						dev.addEntry(all.getName());
 						all.setDisplayName(retPrefix("dev", "prefix_chat") + all.getCustomName());
 						all.setPlayerListName(retPrefix("dev", "prefix_tab") + all.getCustomName() + " §7| ID§7: §a" + rs.getInt("userid") + " §f" + prefix);
-					}else if(pp.inGroup("cman")) {
-						cman.addEntry(all.getName());
-						all.setDisplayName(retPrefix("cman", "prefix_chat") + all.getCustomName());
-						all.setPlayerListName(retPrefix("cman", "prefix_tab") + all.getCustomName() + " §7| ID: §a" + rs.getInt("userid") + " §f" + prefix);
-					}else if(pp.inGroup("gmmman")) {
+					}else if(pp.inGroup("gman")) {
+	    				gman.addEntry(all.getName());
+	    				all.setDisplayName(retPrefix("gman", "prefix_chat") + all.getName());
+	    				all.setPlayerListName(retPrefix("gman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
+	    			}else if(pp.inGroup("sda")) {
+	    				sda.addEntry(all.getName());
+	    				all.setDisplayName(retPrefix("sda", "prefix_chat") + all.getName());
+	    				all.setPlayerListName(retPrefix("sda", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
+	    			}else if(pp.inGroup("gmmman")) {
 						gmmman.addEntry(all.getName());
 						all.setDisplayName(retPrefix("gmmman", "prefix_chat") + all.getCustomName());
 						all.setPlayerListName(retPrefix("gmmman", "prefix_tab") + all.getCustomName() + " §7| ID: §a" + rs.getInt("userid") + " §f" + prefix);
@@ -279,11 +247,63 @@ public class ScoreboardClass implements Listener{
 		}
 	}
 	
-	public Team getTeam(Scoreboard sb, String Team, String prefix, ChatColor cc) {
-		Team team = sb.registerNewTeam(Team);
-		team.setPrefix(prefix);
+	public Team getTeam(Scoreboard sb, String role, ChatColor cc) {
+		Team team = sb.registerNewTeam(retPrefix(role, "team"));
+		team.setPrefix(retPrefix(role, "prefix_tab"));
 		team.setColor(cc);
 		return team;
+	}
+	
+	private String retGroup(PermissionUser po) {
+		String group = "";
+		if(po.inGroup("pman")) {
+			group = "§7» §aProject Manager";
+		}else if(po.inGroup("sman")) {
+			group = "§7» §aStaff Manager";
+		}else if(po.inGroup("gmmman")) {
+			group = "§7» §aGame Mod. Manager";
+		}else if(po.inGroup("dev")) {
+			group = "§7» §aDeveloper";
+		}else if(po.inGroup("gman")) {
+			group = "§7» §aGeneral Manager";
+		}else if(po.inGroup("sda")) {
+			group = "§7» §aService & Data Analyst";
+		}else if(po.inGroup("cm")) {
+			group = "§7» §aCommunity Moderator";
+		}else if(po.inGroup("ct")) {
+			group = "§7» §aContent Team";
+		}else if(po.inGroup("st")) {
+			group = "§7» §aSupport Team";
+		}else if(po.inGroup("bd")) {
+			group = "§7» §aBuilder";
+		}else if(po.inGroup("gm")) {
+			group = "§7» §aGame Moderator";
+		}else if(po.inGroup("aot")) {
+			group = "§7» §aAdd-On Team";
+		}else if(po.inGroup("train")) {
+			group = "§7» §aTrainee";
+		}else if(po.inGroup("rltm")) {
+			group = "§7» §aRetired Legend";
+		}else if(po.inGroup("rtm")) {
+			group = "§7» §aRetired Team Member";
+		}else if(po.inGroup("part")) {
+			group = "§7» §aPartner";
+		}else if(po.inGroup("fs")) {
+			group = "§7» §aForum Supporter";
+		}else if(po.inGroup("nb")) {
+			group = "§7» §aNitro Booster";
+		}else if(po.inGroup("bt")) {
+			group = "§7» §aBeta Tester";
+		}else if(po.inGroup("friend")) {
+			group = "§7» §aFriend";
+		}else if(po.inGroup("vip")) {
+			group = "§7» §aVIP";
+		}else if(po.inGroup("default")) {
+			group = "§7» §aPlayer";
+		}else {
+			group = "§7» §cunknown Role";
+		}
+		return group;
 	}
 	
 	private String igid(Player p) {
@@ -355,7 +375,9 @@ public class ScoreboardClass implements Listener{
 		Player p = e.getPlayer();
 		String msg = e.getMessage().replace("%", "%%");
 		if(p.hasPermission("mlps.colorchat")) {
-			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + ChatColor.translateAlternateColorCodes('&', msg));
+			String msg1 = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', msg);
+			msg1 = ChatFont.translate(msg);
+			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + msg1);
 		}else {
 			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + msg);
 		}
@@ -367,31 +389,27 @@ public class ScoreboardClass implements Listener{
 			prefix = chatHM.get(rank);
 		}else if(type.equalsIgnoreCase("prefix_tab")) {
 			prefix = tabHM.get(rank);
+		}else if(type.equalsIgnoreCase("team")) {
+			prefix = roleHM.get(rank);
 		}
-		if(prefix == null) {
-			return "§7[Player] ";
-		}else {
-			return prefix.replace("&", "§");
-		}
+		String ret = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', prefix);
+		ret = ChatFont.translate(ret);
+		return ret;
 	}
 	
-	public static void downloadStrings() {
+	public void downloadStrings() {
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_ranks");
 			ResultSet rs = ps.executeQuery();
 			tabHM.clear();
 			chatHM.clear();
-			int i = 0;
+			roleHM.clear();
 			while(rs.next()) {
-				i++;
 				tabHM.put(rs.getString("rank"), rs.getString("prefix_tab"));
 				chatHM.put(rs.getString("rank"), rs.getString("prefix_chat"));
+				roleHM.put(rs.getString("rank"), rs.getString("team"));
 			}
-			tabHM.put("TEST", "VALUE");
-			chatHM.put("TEST", "VALUE");
-			Bukkit.getConsoleSender().sendMessage("§7Downloaded " + i + " Rankstrings and loaded them.");
 		}catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 	
