@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.data.type.BigDripleaf;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,75 +21,75 @@ import at.mlps.rc.event.ScoreboardClass;
 import at.mlps.rc.main.LanguageHandler;
 import at.mlps.rc.main.Main;
 
-public class BuildClass implements CommandExecutor, Listener{
-	
+public class BuildClass implements CommandExecutor, Listener {
+
 	public static ArrayList<String> build = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(!(sender instanceof Player)) {
+		if (!(sender instanceof Player)) {
 			Bukkit.getConsoleSender().sendMessage("Use this only ingame!");
-		}else {
-			Player p = (Player)sender;
-			if(p.hasPermission("mlps.canBuild")) {
-				if(build.contains(p.getName())) {
+		} else {
+			Player p = (Player) sender;
+			if (p.hasPermission("mlps.canBuild")) {
+				if (build.contains(p.getName())) {
 					build.remove(p.getName());
 					LanguageHandler.sendMSGReady(p, "cmd.build.deactivated");
 					Main.setPlayerBar(p);
 					p.setGameMode(GameMode.SURVIVAL);
-					if(ScoreboardClass.buildtime.containsKey(p.getName())) {
+					if (ScoreboardClass.buildtime.containsKey(p.getName())) {
 						ScoreboardClass.buildtime.remove(p.getName());
 					}
-				}else {
+				} else {
 					build.add(p.getName());
 					LanguageHandler.sendMSGReady(p, "cmd.build.activated");
 					p.getInventory().clear();
 					p.setGameMode(GameMode.CREATIVE);
 					long time = (System.currentTimeMillis() / 1000);
 					ScoreboardClass.buildtime.put(p.getName(), time);
-					
+
 				}
 			}
 		}
 		return false;
 	}
-	
+
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
-		if(build.contains(p.getName())) {
+		if (build.contains(p.getName())) {
 			e.setCancelled(false);
-		}else {
+		} else {
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.build.cantdothat");
 		}
 	}
-	
+
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
-		if(build.contains(p.getName())) {
+		if (build.contains(p.getName())) {
 			e.setCancelled(false);
-		}else{
+		} else {
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.build.cantdothat");
 		}
 	}
-	
+
 	@EventHandler
 	public void onInteractwithWeed(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if(e.getAction() == Action.PHYSICAL) {
-			if(p.getLocation().getBlock().getType() != Material.BIG_DRIPLEAF) {
+		if (e.getAction() == Action.PHYSICAL) {
+			if (p.getLocation().getBlock().getType() != Material.BIG_DRIPLEAF) {
 				e.setCancelled(true);
 				LanguageHandler.sendMSGReady(p, "event.wheatdestroy.cantdothat");
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		if(build.contains(e.getPlayer().getName())) {
+		if (build.contains(e.getPlayer().getName())) {
 			build.remove(e.getPlayer().getName());
 		}
 	}
