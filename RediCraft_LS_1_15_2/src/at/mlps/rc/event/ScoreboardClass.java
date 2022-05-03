@@ -100,9 +100,11 @@ public class ScoreboardClass implements Listener{
 		p.setScoreboard(sb);
 		
 		Team pman = getTeam(sb, "pman", ChatColor.GRAY);
+		Team apman = getTeam(sb, "apman", ChatColor.GRAY);
 		Team sman = getTeam(sb, "sman", ChatColor.GRAY);
 		Team gmmman = getTeam(sb, "gmmman", ChatColor.GRAY);
 		Team dev = getTeam(sb, "dev", ChatColor.GRAY);
+		Team adprman = getTeam(sb, "adprman", ChatColor.GRAY);
 		Team gman = getTeam(sb, "gman", ChatColor.GRAY);
 		Team sda = getTeam(sb, "sda", ChatColor.GRAY);
 		Team cm = getTeam(sb, "cm", ChatColor.GRAY);
@@ -152,11 +154,19 @@ public class ScoreboardClass implements Listener{
 		    			pman.addEntry(all.getName());
 						all.setDisplayName(retPrefix("pman", "prefix_chat") + all.getCustomName());
 						all.setPlayerListName(retPrefix("pman", "prefix_tab") + all.getCustomName() + " §7| ID: §a" + rs.getInt("userid") + " §f" + prefix);
+					} else if (pp.inGroup("apman")) {
+						apman.addEntry(all.getName());
+						all.setDisplayName(retPrefix("apman", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("apman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
 					}else if(pp.inGroup("sman")) {
 	    				sman.addEntry(all.getName());
 	    				all.setDisplayName(retPrefix("sman", "prefix_chat") + all.getName());
 	    				all.setPlayerListName(retPrefix("sman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
-	    			}else if(pp.inGroup("dev")) {
+	    			}else if (pp.inGroup("adprman")) {
+						adprman.addEntry(all.getName());
+						all.setDisplayName(retPrefix("adprman", "prefix_chat") + all.getName());
+						all.setPlayerListName(retPrefix("adprman", "prefix_tab") + all.getName() + " §7| ID: §a" + igid(all) + " §f" + prefix);
+					}else if(pp.inGroup("dev")) {
 						dev.addEntry(all.getName());
 						all.setDisplayName(retPrefix("dev", "prefix_chat") + all.getCustomName());
 						all.setPlayerListName(retPrefix("dev", "prefix_tab") + all.getCustomName() + " §7| ID§7: §a" + rs.getInt("userid") + " §f" + prefix);
@@ -256,51 +266,55 @@ public class ScoreboardClass implements Listener{
 	
 	private String retGroup(PermissionUser po) {
 		String group = "";
-		if(po.inGroup("pman")) {
+		if (po.inGroup("pman")) {
 			group = "§7» §aProject Manager";
-		}else if(po.inGroup("sman")) {
+		}else if(po.inGroup("apman")) {
+			group = "§7» §aAssistant Project Manager";
+		}else if(po.inGroup("adprman")) {
+			group = "§7» §aAd & PR Manager";
+		} else if (po.inGroup("sman")) {
 			group = "§7» §aStaff Manager";
-		}else if(po.inGroup("gmmman")) {
+		} else if (po.inGroup("gmmman")) {
 			group = "§7» §aGame Mod. Manager";
-		}else if(po.inGroup("dev")) {
+		} else if (po.inGroup("dev")) {
 			group = "§7» §aDeveloper";
-		}else if(po.inGroup("gman")) {
+		} else if (po.inGroup("gman")) {
 			group = "§7» §aGeneral Manager";
-		}else if(po.inGroup("sda")) {
+		} else if (po.inGroup("sda")) {
 			group = "§7» §aService & Data Analyst";
-		}else if(po.inGroup("cm")) {
+		} else if (po.inGroup("cm")) {
 			group = "§7» §aCommunity Moderator";
-		}else if(po.inGroup("ct")) {
+		} else if (po.inGroup("ct")) {
 			group = "§7» §aContent Team";
-		}else if(po.inGroup("st")) {
+		} else if (po.inGroup("st")) {
 			group = "§7» §aSupport Team";
-		}else if(po.inGroup("bd")) {
+		} else if (po.inGroup("bd")) {
 			group = "§7» §aBuilder";
-		}else if(po.inGroup("gm")) {
+		} else if (po.inGroup("gm")) {
 			group = "§7» §aGame Moderator";
-		}else if(po.inGroup("aot")) {
+		} else if (po.inGroup("aot")) {
 			group = "§7» §aAdd-On Team";
-		}else if(po.inGroup("train")) {
+		} else if (po.inGroup("train")) {
 			group = "§7» §aTrainee";
-		}else if(po.inGroup("rltm")) {
+		} else if (po.inGroup("rltm")) {
 			group = "§7» §aRetired Legend";
-		}else if(po.inGroup("rtm")) {
+		} else if (po.inGroup("rtm")) {
 			group = "§7» §aRetired Team Member";
-		}else if(po.inGroup("part")) {
+		} else if (po.inGroup("part")) {
 			group = "§7» §aPartner";
-		}else if(po.inGroup("fs")) {
+		} else if (po.inGroup("fs")) {
 			group = "§7» §aForum Supporter";
-		}else if(po.inGroup("nb")) {
+		} else if (po.inGroup("nb")) {
 			group = "§7» §aNitro Booster";
-		}else if(po.inGroup("bt")) {
+		} else if (po.inGroup("bt")) {
 			group = "§7» §aBeta Tester";
-		}else if(po.inGroup("friend")) {
+		} else if (po.inGroup("friend")) {
 			group = "§7» §aFriend";
-		}else if(po.inGroup("vip")) {
+		} else if (po.inGroup("vip")) {
 			group = "§7» §aVIP";
-		}else if(po.inGroup("default")) {
+		} else if (po.inGroup("default")) {
 			group = "§7» §aPlayer";
-		}else {
+		} else {
 			group = "§7» §cunknown Role";
 		}
 		return group;
@@ -374,12 +388,13 @@ public class ScoreboardClass implements Listener{
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 		String msg = e.getMessage().replace("%", "%%");
+		String server_pf = "";
 		if(p.hasPermission("mlps.colorchat")) {
 			String msg1 = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', msg);
 			msg1 = ChatFont.translate(msg);
-			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + msg1);
+			e.setFormat(p.getDisplayName() + " §7(" + server_pf + "§9" + igid(p) + "§7): " + msg1);
 		}else {
-			e.setFormat(p.getDisplayName() + " §7(§9" + igid(p) + "§7): " + msg);
+			e.setFormat(p.getDisplayName() + " §7(" + server_pf + "§9" + igid(p) + "§7): " + msg);
 		}
 	}
 	

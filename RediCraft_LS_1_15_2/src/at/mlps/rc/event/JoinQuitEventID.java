@@ -97,6 +97,12 @@ public class JoinQuitEventID implements Listener{
         		if(pu.inGroup("pman")) {
 	    			ps.setString(1, "Project Manager");
 	    			ps.setString(2, "#7c4dff");
+        		}else if(pu.inGroup("apman")) {
+        			ps.setString(1, "Assistant Project Manager");
+        			ps.setString(2, "#282be0");
+	    		}else if(pu.inGroup("adprman")) {
+	    			ps.setString(1, "Advertisment and Public Relations Manager");
+	    			ps.setString(2, "#3498db");
 	    		}else if(pu.inGroup("sman")) {
 	    			ps.setString(1, "Staff Manager");
 	    			ps.setString(2, "#fc9403");
@@ -207,6 +213,12 @@ public class JoinQuitEventID implements Listener{
     		}else if(pu.inGroup("gmmman")) {
     			ps.setString(1, "Game Moderation Manager");
     			ps.setString(2, "#d32f2f");
+    		}else if(pu.inGroup("apman")) {
+    			ps.setString(1, "Assistant Project Manager");
+    			ps.setString(2, "#282be0");
+    		}else if(pu.inGroup("adprman")) {
+    			ps.setString(1, "Advertisment and Public Relations Manager");
+    			ps.setString(2, "#3498db");
     		}else if(pu.inGroup("dev")) {
     			ps.setString(1, "Developer");
     			ps.setString(2, "#aa00aa");

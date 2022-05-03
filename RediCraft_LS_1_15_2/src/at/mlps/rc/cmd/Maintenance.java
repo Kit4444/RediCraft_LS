@@ -32,7 +32,46 @@ public class Maintenance implements CommandExecutor, Listener {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
+			if(cmd.getName().equalsIgnoreCase("maintenance")) {
+				if (!whitelist.exists()) {
+					try {
+						whitelist.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (args.length == 0) {
+					sender.sendMessage(Prefix.prefix("main") + "§7Usage: /maintenance <on|off|status>");
+				} else if (args.length == 1) {
+					YamlConfiguration cfg = YamlConfiguration.loadConfiguration(whitelist);
+					if (args[0].equalsIgnoreCase("on")) {
+						cfg.set("Whitelist.Maintenance", true);
+						try {
+							cfg.save(whitelist);
+							sender.sendMessage(Prefix.prefix("main") + "§cYou activated the maintenance.");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else if (args[0].equalsIgnoreCase("off")) {
+						cfg.set("Whitelist.Maintenance", false);
+						try {
+							cfg.save(whitelist);
+							sender.sendMessage(Prefix.prefix("main") + "§aYou deactivated the maintenance.");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else if (args[0].equalsIgnoreCase("status")) {
+						boolean boo = cfg.getBoolean("Whitelist.Maintenance");
+						if (boo == true) {
+							sender.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §cactive");
+						} else if (boo == false) {
+							sender.sendMessage(Prefix.prefix("main") + "§7Status of Maintenance: §ainactive");
+						}
+					}
+				}
+			}else {
+				Bukkit.getConsoleSender().sendMessage(Main.consolesend);
+			}
 		} else {
 			Player p = (Player) sender;
 			MojangAPI mapi = new MojangAPI();
@@ -170,8 +209,11 @@ public class Maintenance implements CommandExecutor, Listener {
 			if (allowed) {
 				e.allow();
 			} else {
-				e.disallow(Result.KICK_WHITELIST,
-						"§aRedi§cCraft\n \n§7Currently, the Server is in maintenance mode. \n§7We hope, we can release it as quick as possible again. \n \n§aWe're sorry for the inconvenience.");
+				if(p.hasPermission("mlps.isStaff")) {
+					e.allow();
+				}else {
+					e.disallow(Result.KICK_WHITELIST, "§aRedi§cCraft\n \n§7Currently, the Server is in maintenance mode. \n§7We hope, we can release it as quick as possible again. \n \n§aWe're sorry for the inconvenience.");
+				}
 			}
 		} else {
 			e.allow();
