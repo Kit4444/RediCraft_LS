@@ -1,11 +1,11 @@
 name: RediCore
-author: Maurice_Bailey
-main: at.mlps.rc.main.Main
+author: Kit
+main: at.kitsoft.redicraft.main.Main
 description: This is the Core-Plugin of RediCraft.
 website: www.redicraft.eu
 prefix: REDICRAFTCOREPLUGIN
 version: v3.2.17s
-api-version: 1.13
+api-version: 1.19
 
 commands:
     build:
