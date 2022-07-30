@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionType;
 
 import at.kitsoft.redicraft.mysql.lb.MySQL;
 
-public class ItemsAPI {
+public class ItemsAPI{
 	
 	public ItemStack defItem(Material mat, int avg, String dpname) {
 		ItemStack is = new ItemStack(mat, avg);

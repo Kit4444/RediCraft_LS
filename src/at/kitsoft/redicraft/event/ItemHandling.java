@@ -7,14 +7,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import at.kitsoft.redicraft.command.BuildClass;
+import at.kitsoft.redicraft.command.BuildCommand;
 
 public class ItemHandling implements Listener{
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if(BuildClass.build.contains(p.getName())) {
+		if(BuildCommand.build.contains(p.getName())) {
 			e.setCancelled(false);
 		}else {
 			if(e.getItem() != null && e.getItem().getItemMeta() != null) {

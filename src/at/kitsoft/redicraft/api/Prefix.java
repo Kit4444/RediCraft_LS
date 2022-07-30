@@ -15,12 +15,13 @@ public class Prefix {
 		try {
 			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_igprefix");
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while(rs.next()){
 				prefix.put(rs.getString("type"), rs.getString("prefix"));
 			}
 			rs.close();
 			ps.close();
-		} catch (SQLException e) {
+		}
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 		

@@ -14,23 +14,24 @@ import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.main.Main;
 import at.kitsoft.redicraft.mysql.lb.MySQL;
 
-public class AFK_CMD implements CommandExecutor{
+public class AFKCommand implements CommandExecutor{
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(!(sender instanceof Player)) {
-			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
-		}else {
-			Player p = (Player)sender;
-			if(isAFK(p)) {
-				updateAFK(p, false);
-				LanguageHandler.sendMSGReady(p, "cmd.afk.leave");
-			}else {
-				updateAFK(p, true);
-				LanguageHandler.sendMSGReady(p, "cmd.afk.join");
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+		if(sender instanceof Player player){
+			if(isAFK(player)){
+				updateAFK(player, false);
+				LanguageHandler.sendMSGReady(player, "cmd.afk.leave");
+			}
+			else{
+				updateAFK(player, true);
+				LanguageHandler.sendMSGReady(player, "cmd.afk.join");
 			}
 		}
-		return false;
+		else{
+			Bukkit.getConsoleSender().sendMessage(Main.consolesend);
+		}
+		return true;
 	}
 	
 	private static boolean isAFK(Player p) {

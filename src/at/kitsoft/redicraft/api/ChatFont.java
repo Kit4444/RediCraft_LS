@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class ChatFont {
+public class ChatFont{
 	
 	private static final Pattern HEX_PATTERN = Pattern.compile("#[0-9a-fA-F]{6}");
 
@@ -14,4 +14,5 @@ public class ChatFont {
 		while(matcher.find()){ text = text.replace(matcher.group(), ChatColor.of(matcher.group()).toString()); }
 		return text;
 	}
+	
 }

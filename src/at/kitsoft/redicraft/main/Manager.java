@@ -9,17 +9,17 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 
 import at.kitsoft.redicraft.api.Prefix;
-import at.kitsoft.redicraft.command.AFK_CMD;
-import at.kitsoft.redicraft.command.BuildClass;
+import at.kitsoft.redicraft.command.AFKCommand;
+import at.kitsoft.redicraft.command.BuildCommand;
 import at.kitsoft.redicraft.command.CMD_SetID_SetPf;
 import at.kitsoft.redicraft.command.DLStringsFromDBCMD;
-import at.kitsoft.redicraft.command.LobbyCMD;
+import at.kitsoft.redicraft.command.LobbyCommand;
 import at.kitsoft.redicraft.command.LogSystem;
 import at.kitsoft.redicraft.command.Maintenance;
 import at.kitsoft.redicraft.command.MoneyAPI;
 import at.kitsoft.redicraft.command.Pinfo;
 import at.kitsoft.redicraft.command.TRS_Villager;
-import at.kitsoft.redicraft.event.Advents_Handler;
+import at.kitsoft.redicraft.event.AdventsHandler;
 import at.kitsoft.redicraft.event.Blocker;
 import at.kitsoft.redicraft.event.ExtrasInv;
 import at.kitsoft.redicraft.event.ItemHandling;
@@ -78,14 +78,14 @@ public class Manager {
 			Main.mysql.connect();
 		}catch (SQLException e) {}
 		
-		Main.instance.getCommand("build").setExecutor(new BuildClass());
+		Main.instance.getCommand("build").setExecutor(new BuildCommand());
 		Main.instance.getCommand("login").setExecutor(new LogSystem());
 		Main.instance.getCommand("logout").setExecutor(new LogSystem());
 		Main.instance.getCommand("togglegroup").setExecutor(new LogSystem());
 		Main.instance.getCommand("maintenance").setExecutor(new Maintenance());
 		Main.instance.getCommand("userlist").setExecutor(new Maintenance());
 		Main.instance.getCommand("whitelist").setExecutor(new Maintenance());
-		Main.instance.getCommand("afk").setExecutor(new AFK_CMD());
+		Main.instance.getCommand("afk").setExecutor(new AFKCommand());
 		Main.instance.getCommand("setid").setExecutor(new CMD_SetID_SetPf());
 		Main.instance.getCommand("setpf").setExecutor(new CMD_SetID_SetPf());
 		Main.instance.getCommand("money").setExecutor(new MoneyAPI());
@@ -99,13 +99,13 @@ public class Manager {
 		Main.instance.getCommand("pay").setExecutor(new MoneyAPI());
 		Main.instance.getCommand("spawnvillager").setExecutor(new TRS_Villager());
 		Main.instance.getCommand("pinfo").setExecutor(new Pinfo());
-		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCMD());
+		Main.instance.getCommand("lobbyconf").setExecutor(new LobbyCommand());
 		Main.instance.getCommand("stringmanager").setExecutor(new DLStringsFromDBCMD());
 		
 		PluginManager pl = Bukkit.getPluginManager();
 		pl.registerEvents(new ScoreboardClass(), Main.instance);
 		pl.registerEvents(new JoinQuitEventID(), Main.instance);
-		pl.registerEvents(new BuildClass(), Main.instance);
+		pl.registerEvents(new BuildCommand(), Main.instance);
 		pl.registerEvents(new Navigator(Main.instance), Main.instance);
 		pl.registerEvents(new ItemHandling(), Main.instance);
 		pl.registerEvents(new Maintenance(), Main.instance);
@@ -115,8 +115,8 @@ public class Manager {
 		pl.registerEvents(new PlayerMove(), Main.instance);
 		pl.registerEvents(new TRS_Inventory(), Main.instance);
 		pl.registerEvents(new Serverupdater(), Main.instance);
-		pl.registerEvents(new LobbyCMD(), Main.instance);
-		pl.registerEvents(new Advents_Handler(), Main.instance);
+		pl.registerEvents(new LobbyCommand(), Main.instance);
+		pl.registerEvents(new AdventsHandler(), Main.instance);
 		
 		
 		ScoreboardClass sb = new ScoreboardClass();

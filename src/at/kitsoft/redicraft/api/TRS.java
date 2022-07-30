@@ -6,9 +6,15 @@ import java.io.IOException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-public class TRS_API {
+public class TRS{
 	
-	static File file = new File("plugins/RCLS/rewards.yml");
+	private static File file;
+	private static YamlConfiguration cfg;
+	
+	static{
+		file = new File("plugins/RCLS/rewards.yml");
+		cfg = YamlConfiguration.loadConfiguration(file);
+	}
 	
 	public static String remainingTime(long ms) {
 		long seconds = ms / 1000;
@@ -25,13 +31,11 @@ public class TRS_API {
 		return hours + " hours, " + minutes + " mins and " + seconds + " secs";
 	}
 	
-	public static long getTime(Player p, String path) {
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+	public static long getTime(Player p, String path){
 		return cfg.getLong(p.getUniqueId().toString() + ".millis." + path);
 	}
 	
 	public static void setReward(Player p, String path) {
-		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		long onedaytime = System.currentTimeMillis() + 86400000;
 		cfg.set(p.getUniqueId().toString() + ".millis." + path, onedaytime);
 		try { cfg.save(file); } catch (IOException e) { e.printStackTrace(); }

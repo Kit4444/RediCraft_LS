@@ -9,7 +9,7 @@ public class TPSMonitor {
 	
 private static int tps = 0;
 	
-	public static void startTPSMonitor() {
+	public static void startTPSMonitor(){
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			long sec;
 			long currentSec;
@@ -33,7 +33,7 @@ private static int tps = 0;
 		}, 0, 1);
 	}
 	
-	public static int getTPSasINT() {
+	public static int getTPS(){
 		return tps;
 	}
 	

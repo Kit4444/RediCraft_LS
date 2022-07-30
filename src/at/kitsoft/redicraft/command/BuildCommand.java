@@ -21,56 +21,59 @@ import at.kitsoft.redicraft.event.ScoreboardClass;
 import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.main.Main;
 
-public class BuildClass implements CommandExecutor, Listener {
+public class BuildCommand implements CommandExecutor, Listener{
 
 	public static ArrayList<String> build = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (!(sender instanceof Player)) {
-			Bukkit.getConsoleSender().sendMessage("Use this only ingame!");
-		} else {
-			Player p = (Player) sender;
-			if (p.hasPermission("mlps.canBuild")) {
-				if (build.contains(p.getName())) {
-					build.remove(p.getName());
-					LanguageHandler.sendMSGReady(p, "cmd.build.deactivated");
-					Main.setPlayerBar(p);
-					p.setGameMode(GameMode.SURVIVAL);
-					if (ScoreboardClass.buildtime.containsKey(p.getName())) {
-						ScoreboardClass.buildtime.remove(p.getName());
+		if(sender instanceof Player player){
+			if(player.hasPermission("mlps.canBuild")){
+				if(build.contains(player.getName())){
+					build.remove(player.getName());
+					LanguageHandler.sendMSGReady(player, "cmd.build.deactivated");
+					Main.setPlayerBar(player);
+					player.setGameMode(GameMode.SURVIVAL);
+					if(ScoreboardClass.buildtime.containsKey(player.getName())){
+						ScoreboardClass.buildtime.remove(player.getName());
 					}
-				} else {
-					build.add(p.getName());
-					LanguageHandler.sendMSGReady(p, "cmd.build.activated");
-					p.getInventory().clear();
-					p.setGameMode(GameMode.CREATIVE);
+				}
+				else{
+					build.add(player.getName());
+					LanguageHandler.sendMSGReady(player, "cmd.build.activated");
+					player.getInventory().clear();
+					player.setGameMode(GameMode.CREATIVE);
 					long time = (System.currentTimeMillis() / 1000);
-					ScoreboardClass.buildtime.put(p.getName(), time);
+					ScoreboardClass.buildtime.put(player.getName(), time);
 
 				}
 			}
 		}
-		return false;
+		else{
+			Bukkit.getConsoleSender().sendMessage("Use this only ingame!");
+		}
+		return true;
 	}
 
 	@EventHandler
-	public void onBlockPlace(BlockPlaceEvent e) {
+	public void onBlockPlace(BlockPlaceEvent e){
 		Player p = e.getPlayer();
-		if (build.contains(p.getName())) {
+		if(build.contains(p.getName())){
 			e.setCancelled(false);
-		} else {
+		}
+		else{
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.build.cantdothat");
 		}
 	}
 
 	@EventHandler
-	public void onBlockBreak(BlockBreakEvent e) {
+	public void onBlockBreak(BlockBreakEvent e){
 		Player p = e.getPlayer();
-		if (build.contains(p.getName())) {
+		if (build.contains(p.getName())){
 			e.setCancelled(false);
-		} else {
+		}
+		else{
 			e.setCancelled(true);
 			LanguageHandler.sendMSGReady(p, "event.build.cantdothat");
 		}
@@ -89,7 +92,7 @@ public class BuildClass implements CommandExecutor, Listener {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		if (build.contains(e.getPlayer().getName())) {
+		if(build.contains(e.getPlayer().getName())) {
 			build.remove(e.getPlayer().getName());
 		}
 	}

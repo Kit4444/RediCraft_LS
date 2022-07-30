@@ -20,7 +20,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import at.kitsoft.redicraft.api.GetBukkitInfo;
+import at.kitsoft.redicraft.api.BukkitInfo;
 import at.kitsoft.redicraft.api.Prefix;
 import at.kitsoft.redicraft.main.Main;
 import at.kitsoft.redicraft.mysql.lb.MySQL;
@@ -67,7 +67,7 @@ public class JoinQuitEventID implements Listener{
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         HashMap<String, Object> player = new HashMap<>();
         player.put("uuid", uuid);
-        GetBukkitInfo bukkit = new GetBukkitInfo();
+        BukkitInfo bukkit = new BukkitInfo();
         try {
         	if(!Main.mysql.isInDatabase("redicore_userstats", player)) {
         		player.put("userrank", "Player");
@@ -79,7 +79,7 @@ public class JoinQuitEventID implements Listener{
         		player.put("firstjoints", ts.getTime());
         		player.put("firstjoinstring", stime);
         		player.put("firstjoinip", p.getAddress().getHostString());
-        		player.put("server", bukkit.getServerName());
+        		player.put("server", Bukkit.getServer().getName());
         		player.put("loggedin", true);
         		player.put("isstaff", false);
         		player.put("language", "en-UK");
@@ -168,7 +168,7 @@ public class JoinQuitEventID implements Listener{
 	    			ps.setString(2, "#ffffff");
 	    		}
         		ps.setBoolean(3, true);
-        		ps.setString(4, bukkit.getServerName());
+        		ps.setString(4, Bukkit.getServer().getName());
         		ps.setLong(5, ts.getTime());
         		ps.setString(6, stime);
         		ps.setString(7, p.getAddress().getHostString());

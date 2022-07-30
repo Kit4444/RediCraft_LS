@@ -20,7 +20,7 @@ import at.kitsoft.redicraft.api.Prefix;
 import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.main.Main;
 
-public class LobbyCMD implements CommandExecutor, Listener {
+public class LobbyCommand implements CommandExecutor, Listener {
 	
 	// CMD -> /lobbyconf <setspawn|setdrew|heightlow|heightup>
 	static File spawn = new File("plugins/RCLS/spawn.yml");
@@ -98,7 +98,7 @@ public class LobbyCMD implements CommandExecutor, Listener {
 		Location loc = p.getLocation();
 		YamlConfiguration cfg = YamlConfiguration.loadConfiguration(spawn);
 		if(cfg.getString("Spawn.general.WORLD").equalsIgnoreCase(loc.getWorld().getName())) {
-			if(!BuildClass.build.contains(p.getName())) {
+			if(!BuildCommand.build.contains(p.getName())) {
 				if(loc.getBlockY() <= cfg.getInt("Spawn.limit.low")) {
 					p.teleport(retLoc(cfg, "general"));
 				}

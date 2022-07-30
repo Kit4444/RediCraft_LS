@@ -20,7 +20,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import at.kitsoft.redicraft.api.GetBukkitInfo;
+import at.kitsoft.redicraft.api.BukkitInfo;
 import at.kitsoft.redicraft.api.Prefix;
 import at.kitsoft.redicraft.api.TPSMonitor;
 import at.kitsoft.redicraft.mysql.lb.MySQL;
@@ -28,8 +28,7 @@ import at.kitsoft.redicraft.mysql.lb.MySQL;
 public class Serverupdater implements Listener{
 	
 	public void updateWorlds() {
-		GetBukkitInfo bukkit = new GetBukkitInfo();
-		String server = bukkit.getServerName();
+		String server = Bukkit.getServer().getName();
 		for(World w : Bukkit.getWorlds()) {
 			HashMap<String, Object> hm = new HashMap<>();
 			hm.put("server", server);
@@ -88,7 +87,7 @@ public class Serverupdater implements Listener{
 					}
 				}
 			}
-			GetBukkitInfo bukkit = new GetBukkitInfo();
+			BukkitInfo bukkit = new BukkitInfo();
 		    try {
 		    	Main.mysql.update("UPDATE useless_testtable SET toupdate = '" + gcode1 + "' WHERE type = 'lobby';");
 		    	PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_serverstats SET ramusage = ?, serverid = ?, currPlayers = ?, maxPlayers = ?, lastupdateTS = ?, lastupdateST = ?, ramavailable = ?, version = ?, tps = ?, currStaffmembers = ? WHERE servername = ?");
@@ -102,7 +101,7 @@ public class Serverupdater implements Listener{
 				ps.setString(8, "1.19");
 				ps.setString(9, tps);
 				ps.setInt(10, staffs);
-				ps.setString(11, bukkit.getServerName());
+				ps.setString(11, Bukkit.getServer().getName());
 				ps.executeUpdate();
 				ps.close();
 				

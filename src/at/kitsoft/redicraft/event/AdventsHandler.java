@@ -18,19 +18,19 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 
-import at.kitsoft.redicraft.api.Advents_API;
+import at.kitsoft.redicraft.api.Advents;
 import at.kitsoft.redicraft.api.ItemsAPI;
 import at.kitsoft.redicraft.api.Prefix;
 import at.kitsoft.redicraft.command.MoneyAPI;
 import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.mysql.lb.MySQL;
 
-public class Advents_Handler implements Listener{
+public class AdventsHandler implements Listener{
 	
 	public static void setAdventInv(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9*6, "§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr");
-		Advents_API aapi = new Advents_API();
+		Advents aapi = new Advents();
 		
 		int slot1 = 21;
 		int slot2 = 36;
@@ -536,7 +536,7 @@ public class Advents_Handler implements Listener{
 	
 	private void randomGift(Player p, String day) {
 		int gift = random(1, 5);
-		Advents_API advent = new Advents_API();
+		Advents advent = new Advents();
 		advent.setReward(p, Integer.valueOf(day));
 		switch(gift) {
 		case 1: //Role VIP

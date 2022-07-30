@@ -21,10 +21,10 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import at.kitsoft.redicraft.api.ChatFont;
-import at.kitsoft.redicraft.api.GetBukkitInfo;
-import at.kitsoft.redicraft.api.GetPlayersLocal;
+import at.kitsoft.redicraft.api.BukkitInfo;
+import at.kitsoft.redicraft.api.PlayersLocal;
 import at.kitsoft.redicraft.api.Prefix;
-import at.kitsoft.redicraft.command.BuildClass;
+import at.kitsoft.redicraft.command.BuildCommand;
 import at.kitsoft.redicraft.command.MoneyAPI;
 import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.main.Main;
@@ -45,8 +45,8 @@ public class ScoreboardClass implements Listener{
 		Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective o = sb.registerNewObjective("aaa", "dummy", "Infoboard");
 		PermissionUser po = PermissionsEx.getUser(p);
-		int puser = GetPlayersLocal.getPlayers("BungeeCord", "currPlayers");
-		int pusermax = GetPlayersLocal.getPlayers("BungeeCord", "maxPlayers");
+		int puser = PlayersLocal.getPlayers("BungeeCord", "currPlayers");
+		int pusermax = PlayersLocal.getPlayers("BungeeCord", "maxPlayers");
 		int puserperc = (puser*100/pusermax);
 		String sbpr = Prefix.prefix("scoreboard");
 		String pr = "";
@@ -65,7 +65,7 @@ public class ScoreboardClass implements Listener{
 		}else if(puserperc >= 96) {
 			pr = sbpr + " » §4" + puser + " §7/§9 " + pusermax;
 		}
-		if(BuildClass.build.contains(p.getName())) {
+		if(BuildCommand.build.contains(p.getName())) {
 			ItemStack is = p.getItemInUse();
 			String itemid = is.getType().toString();
 			o.setDisplayName("§aBuild§cStats");
@@ -514,9 +514,9 @@ public class ScoreboardClass implements Listener{
 					su.updateWorlds();
 					System.gc();
 				}
-				GetBukkitInfo bukkit = new GetBukkitInfo();
+				BukkitInfo bukkit = new BukkitInfo();
 				for(Player all : Bukkit.getOnlinePlayers()) {
-					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", bukkit.getServerName()).replace("%serverid", bukkit.getServerId()));
+					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", Bukkit.getServer().getName()).replace("%serverid", bukkit.getServerId()));
 				}
 			}
 		}.runTaskTimer(Main.instance, delay, sbsched);

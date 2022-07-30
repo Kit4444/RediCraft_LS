@@ -14,7 +14,7 @@ public class MojangAPI {
 
 	public String getUUIDfromName(String name) {
 		String url = "https://api.mojang.com/users/profiles/minecraft/" + name;
-		String uuid = "";
+		String uuid;
 		try {
 			String UUIDJson = IOUtils.toString(new URL(url), StandardCharsets.UTF_8);
 			if (UUIDJson.isEmpty())

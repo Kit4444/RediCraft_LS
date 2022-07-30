@@ -20,7 +20,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 import at.kitsoft.redicraft.api.Prefix;
-import at.kitsoft.redicraft.command.BuildClass;
+import at.kitsoft.redicraft.command.BuildCommand;
 import at.kitsoft.redicraft.main.LanguageHandler;
 
 public class Blocker implements Listener{
@@ -54,7 +54,7 @@ public class Blocker implements Listener{
 		Player p = e.getPlayer();
 		Entity target = e.getRightClicked();
 		if(target.getType() == EntityType.ITEM_FRAME) {
-			if(BuildClass.build.contains(p.getName())) {
+			if(BuildCommand.build.contains(p.getName())) {
 				e.setCancelled(false);
 			}else {
 				e.setCancelled(true);
