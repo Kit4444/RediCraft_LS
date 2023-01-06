@@ -67,7 +67,6 @@ public class JoinQuitEventID implements Listener{
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         HashMap<String, Object> player = new HashMap<>();
         player.put("uuid", uuid);
-        BukkitInfo bukkit = new BukkitInfo();
         try {
         	if(!Main.mysql.isInDatabase("redicore_userstats", player)) {
         		player.put("userrank", "Player");
@@ -79,7 +78,7 @@ public class JoinQuitEventID implements Listener{
         		player.put("firstjoints", ts.getTime());
         		player.put("firstjoinstring", stime);
         		player.put("firstjoinip", p.getAddress().getHostString());
-        		player.put("server", Bukkit.getServer().getName());
+        		player.put("server", new BukkitInfo().getServerName());
         		player.put("loggedin", true);
         		player.put("isstaff", false);
         		player.put("language", "en-UK");
@@ -168,7 +167,7 @@ public class JoinQuitEventID implements Listener{
 	    			ps.setString(2, "#ffffff");
 	    		}
         		ps.setBoolean(3, true);
-        		ps.setString(4, Bukkit.getServer().getName());
+        		ps.setString(4, new BukkitInfo().getServerName());
         		ps.setLong(5, ts.getTime());
         		ps.setString(6, stime);
         		ps.setString(7, p.getAddress().getHostString());
@@ -182,6 +181,9 @@ public class JoinQuitEventID implements Listener{
         		ps.close();
         	}
         }catch (SQLException ex) { ex.printStackTrace(); }
+        if(isAFK(p)) {
+        	updateAFK(p, false);
+        }
         if(p.hasPermission("mlps.isSA")) {
         	String isVer = Main.instance.getDescription().getVersion();
             String shouldVer = retVersion();
@@ -321,5 +323,29 @@ public class JoinQuitEventID implements Listener{
 			ps.close();
 		}catch (SQLException ex) { ex.printStackTrace(); }
 		return s;
+	}
+	
+	private static boolean isAFK(Player p) {
+		boolean boo = false;
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT * FROM redicore_userstats WHERE uuid = ?");
+			ps.setString(1, p.getUniqueId().toString().replace("-", ""));
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			boo = rs.getBoolean("afk");
+			rs.close();
+			ps.close();
+		}catch (SQLException e) { e.printStackTrace(); }
+		return boo;
+	}
+	
+	private static void updateAFK(Player p, boolean boo) {
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("UPDATE redicore_userstats SET afk = ? WHERE uuid = ?");
+			ps.setBoolean(1, boo);
+			ps.setString(2, p.getUniqueId().toString().replace("-", ""));
+			ps.executeUpdate();
+			ps.close();
+		}catch (SQLException e) { e.printStackTrace(); }
 	}
 }

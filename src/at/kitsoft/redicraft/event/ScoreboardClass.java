@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -24,6 +25,7 @@ import at.kitsoft.redicraft.api.ChatFont;
 import at.kitsoft.redicraft.api.BukkitInfo;
 import at.kitsoft.redicraft.api.PlayersLocal;
 import at.kitsoft.redicraft.api.Prefix;
+import at.kitsoft.redicraft.api.TimeRelativeCalculator;
 import at.kitsoft.redicraft.command.BuildCommand;
 import at.kitsoft.redicraft.command.MoneyAPI;
 import at.kitsoft.redicraft.main.LanguageHandler;
@@ -43,7 +45,7 @@ public class ScoreboardClass implements Listener{
 	
 	public void setScoreboard(Player p) throws SQLException {
 		Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
-		Objective o = sb.registerNewObjective("aaa", "dummy", "Infoboard");
+		Objective o = sb.registerNewObjective("aaa", Criteria.DUMMY, "Infoboard");
 		PermissionUser po = PermissionsEx.getUser(p);
 		int puser = PlayersLocal.getPlayers("BungeeCord", "currPlayers");
 		int pusermax = PlayersLocal.getPlayers("BungeeCord", "maxPlayers");
@@ -66,14 +68,22 @@ public class ScoreboardClass implements Listener{
 			pr = sbpr + " » §4" + puser + " §7/§9 " + pusermax;
 		}
 		if(BuildCommand.build.contains(p.getName())) {
-			ItemStack is = p.getItemInUse();
-			String itemid = is.getType().toString();
+			ItemStack ismh = p.getInventory().getItemInMainHand();
+			ItemStack isoh = p.getInventory().getItemInOffHand();
+			String itemidmh = ismh.getType().toString();
+			String itemidoh = isoh.getType().toString();
 			o.setDisplayName("§aBuild§cStats");
-			o.getScore("§7Buildtime:").setScore(4);
-			o.getScore("§7» §a" + getBuildTime(p.getName())).setScore(3);
-			o.getScore("§0").setScore(2);
-			o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.block")).setScore(1);
-			o.getScore("§7» §a" + itemid).setScore(0);
+			o.getScore("§7Buildtime:").setScore(6);
+			o.getScore("§7» §a" + getBuildTime(p.getName())).setScore(5);
+			o.getScore("§0").setScore(4);
+			if(!itemidmh.equalsIgnoreCase("AIR")) {
+				o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.block") + " Main Hand").setScore(3);
+				o.getScore("§7» §c§a" + itemidmh).setScore(2);
+			}
+			if(!itemidoh.equalsIgnoreCase("AIR")) {
+				o.getScore(LanguageHandler.returnStringReady(p, "scoreboard.sideboard.block") + " Second Hand").setScore(1);
+				o.getScore("§7» §b§a" + itemidoh).setScore(0);
+			}
 		}else {
 			if(sbSide >= 0 && sbSide <= 4) {
 				o.setDisplayName(pr);
@@ -420,15 +430,25 @@ public class ScoreboardClass implements Listener{
 			chatHM.clear();
 			roleHM.clear();
 			while(rs.next()) {
-				tabHM.put(rs.getString("rank"), rs.getString("prefix_tab"));
-				chatHM.put(rs.getString("rank"), rs.getString("prefix_chat"));
+				tabHM.put(rs.getString("rank"), rs.getString("color") + rs.getString("prefix_tab"));
+				chatHM.put(rs.getString("rank"), rs.getString("color") + rs.getString("prefix_chat"));
 				roleHM.put(rs.getString("rank"), rs.getString("team"));
 			}
 		}catch (SQLException e) {
 		}
 	}
 	
-	String getBuildTime(String player) {
+	public void downloadServerPrefix() {
+		try {
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT prefix,showWorldprefix FROM redicore_serverstats WHERE servername = ?");
+			ps.setString(1, new BukkitInfo().getServerName());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/*String getBuildTime(String player) {
 		if(buildtime.containsKey(player)) {
 			long btime = buildtime.get(player);
 			long current = System.currentTimeMillis() / 1000;
@@ -459,6 +479,15 @@ public class ScoreboardClass implements Listener{
 			return hr + ":" + min;
 		}else {
 			return "Errored";
+		}
+	}*/
+	
+	String getBuildTime(String player) {
+		if(buildtime.containsKey(player)) {
+			long time = buildtime.get(player);
+			return TimeRelativeCalculator.toRelative(time / 1000, 1);
+		}else {
+			return "§0§cError!";
 		}
 	}
 	
@@ -499,8 +528,8 @@ public class ScoreboardClass implements Listener{
 						tabHM.clear();
 						chatHM.clear();
 						while(rs.next()) {
-							tabHM.put(rs.getString("rank"), rs.getString("prefix_tab"));
-							chatHM.put(rs.getString("rank"), rs.getString("prefix_chat"));
+							tabHM.put(rs.getString("rank"), rs.getString("color") + rs.getString("prefix_tab"));
+							chatHM.put(rs.getString("rank"), rs.getString("color") + rs.getString("prefix_chat"));
 						}
 						tabHM.put("TEST", "VALUE");
 						chatHM.put("TEST", "VALUE");
@@ -516,7 +545,7 @@ public class ScoreboardClass implements Listener{
 				}
 				BukkitInfo bukkit = new BukkitInfo();
 				for(Player all : Bukkit.getOnlinePlayers()) {
-					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", Bukkit.getServer().getName()).replace("%serverid", bukkit.getServerId()));
+					all.setPlayerListHeaderFooter(LanguageHandler.returnStringReady(all, "scoreboard.playerlist.top").replace("|", "\n"), LanguageHandler.returnStringReady(all, "scoreboard.playerlist.bottom").replace("|", "\n").replace("%time", stime).replace("%servername", new BukkitInfo().getServerName()).replace("%serverid", bukkit.getServerId()));
 				}
 			}
 		}.runTaskTimer(Main.instance, delay, sbsched);

@@ -11,13 +11,10 @@ import org.bukkit.entity.Player;
 public class Advents{
 	
 	private static File file;
-	private YamlConfiguration cfg;
+	private static YamlConfiguration cfg;
 	
 	static{
 		file = new File("plugins/RCLS/advents.yml");
-	}
-	
-	public Advents(){
 		cfg = YamlConfiguration.loadConfiguration(file);
 	}
 	
@@ -32,12 +29,17 @@ public class Advents{
 		return cfg.contains("Advents." + p.getUniqueId().toString() + ".Day" + day);
 	}
 	
-	public boolean isAllowedDate(String date){
-		String formDate = date + "/12";
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
-		String sdff = sdf.format(new Date());
-		
-		return formDate.equalsIgnoreCase(sdff);
+	public boolean isAllowedDate(int day){
+		Date date = new Date();
+		if(new SimpleDateFormat("MM").format(date).equalsIgnoreCase("12")) {
+			int currentDay = Integer.parseInt(new SimpleDateFormat("dd").format(date));
+			if(currentDay >= day) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}	
 	}
-
 }

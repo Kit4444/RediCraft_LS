@@ -25,7 +25,7 @@ public class Pinfo implements CommandExecutor {
 		}else {
 			Player p = (Player)sender;
 			if(args.length == 1) {
-				if(args[0].matches("^[0-9]+$")) {
+				if(args[0].matches("^[.0-9]+-$")) {
 					int id = Integer.parseInt(args[0]);
 					HashMap<String, Object> hm = new HashMap<>();
 					hm.put("userid", id);

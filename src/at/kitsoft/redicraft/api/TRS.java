@@ -37,7 +37,7 @@ public class TRS{
 	
 	public static void setReward(Player p, String path) {
 		long onedaytime = System.currentTimeMillis() + 86400000;
-		cfg.set(p.getUniqueId() + ".millis." + path, onedaytime);
+		cfg.set(p.getUniqueId().toString() + ".millis." + path, onedaytime);
 		try { cfg.save(file); } catch (IOException e) { e.printStackTrace(); }
 	}
 	

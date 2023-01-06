@@ -3,6 +3,7 @@ package at.kitsoft.redicraft.event;
 
 import java.util.LinkedList;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fish;
@@ -17,6 +18,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerTakeLecternBookEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 import at.kitsoft.redicraft.api.Prefix;
@@ -46,6 +49,27 @@ public class Blocker implements Listener{
 				}
 			}
 			else{ damageEvent.setCancelled(true); }
+		}
+	}
+	
+	@EventHandler
+	public void onInteract(PlayerInteractEvent e) {
+		if(e.getClickedBlock() == null) return;
+		if(e.getClickedBlock().getType() == Material.SPRUCE_TRAPDOOR) {
+			if(BuildCommand.build.contains(e.getPlayer().getName())) {
+				e.setCancelled(false);
+			}else {
+				e.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerTakeLecternBook(PlayerTakeLecternBookEvent e) {
+		if(BuildCommand.build.contains(e.getPlayer().getName())) {
+			e.setCancelled(false);
+		}else {
+			e.setCancelled(true);
 		}
 	}
 	

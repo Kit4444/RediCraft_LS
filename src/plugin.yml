@@ -6,6 +6,9 @@ website: www.redicraft.eu
 prefix: REDICRAFTCOREPLUGIN
 version: v3.2.17s
 api-version: 1.19
+softdepend:
+  - PermissionEx
+  - ViaVersion
 
 commands:
     build:

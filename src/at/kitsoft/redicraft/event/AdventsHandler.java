@@ -2,7 +2,13 @@ package at.kitsoft.redicraft.event;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.bukkit.Bukkit;
@@ -31,33 +37,37 @@ public class AdventsHandler implements Listener{
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9*6, "§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr");
 		Advents aapi = new Advents();
+		Set<Integer> set = random1(0, 54, 24);
+		List<Integer> list = new ArrayList<>();
+		set.forEach(ra -> {
+			list.add(ra);
+		});
+		int slot1 = list.get(0);
+		int slot2 = list.get(1);
+		int slot3 = list.get(2);
+		int slot4 = list.get(3);
+		int slot5 = list.get(4);
+		int slot6 = list.get(5);
+		int slot7 = list.get(6);
+		int slot8 = list.get(7);
+		int slot9 = list.get(8);
+		int slot10 = list.get(9);
+		int slot11 = list.get(10);
+		int slot12 = list.get(11);
+		int slot13 = list.get(12);
+		int slot14 = list.get(13);
+		int slot15 = list.get(14);
+		int slot16 = list.get(15);
+		int slot17 = list.get(16);
+		int slot18 = list.get(17);
+		int slot19 = list.get(18);
+		int slot20 = list.get(19);
+		int slot21 = list.get(20);
+		int slot22 = list.get(21);
+		int slot23 = list.get(22);
+		int slot24 = list.get(23);
 		
-		int slot1 = 21;
-		int slot2 = 36;
-		int slot3 = 6;
-		int slot4 = 51;
-		int slot5 = 11;
-		int slot6 = 48;
-		int slot7 = 32;
-		int slot8 = 16;
-		int slot9 = 13;
-		int slot10 = 28;
-		int slot11 = 40;
-		int slot12 = 0;
-		int slot13 = 25;
-		int slot14 = 3;
-		int slot15 = 38;
-		int slot16 = 43;
-		int slot17 = 18;
-		int slot18 = 8;
-		int slot19 = 35;
-		int slot20 = 19;
-		int slot21 = 14;
-		int slot22 = 24;
-		int slot23 = 30;
-		int slot24 = 49;
-		
-		if(aapi.isAllowedDate("01")) {
+		if(aapi.isAllowedDate(1)) {
 			if(aapi.hasRewardUsed(p, 1)) {
 				inv.setItem(slot1, iapi.defItem(Material.MINECART, 1, "§cDay 1 §7- used"));
 			}else {
@@ -70,7 +80,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot1, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("02")) {
+		if(aapi.isAllowedDate(2)) {
 			if(aapi.hasRewardUsed(p, 2)) {
 				inv.setItem(slot2, iapi.defItem(Material.MINECART, 1, "§cDay 2 §7- used"));
 			}else {
@@ -83,7 +93,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot2, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("03")) {
+		if(aapi.isAllowedDate(3)) {
 			if(aapi.hasRewardUsed(p, 3)) {
 				inv.setItem(slot3, iapi.defItem(Material.MINECART, 1, "§cDay 3 §7- used"));
 			}else {
@@ -96,7 +106,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot3, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("04")) {
+		if(aapi.isAllowedDate(4)) {
 			if(aapi.hasRewardUsed(p, 4)) {
 				inv.setItem(slot4, iapi.defItem(Material.MINECART, 1, "§cDay 4 §7- used"));
 			}else {
@@ -109,7 +119,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot4, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("05")) {
+		if(aapi.isAllowedDate(5)) {
 			if(aapi.hasRewardUsed(p, 5)) {
 				inv.setItem(slot5, iapi.defItem(Material.MINECART, 1, "§cDay 5 §7- used"));
 			}else {
@@ -122,7 +132,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot5, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("06")) {
+		if(aapi.isAllowedDate(6)) {
 			if(aapi.hasRewardUsed(p, 6)) {
 				inv.setItem(slot6, iapi.defItem(Material.MINECART, 1, "§cDay 6 §7- used"));
 			}else {
@@ -135,7 +145,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot6, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("07")) {
+		if(aapi.isAllowedDate(7)) {
 			if(aapi.hasRewardUsed(p, 7)) {
 				inv.setItem(slot7, iapi.defItem(Material.MINECART, 1, "§cDay 7 §7- used"));
 			}else {
@@ -148,7 +158,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot7, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("08")) {
+		if(aapi.isAllowedDate(8)) {
 			if(aapi.hasRewardUsed(p, 8)) {
 				inv.setItem(slot8, iapi.defItem(Material.MINECART, 1, "§cDay 8 §7- used"));
 			}else {
@@ -161,7 +171,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot8, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("09")) {
+		if(aapi.isAllowedDate(9)) {
 			if(aapi.hasRewardUsed(p, 9)) {
 				inv.setItem(slot9, iapi.defItem(Material.MINECART, 1, "§cDay 9 §7- used"));
 			}else {
@@ -174,7 +184,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot9, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("10")) {
+		if(aapi.isAllowedDate(10)) {
 			if(aapi.hasRewardUsed(p, 10)) {
 				inv.setItem(slot10, iapi.defItem(Material.MINECART, 1, "§cDay 10 §7- used"));
 			}else {
@@ -187,7 +197,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot10, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("11")) {
+		if(aapi.isAllowedDate(11)) {
 			if(aapi.hasRewardUsed(p, 11)) {
 				inv.setItem(slot11, iapi.defItem(Material.MINECART, 1, "§cDay 11 §7- used"));
 			}else {
@@ -200,7 +210,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot11, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("12")) {
+		if(aapi.isAllowedDate(12)) {
 			if(aapi.hasRewardUsed(p, 12)) {
 				inv.setItem(slot12, iapi.defItem(Material.MINECART, 1, "§cDay 12 §7- used"));
 			}else {
@@ -213,7 +223,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot12, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("13")) {
+		if(aapi.isAllowedDate(13)) {
 			if(aapi.hasRewardUsed(p, 13)) {
 				inv.setItem(slot13, iapi.defItem(Material.MINECART, 1, "§cDay 13 §7- used"));
 			}else {
@@ -226,7 +236,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot13, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("14")) {
+		if(aapi.isAllowedDate(14)) {
 			if(aapi.hasRewardUsed(p, 14)) {
 				inv.setItem(slot14, iapi.defItem(Material.MINECART, 1, "§cDay 14 §7- used"));
 			}else {
@@ -239,7 +249,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot14, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("15")) {
+		if(aapi.isAllowedDate(15)) {
 			if(aapi.hasRewardUsed(p, 15)) {
 				inv.setItem(slot15, iapi.defItem(Material.MINECART, 1, "§cDay 15 §7- used"));
 			}else {
@@ -252,7 +262,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot15, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("16")) {
+		if(aapi.isAllowedDate(16)) {
 			if(aapi.hasRewardUsed(p, 16)) {
 				inv.setItem(slot16, iapi.defItem(Material.MINECART, 1, "§cDay 16 §7- used"));
 			}else {
@@ -265,7 +275,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot16, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("17")) {
+		if(aapi.isAllowedDate(17)) {
 			if(aapi.hasRewardUsed(p, 17)) {
 				inv.setItem(slot17, iapi.defItem(Material.MINECART, 1, "§cDay 17 §7- used"));
 			}else {
@@ -278,7 +288,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot17, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("18")) {
+		if(aapi.isAllowedDate(18)) {
 			if(aapi.hasRewardUsed(p, 18)) {
 				inv.setItem(slot18, iapi.defItem(Material.MINECART, 1, "§cDay 18 §7- used"));
 			}else {
@@ -291,7 +301,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot18, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("19")) {
+		if(aapi.isAllowedDate(19)) {
 			if(aapi.hasRewardUsed(p, 19)) {
 				inv.setItem(slot19, iapi.defItem(Material.MINECART, 1, "§cDay 19 §7- used"));
 			}else {
@@ -304,7 +314,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot19, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("20")) {
+		if(aapi.isAllowedDate(20)) {
 			if(aapi.hasRewardUsed(p, 20)) {
 				inv.setItem(slot20, iapi.defItem(Material.MINECART, 1, "§cDay 20 §7- used"));
 			}else {
@@ -317,7 +327,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot20, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("21")) {
+		if(aapi.isAllowedDate(21)) {
 			if(aapi.hasRewardUsed(p, 21)) {
 				inv.setItem(slot21, iapi.defItem(Material.MINECART, 1, "§cDay 21 §7- used"));
 			}else {
@@ -330,7 +340,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot21, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("22")) {
+		if(aapi.isAllowedDate(22)) {
 			if(aapi.hasRewardUsed(p, 22)) {
 				inv.setItem(slot22, iapi.defItem(Material.MINECART, 1, "§cDay 22 §7- used"));
 			}else {
@@ -343,7 +353,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot22, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("23")) {
+		if(aapi.isAllowedDate(23)) {
 			if(aapi.hasRewardUsed(p, 23)) {
 				inv.setItem(slot23, iapi.defItem(Material.MINECART, 1, "§cDay 23 §7- used"));
 			}else {
@@ -356,7 +366,7 @@ public class AdventsHandler implements Listener{
 				inv.setItem(slot23, iapi.defItem(Material.HOPPER_MINECART, 1, "§cA §fD§ca§fy"));
 			}
 		}
-		if(aapi.isAllowedDate("24")) {
+		if(aapi.isAllowedDate(24)) {
 			if(aapi.hasRewardUsed(p, 24)) {
 				inv.setItem(slot24, iapi.defItem(Material.MINECART, 1, "§cDay 24 §7- used"));
 			}else {
@@ -514,7 +524,13 @@ public class AdventsHandler implements Listener{
 		if(ent.getType() == EntityType.SNOWMAN) {
 			Snowman v = (Snowman) ent;
 			if(v.getCustomName().equalsIgnoreCase("§cA§fd§cv§fe§cn§ft §cC§fa§cl§fe§cn§fd§ca§fr")) {
-				setAdventInv(p);
+				SimpleDateFormat sdf = new SimpleDateFormat("MM");
+				String month = sdf.format(new Date());
+				if(month.equalsIgnoreCase("12")) {
+					setAdventInv(p);
+				}else {
+					p.sendMessage(Prefix.prefix("main") + "§cSorry, but it's not december yet!");
+				}
 			}
 		}
 	}
@@ -535,7 +551,7 @@ public class AdventsHandler implements Listener{
 	}
 	
 	private void randomGift(Player p, String day) {
-		int gift = random(1, 5);
+		int gift = random(1, 11);
 		Advents advent = new Advents();
 		advent.setReward(p, Integer.valueOf(day));
 		switch(gift) {
@@ -559,6 +575,30 @@ public class AdventsHandler implements Listener{
 		case 5: //enchanted Items
 			String giftCode2 = addGift(p, "1*:enchItems");
 			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "Enchanted Items on Survival Servers, Gift Code: " + giftCode2).replace("%day", day));
+			break;
+		case 6: //more plots
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add plots.plot.6");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "More plots to claim").replace("%day", day));
+			break;
+		case 7: //fly
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add mlps.userfly");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "Fly allowance").replace("%day", day));
+			break;
+		case 8: //tempuse of /weather command
+			String giftCode6 = addGift(p, "5t:weather");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "5 Uses of the /weather command, Gift Code: " + giftCode6).replace("%day", day));
+			break;
+		case 9: //tempuse of /time command
+			String giftCode7 = addGift(p, "5t:time");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "5 Uses of the /time command, Gift Code: " + giftCode7).replace("%day", day));
+			break;
+		case 10: //win chat colors
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add mlps.colorChat");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "Color Chat allowance").replace("%day", day));
+			break;
+		case 11: //5 uses of /heal command
+			String giftCode9 = addGift(p, "5t:heal");
+			p.sendMessage(Prefix.prefix("main") + LanguageHandler.returnStringReady(p, "event.advents.current").replace("%reward", "5 Uses of the /heal command, Gift Code: " + giftCode9).replace("%day", day));
 			break;
 		}
 	}
@@ -584,5 +624,14 @@ public class AdventsHandler implements Listener{
 			number = r.nextInt(max);
 		}
 		return number;
+	}
+	
+	private static Set<Integer> random1(int low, int max, int size){
+		Set<Integer> set = new Random().ints(low, max)
+				.distinct()
+				.limit(size)
+				.boxed()
+				.collect(Collectors.toSet());
+		return set;
 	}
 }

@@ -1,7 +1,6 @@
 package at.kitsoft.redicraft.command;
 
 import java.util.ArrayList;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -43,7 +42,7 @@ public class BuildCommand implements CommandExecutor, Listener{
 					LanguageHandler.sendMSGReady(player, "cmd.build.activated");
 					player.getInventory().clear();
 					player.setGameMode(GameMode.CREATIVE);
-					long time = (System.currentTimeMillis() / 1000);
+					long time = (System.currentTimeMillis());
 					ScoreboardClass.buildtime.put(player.getName(), time);
 
 				}
@@ -67,6 +66,7 @@ public class BuildCommand implements CommandExecutor, Listener{
 		}
 	}
 
+	
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e){
 		Player p = e.getPlayer();

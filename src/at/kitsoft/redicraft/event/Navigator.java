@@ -19,6 +19,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import at.kitsoft.redicraft.api.ItemsAPI;
+import at.kitsoft.redicraft.api.PlayerInfo;
 import at.kitsoft.redicraft.api.Prefix;
 import at.kitsoft.redicraft.main.LanguageHandler;
 import at.kitsoft.redicraft.main.Main;
@@ -41,6 +42,8 @@ public class Navigator implements Listener {
 	static String gameslobby = "§dGameslobby";
 	static String farmserver = "§5Farmserver";
 	static String bauserver = "§bStaffserver";
+	static String Fcreative = "§aForge §eCreative";
+	static String Fsurvival = "§aForge §cSurvival";
 
 	static String locked = " §7- §4locked";
 	static String monitored = " §7- §9monitoring";
@@ -52,41 +55,41 @@ public class Navigator implements Listener {
 	public static void mainnavi(Player p) {
 		ItemsAPI iapi = new ItemsAPI();
 		Inventory inv = Bukkit.createInventory(null, 9 * 3, title);
-		inv.setItem(0, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(1, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(3, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(4, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(5, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(6, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(7, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(8, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(9, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(11, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(12, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(14, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(15, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(17, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(18, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(19, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(21, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(22, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(23, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		inv.setItem(25, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
-		// inv w/ items
-		inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
-		inv.setItem(10, iapi.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
-		inv.setItem(16, iapi.naviItem(Material.GOLDEN_SHOVEL, farmserver, "Farmserver"));
-		inv.setItem(24, iapi.naviItem(Material.IRON_AXE, survival, "Survival"));
-		inv.setItem(20, iapi.naviItem(Material.RED_BED, gameslobby, "Gameslobby"));
-		if (p.hasPermission("mlps.isTeam") || p.hasPermission("mlps.isBuilder") || p.hasPermission("mlps.isStaff")) {
-			inv.setItem(26, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
-		} else {
-			inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+		if(PlayerInfo.getPlayerVersion(p) == 340) {
+			for(int i = 0; i < 27; i++) {
+				inv.setItem(i, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+			}
+			inv.setItem(13, iapi.defItem(Material.NETHER_STAR, 1, spawn)); // spawn
+			inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, Fcreative, "Forge Creative"));
+			inv.setItem(24, iapi.naviItem(Material.IRON_AXE, Fsurvival, "Forge Survival"));
+			if(p.hasPermission("mlps.isTeam")) {
+				inv.setItem(20, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
+				inv.setItem(2, iapi.defItem(Material.EMERALD, 1, dailyrew)); // dailyrewards
+			}else {
+				inv.setItem(11, iapi.defItem(Material.EMERALD, 1, dailyrew)); // dailyrewards
+			}
+			p.openInventory(inv);
+			p.updateInventory();
+		}else {
+			for(int i = 0; i < 27; i++) {
+				inv.setItem(i, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+			}
+			// inv w/ items
+			inv.setItem(6, iapi.naviItem(Material.DIAMOND_PICKAXE, creative, "Creative"));
+			inv.setItem(10, iapi.naviItem(Material.GRASS_BLOCK, skyblock, "SkyBlock"));
+			inv.setItem(16, iapi.naviItem(Material.GOLDEN_SHOVEL, farmserver, "Farmserver"));
+			inv.setItem(24, iapi.naviItem(Material.IRON_AXE, survival, "Survival"));
+			inv.setItem(20, iapi.naviItem(Material.RED_BED, gameslobby, "Gameslobby"));
+			if (p.hasPermission("mlps.isTeam") || p.hasPermission("mlps.isBuilder") || p.hasPermission("mlps.isStaff")) {
+				inv.setItem(26, iapi.naviItem(Material.WOODEN_AXE, bauserver, "Staffserver"));
+			} else {
+				inv.setItem(26, iapi.defItem(Material.BLACK_STAINED_GLASS_PANE, 1, "§0"));
+			}
+			inv.setItem(2, iapi.defItem(Material.EMERALD, 1, dailyrew)); // dailyrewards
+			inv.setItem(13, iapi.defItem(Material.NETHER_STAR, 1, spawn)); // spawn
+			p.openInventory(inv);
+			p.updateInventory();
 		}
-		inv.setItem(2, iapi.defItem(Material.EMERALD, 1, dailyrew)); // dailyrewards
-		inv.setItem(13, iapi.defItem(Material.NETHER_STAR, 1, spawn)); // spawn
-		p.openInventory(inv);
-		p.updateInventory();
 	}
 
 	@EventHandler
@@ -249,7 +252,55 @@ public class Navigator implements Listener {
 						}
 
 					}
-				} else if (e.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
+				} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Fcreative)) {
+					e.setCancelled(true);
+					boolean lock = getData("Forge Creative", "locked");
+					if (lock) {
+						p.sendMessage(Prefix.prefix("main")
+								+ LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked")
+										.replace("%server", "Forge Creative"));
+					} else {
+						boolean monitor = getData("Forge Creative", "monitoring");
+						boolean online = getData("Forge Creative", "online");
+						if (online) {
+							if (monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "forgecreative", Fcreative);
+							} else {
+								sendPlayer(p, "forgecreative", Fcreative);
+							}
+						} else {
+							p.sendMessage(Prefix.prefix("main")
+									+ LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline")
+											.replace("%server", "Forge Creative"));
+						}
+
+					}
+				} else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Fsurvival)) {
+					e.setCancelled(true);
+					boolean lock = getData("Forge Survival", "locked");
+					if (lock) {
+						p.sendMessage(Prefix.prefix("main")
+								+ LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.locked")
+										.replace("%server", "Forge Survival"));
+					} else {
+						boolean monitor = getData("Forge Survival", "monitoring");
+						boolean online = getData("Forge Survival", "online");
+						if (online) {
+							if (monitor) {
+								LanguageHandler.sendMSGReady(p, "event.navigator.sendPlayer.monitorinfo");
+								sendPlayer(p, "forgesurvival", Fsurvival);
+							} else {
+								sendPlayer(p, "forgesurvival", Fsurvival);
+							}
+						} else {
+							p.sendMessage(Prefix.prefix("main")
+									+ LanguageHandler.returnStringReady(p, "event.navigator.sendPlayer.offline")
+											.replace("%server", "Forge Survival"));
+						}
+
+					}
+				}else if (e.getCurrentItem().getType() == Material.BLACK_STAINED_GLASS_PANE) {
 					e.setCancelled(true);
 				}
 			} else {
