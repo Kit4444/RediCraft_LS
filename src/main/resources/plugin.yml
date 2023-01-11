@@ -10,6 +10,11 @@ softdepend:
   - PermissionEx
   - ViaVersion
 
+libraries:
+  - com.googlecode.json-simple:json-simple:${json-simple.version}
+  - commons-io:commons-io:${commons-io.version}
+  - org.apache.commons:commons-lang3:${commons-lang3.version}
+
 commands:
     build:
     login:
