@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij+all,maven,windows,macos,linux
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,intellij+all,maven,windows,macos,linux
+# Created by https://www.toptal.com/developers/gitignore/api/java,maven,intellij+all,eclipse,netbeans,visualstudiocode,windows,macos,linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,intellij+all,eclipse,netbeans,visualstudiocode,windows,macos,linux
 
 ### Eclipse ###
 .metadata
@@ -61,7 +61,7 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+.project
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
@@ -101,14 +101,14 @@ local.properties
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
-# .idea/modules.xml
+.idea/artifacts
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/modules.xml
 .idea/*.iml
-# .idea/modules
+.idea/modules
 *.iml
-# *.ipr
+*.ipr
 
 # CMake
 cmake-build-*/
@@ -169,7 +169,9 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
+
 *.jar
+!lib/*.jar
 *.war
 *.nar
 *.ear
@@ -248,6 +250,35 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -273,5 +304,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij+all,maven,windows,macos,linux
