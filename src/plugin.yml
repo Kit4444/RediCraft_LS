@@ -1,0 +1,40 @@
+name: RediCore
+author: Kit
+main: at.kitsoft.redicraft.main.Main
+description: This is the Core-Plugin of RediCraft.
+website: www.redicraft.eu
+prefix: REDICRAFTCOREPLUGIN
+version: v3.2.17s
+api-version: 1.19
+softdepend:
+  - PermissionEx
+  - ViaVersion
+
+commands:
+    build:
+    login:
+    logout:
+    togglegroup:
+        aliases: tg
+    userlist:
+    whitelist:
+    maintenance:
+    afk:
+    setspawn:
+    setid:
+    setpf:
+        aliases: setprefix
+    money:
+    setmoney:
+    removemoney:
+    addmoney:
+    topmoney:
+    setbankmoney:
+    bankdeposit:
+    bankwithdraw:
+    pay:
+    spawnvillager:
+    pinfo:
+    lobbyconf:
+    stringmanager:
+    
