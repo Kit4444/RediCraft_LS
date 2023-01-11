@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface SQL {
 	
-	void connect() throws ClassNotFoundException, SQLException;
+	 void connect() throws ClassNotFoundException, SQLException;
 	 void disconnect() throws SQLException;
 	 boolean isConnect() throws SQLException;
 	 void update(String query) throws SQLException;

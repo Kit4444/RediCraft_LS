@@ -15,8 +15,6 @@ public class SQLite extends SQLImpl{
     @Override
     public void connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite://"+db.getAbsolutePath());
-
+        con = DriverManager.getConnection("jdbc:sqlite://"+db.getAbsolutePath());
     }
-
 }

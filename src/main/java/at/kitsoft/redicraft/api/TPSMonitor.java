@@ -4,11 +4,12 @@ import org.bukkit.Bukkit;
 
 import at.kitsoft.redicraft.main.Main;
 
-public class TPSMonitor {
 
-	private static int tps = 0;
+public class TPSMonitor {
 	
-	public static void startTPSMonitor() {
+private static int tps = 0;
+	
+	public static void start(){
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			long sec;
 			long currentSec;
@@ -32,7 +33,7 @@ public class TPSMonitor {
 		}, 0, 1);
 	}
 	
-	public static int getTPSasINT() {
+	public static int getTPS(){
 		return tps;
 	}
 	

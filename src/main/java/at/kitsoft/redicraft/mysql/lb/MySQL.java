@@ -35,7 +35,7 @@ public class MySQL {
 	}
 	
 	public static boolean isConnected() {
-		return (con == null ? false : true);
+		return (con != null);
 	}
 	
 	public static Connection getConnection() {

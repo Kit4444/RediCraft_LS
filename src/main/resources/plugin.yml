@@ -1,44 +1,34 @@
-author: Newt
-version: ${project.version}
-name: RediCore_SubServer
+name: RediCore
+author: Kit
+main: at.kitsoft.redicraft.main.Main
 description: This is the Core-Plugin of RediCraft.
 website: www.redicraft.eu
-prefix: REDICORE
+prefix: REDICRAFTCOREPLUGIN
+version: v3.2.17s
 api-version: 1.19
-main: at.kitsoft.redicraft.main.Main
-softdepend: [PermissionsEx, Jobs]
+softdepend:
+  - PermissionEx
+  - ViaVersion
 
 libraries:
-    - com.googlecode.json-simple:json-simple:${json-simple.version}
-    - commons-io:commons-io:${commons-io.version}
+  - com.googlecode.json-simple:json-simple:${json-simple.version}
+  - commons-io:commons-io:${commons-io.version}
+  - org.apache.commons:commons-lang3:${commons-lang3.version}
 
 commands:
-    topplaytime:
-    redeemgift:
-    sb:
+    build:
+    login:
+    logout:
+    togglegroup:
+        aliases: tg
+    userlist:
+    whitelist:
+    maintenance:
     afk:
-    cc:
-    chatclear:
+    setspawn:
     setid:
     setpf:
-    clearlag:
-    ping:
-    s:
-    gm:
-    gamemode:
-    gc:
-    setspawn:
-    stop:
-    time:
-    weather:
-    msg:
-    r:
-    blockmsg:
-    home:
-    listhomes:
-    sethome:
-    delhome:
-    spawnvillager: 
+        aliases: setprefix
     money:
     setmoney:
     removemoney:
@@ -48,45 +38,8 @@ commands:
     bankdeposit:
     bankwithdraw:
     pay:
-    head:
-    headlist:
-        aliases:
-        - heads
-    login:
-    logout:
-    tg:
-    fly:
-    wb:
-    workbench:
-    onlinemap:
-    invsee:
+    spawnvillager:
     pinfo:
-    tpa:
-    tpahere:
-    tpaccept:
-        aliases: 
-        - tpyes
-        - tpallow
-    tpdeny:
-        aliases:
-        - tpnp
-        - tpdisallow
-    blocktpa:
-    tphere:
-        aliases:
-        - tph
-    tp:
-    vanish:
-        aliases:
-        - v
-    speed:
-    settings:
-        aliases:
-        - profilesettings
-        - ps
-        - profile
-        - options
-        - profileoptions
-    deletejobsign:
-    role:
+    lobbyconf:
+    stringmanager:
     
